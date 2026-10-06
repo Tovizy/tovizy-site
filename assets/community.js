@@ -290,9 +290,10 @@
     im.srcset = s.srcset;
     im.src = s.src;
     im.style.opacity = "0";
+    im.classList.add("is-entering");
     pic.insertBefore(im, pic.querySelector(".tour-draw"));
     var show = function () {
-      requestAnimationFrame(function () { im.style.opacity = "1"; });
+      requestAnimationFrame(function () { im.style.opacity = "1"; im.classList.remove("is-entering"); });
       if (old) setTimeout(function () { if (old.parentNode) old.parentNode.removeChild(old); }, reduce ? 0 : 750);
     };
     if (im.decode) im.decode().then(show, show); else im.onload = show;
@@ -433,11 +434,19 @@
   window.addEventListener("resize", sync);
   sync();
 
+  /* the plan builds itself once when it comes into view */
+  var settle = function () { svg.classList.add("is-in"); setTimeout(function () { svg.classList.add("is-settled"); }, 2200); };
+  if (reduce || !("IntersectionObserver" in window)) { svg.classList.add("is-in", "is-settled"); }
+  else {
+    var pio = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { pio.disconnect(); settle(); } }, { threshold: 0.25 });
+    pio.observe(svg);
+  }
+
   /* on narrow screens start the plan scrolled to its centre */
   var sc = document.querySelector(".cm-scroll");
   if (sc && sc.scrollWidth > sc.clientWidth) sc.scrollLeft = (sc.scrollWidth - sc.clientWidth) / 2;
 
   /* ---------- deep link: #lot-12 ---------- */
   var m = /^#lot-(\d+)$/.exec(location.hash);
-  if (m && lots[m[1]]) select(+m[1], false);
+  if (m && lots[m[1]]) { svg.classList.add("is-in", "is-settled"); select(+m[1], false); }
 })();

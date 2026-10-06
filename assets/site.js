@@ -100,6 +100,68 @@
     frame();
   }
 
+  /* Imagery develops once as it scrolls in; pictures that arrive together are staggered */
+  var reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  var markIn = function (el, delay) {
+    el.style.setProperty("--d", (delay || 0) + "ms");
+    el.classList.add("is-in");
+    var piece = el.closest(".piece");
+    if (piece) { piece.style.setProperty("--d", (delay || 0) + "ms"); piece.classList.add("is-in"); }
+  };
+  if (reveals.length) {
+    if (reduce || !("IntersectionObserver" in window)) reveals.forEach(function (el) { markIn(el, 0); });
+    else {
+      // watch each picture's parent: a fully clipped element never counts as visible
+      var owner = new Map();
+      var rio = new IntersectionObserver(function (entries) {
+        var k = 0;
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          markIn(owner.get(en.target), k++ * 110);
+          rio.unobserve(en.target);
+        });
+      }, { rootMargin: "0px 0px -12% 0px", threshold: 0 });
+      reveals.forEach(function (el) { owner.set(el.parentElement, el); rio.observe(el.parentElement); });
+    }
+  }
+
+  /* Page to page: the picture you click carries over and becomes the next page's hero
+     (cross-document view transitions; browsers without them simply load the page) */
+  if (!reduce && "onpagereveal" in window) {
+    var clearNames = function () {
+      document.querySelectorAll("[data-vt]").forEach(function (el) { el.style.viewTransitionName = ""; el.removeAttribute("data-vt"); });
+    };
+    var nameIt = function (el) { if (el) { el.style.viewTransitionName = "work"; el.setAttribute("data-vt", ""); } };
+    document.addEventListener("click", function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest("a.piece, a.next-project, .index a");
+      if (!a) return;
+      clearNames();
+      var heroImg = document.querySelector(".p-hero > img");
+      if (heroImg) { heroImg.style.viewTransitionName = "none"; heroImg.setAttribute("data-vt", ""); }
+      if (a.closest(".index")) {
+        var pv = document.querySelector(".index-preview.is-on img");
+        nameIt(pv);
+      } else nameIt(a.querySelector(".frame img"));
+    });
+    // coming back to the home page: the project's card receives the picture
+    window.addEventListener("pagereveal", function (e) {
+      if (!e.viewTransition || !window.navigation || !navigation.activation || !navigation.activation.from) return;
+      var from = navigation.activation.from.url || "";
+      var m = /\/projects\/([^/?#.]+)/.exec(from);
+      if (!m) return;
+      var card = document.querySelector('a.piece[href*="projects/' + m[1] + '"] .frame img');
+      if (!card) return;
+      var r = card.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      var box = card.closest(".reveal");
+      if (box) markIn(box, 0);
+      nameIt(card);
+      e.viewTransition.finished.finally(clearNames);
+    });
+    window.addEventListener("pageshow", function (e) { if (e.persisted) clearNames(); });
+  }
+
   /* Project index: a preview follows the cursor */
   var index = document.querySelector(".index");
   var prev = document.querySelector(".index-preview");
@@ -187,6 +249,29 @@
     var input = c.querySelector("input");
     var set = function () { c.style.setProperty("--pos", input.value + "%"); };
     input.addEventListener("input", set); set();
+    // the first time it is seen, the divider sweeps once to show that it can be dragged
+    if (reduce || !("IntersectionObserver" in window)) return;
+    var touched = false, raf = 0;
+    var stop = function () { touched = true; cancelAnimationFrame(raf); };
+    ["pointerdown", "keydown", "focus"].forEach(function (t) { input.addEventListener(t, stop); });
+    var cio = new IntersectionObserver(function (en) {
+      if (!en[0].isIntersecting) return;
+      cio.disconnect();
+      setTimeout(function () {
+        if (touched) return;
+        var t0 = performance.now(), D = 2200;
+        var ease = function (t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+        var tick = function (now) {
+          if (touched) return;
+          var t = Math.min(1, (now - t0) / D);
+          var v = 50 - 22 * Math.sin(ease(t) * Math.PI * 2);
+          input.value = v.toFixed(1); set();
+          if (t < 1) raf = requestAnimationFrame(tick); else { input.value = 50; set(); }
+        };
+        raf = requestAnimationFrame(tick);
+      }, 900);
+    }, { threshold: 0.6 });
+    cio.observe(c);
   });
 
   /* Contact form */

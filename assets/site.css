@@ -59,7 +59,7 @@ h1, h2, h3 { font-family: var(--f-serif); font-weight: 300; line-height: 1.04; l
   background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
   transition: background-size .6s var(--ease-out);
 }
-.tlink:hover { background-size: 0 1px; background-position: 100% 100%; }
+@media (hover: hover) and (pointer: fine) { .tlink:hover { background-size: 0 1px; background-position: 100% 100%; } }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 12px;
   min-height: 50px; padding: 0 28px; border: 1px solid currentColor; border-radius: 0;
@@ -67,9 +67,9 @@ h1, h2, h3 { font-family: var(--f-serif); font-weight: 300; line-height: 1.04; l
   font: 500 var(--fs-s)/1 var(--f-sans); letter-spacing: 0.01em;
   transition: background-color .45s var(--ease-out), color .45s var(--ease-out), border-color .45s;
 }
-.btn:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+@media (hover: hover) and (pointer: fine) { .btn:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); } }
 .btn-solid { background: var(--fg); color: var(--bg); border-color: var(--fg); }
-.btn-solid:hover { background: transparent; color: var(--fg); }
+@media (hover: hover) and (pointer: fine) { .btn-solid:hover { background: transparent; color: var(--fg); } }
 
 /* ---------------- Header ---------------- */
 .site-header {
@@ -184,13 +184,13 @@ body.menu-open { overflow: hidden; }
 .r-port { aspect-ratio: 4 / 5; }
 .frame img { position: absolute; left: 0; top: -6%; width: 100%; height: 112%; object-fit: cover;
   transform: translate3d(0, var(--drift, 0px), 0) scale(var(--zoom, 1)); transition: transform 1.4s var(--ease-out); will-change: transform; }
-.piece:hover .frame img { --zoom: 1.035; }
+@media (hover: hover) and (pointer: fine) { .piece:hover .frame img { --zoom: 1.035; } }
 .label { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 24px; margin-top: 20px; }
 .label h3 { font-size: var(--fs-xl); }
 .label p { grid-column: 1; color: var(--fg-2); font-size: var(--fs-s); }
 .label .count { grid-row: 1; grid-column: 2; align-self: end; font-size: var(--fs-xs); color: var(--fg-2); white-space: nowrap; }
 .piece h3 span { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .7s var(--ease-out); }
-.piece:hover h3 span { background-size: 100% 1px; }
+@media (hover: hover) and (pointer: fine) { .piece:hover h3 span { background-size: 100% 1px; } }
 @media (max-width: 800px) {
   .works { row-gap: 64px; }
   .w-full, .w-10c, .w-7l, .w-5r, .w-5l, .w-7r { grid-column: 1 / -1; margin-top: 0; }
@@ -204,7 +204,8 @@ body.menu-open { overflow: hidden; }
 .index .name { font-family: var(--f-serif); font-weight: 300; font-size: var(--fs-xl); line-height: 1.15; transition: transform .7s var(--ease-out); }
 .index .kind, .index .n { font-size: var(--fs-s); color: var(--fg-2); }
 .index .n { text-align: right; }
-.index a:hover .name, .index a:focus-visible .name { transform: translateX(14px); }
+.index a:focus-visible .name { transform: translateX(14px); }
+@media (hover: hover) and (pointer: fine) { .index a:hover .name { transform: translateX(14px); } }
 @media (max-width: 700px) {
   .index a { grid-template-columns: minmax(0, 1fr) auto; }
   .index .kind { grid-column: 1; grid-row: 2; }
@@ -227,7 +228,7 @@ body.menu-open { overflow: hidden; }
 .play { display: inline-flex; align-items: center; gap: 18px; background: none; border: 0; color: var(--ivory); cursor: pointer; font: 500 var(--fs-s)/1 var(--f-sans); }
 .play i { display: grid; place-items: center; width: 84px; height: 84px; border: 1px solid rgba(234, 229, 216, .7); border-radius: 50%; transition: background-color .5s, color .5s; }
 .play svg { width: 14px; height: 14px; fill: currentColor; margin-left: 3px; }
-.play:hover i { background: var(--ivory); color: var(--wall); }
+@media (hover: hover) and (pointer: fine) { .play:hover i { background: var(--ivory); color: var(--wall); } }
 .film.is-playing .film-shade, .film.is-playing .film-copy { display: none; }
 @media (max-width: 700px) { .film-frame { aspect-ratio: 4 / 5; } .play i { width: 64px; height: 64px; } }
 
@@ -374,7 +375,7 @@ body.menu-open { overflow: hidden; }
 .gallery button { display: block; width: 100%; padding: 0; border: 0; background: var(--wall-2); cursor: zoom-in; overflow: hidden; }
 .gallery img { width: 100%; height: auto; transition: transform 1.4s var(--ease-out); }
 .gallery li:not(.g-full) img { aspect-ratio: 4 / 3; object-fit: cover; }
-.gallery button:hover img { transform: scale(1.025); }
+@media (hover: hover) and (pointer: fine) { .gallery button:hover img { transform: scale(1.025); } }
 @media (max-width: 700px) { .gallery li { grid-column: 1 / -1; } }
 @media (prefers-reduced-motion: reduce) { .gallery img { transition: none; } .gallery button:hover img { transform: none; } }
 .p-film { margin-top: clamp(16px, 2vw, 32px); }
@@ -508,7 +509,7 @@ body.menu-open { overflow: hidden; }
 .cm-home { display: block; width: 100%; margin-top: 12px; padding: 0; border: 0; background: none; color: inherit; text-align: left; cursor: pointer; font: inherit; }
 .cm-home .ph { display: block; position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--rule); }
 .cm-home img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out); }
-.cm-home:hover img { transform: scale(1.04); }
+@media (hover: hover) and (pointer: fine) { .cm-home:hover img { transform: scale(1.04); } }
 .cm-home .nm { display: block; font-family: var(--f-serif); font-weight: 300; font-size: var(--fs-l); margin-top: 12px; }
 .cm-home .bl { display: block; color: var(--fg-2); font-size: var(--fs-s); margin-top: 4px; }
 .cm-home .go { display: inline-block; margin-top: 10px; font-size: var(--fs-s); font-weight: 500; padding-bottom: 3px; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; }
@@ -562,7 +563,7 @@ body.menu-open { overflow: hidden; }
 .tour-lot { font-size: var(--fs-xs); color: var(--ivory-2); }
 .tour-top h2 { font-size: var(--fs-xl); margin-top: 2px; }
 .tour-close { background: none; border: 1px solid rgba(234, 229, 216, .5); color: var(--ivory); min-height: 40px; padding: 0 18px; cursor: pointer; font: 500 var(--fs-s)/1 var(--f-sans); }
-.tour-close:hover { background: var(--ivory); color: var(--wall); }
+@media (hover: hover) and (pointer: fine) { .tour-close:hover { background: var(--ivory); color: var(--wall); } }
 .tour-stage { position: relative; min-height: 0; padding: clamp(12px, 2vw, 28px) 0 clamp(12px, 2vw, 28px) var(--gutter); }
 .tour-frame { position: relative; width: 100%; height: 100%; }
 .tour-pic { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); overflow: hidden; background: #16221D; --pos: 50%; }
@@ -575,7 +576,7 @@ body.menu-open { overflow: hidden; }
 .tour-pic.is-compare .tour-draw, .tour-pic.is-compare .bar, .tour-pic.is-compare input { display: block; }
 .tour-arrow { position: absolute; top: 50%; width: 48px; height: 48px; margin-top: -24px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(234, 229, 216, .55);
   background: rgba(14, 24, 20, .45); color: var(--ivory); cursor: pointer; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: background-color .3s, color .3s; }
-.tour-arrow:hover { background: var(--ivory); color: var(--wall); }
+@media (hover: hover) and (pointer: fine) { .tour-arrow:hover { background: var(--ivory); color: var(--wall); } }
 .tour-arrow svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.4; }
 .tour-prev { left: calc(var(--gutter) + 14px); }
 .tour-next { right: 14px; }
@@ -588,7 +589,7 @@ body.menu-open { overflow: hidden; }
 .tour-rooms button[aria-current="true"] { box-shadow: inset 2px 0 0 var(--brass); padding-left: 14px; }
 .tour-thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .tour-thumbs button { padding: 0; border: 0; background: none; cursor: pointer; aspect-ratio: 4 / 3; overflow: hidden; outline: 1px solid transparent; outline-offset: 2px; opacity: .62; transition: opacity .3s, outline-color .3s; }
-.tour-thumbs button:hover { opacity: 1; }
+@media (hover: hover) and (pointer: fine) { .tour-thumbs button:hover { opacity: 1; } }
 .tour-thumbs button[aria-current="true"] { opacity: 1; outline-color: var(--brass); }
 .tour-thumbs img { width: 100%; height: 100%; object-fit: cover; }
 .tour-cap { font-size: var(--fs-s); color: var(--ivory-2); }
@@ -630,3 +631,84 @@ body.menu-open { overflow: hidden; }
 .tour-360.is-loading::after { content: "Loading the 360° view"; position: absolute; inset: 0; display: grid; place-items: center; color: var(--ivory-2); font-size: var(--fs-s); }
 .tour-thumbs button { position: relative; }
 .tour-thumbs .b360 { position: absolute; left: 4px; bottom: 4px; padding: 2px 5px; background: rgba(14, 24, 20, .75); color: var(--ivory); font-size: 10px; line-height: 1.2; }
+
+
+/* ================= Motion pass (after Emil Kowalski's rules) =================
+   Strong custom curves; transform and opacity only; press feedback on everything pressable;
+   hover effects only on real pointers; imagery develops once as it enters; the clicked picture
+   carries over into the next page. Reduced motion keeps fades and drops movement. */
+:root { --ease-out-x: cubic-bezier(0.23, 1, 0.32, 1); --ease-in-out-x: cubic-bezier(0.77, 0, 0.175, 1); }
+a, button, input, select, textarea, summary { -webkit-tap-highlight-color: transparent; }
+a, button, summary { touch-action: manipulation; }
+
+/* Press feedback, 160 ms */
+.btn { transition: background-color .45s var(--ease-out), color .45s var(--ease-out), border-color .45s, transform 160ms var(--ease-out-x); }
+.seg button { transition: background-color .3s, color .3s, transform 160ms var(--ease-out-x); }
+.tour-close { transition: background-color .3s, color .3s, transform 160ms var(--ease-out-x); }
+.tour-arrow { transition: background-color .3s, color .3s, transform 160ms var(--ease-out-x); }
+.play i { transition: background-color .5s, color .5s, transform 160ms var(--ease-out-x); }
+.cm-plans button, .cm-home, .swatches button, .gallery button, .tour-rooms button { transition: transform 160ms var(--ease-out-x), color .3s; }
+.tour-thumbs button { transition: transform 160ms var(--ease-out-x), opacity .3s, outline-color .3s; }
+.btn:active, .seg button:active, .tour-close:active { transform: scale(0.97); }
+.play:active i, .tour-arrow:active { transform: scale(0.94); }
+.cm-plans button:active, .cm-home:active, .swatches button:active, .tour-thumbs button:active, .tour-rooms button:active { transform: scale(0.98); }
+.gallery button:active { transform: scale(0.99); }
+
+/* Imagery develops once as it scrolls in: the frame opens from the bottom while the picture settles */
+.js .reveal { clip-path: inset(0 0 100% 0); }
+.js .reveal.is-in { clip-path: inset(0 0 0 0); transition: clip-path 1.25s var(--ease-in-out-x) var(--d, 0ms); }
+.js .reveal .frame img, .js .frame.reveal img { --zoom: 1.14; }
+.js .reveal.is-in .frame img, .js .frame.reveal.is-in img { --zoom: 1; }
+.js .gallery .reveal img { transform: scale(1.1); transition: transform 1.6s var(--ease-out-x) var(--d, 0ms); }
+.js .gallery .reveal.is-in img { transform: none; }
+@media (hover: hover) and (pointer: fine) { .js .gallery .reveal.is-in:hover img { transform: scale(1.025); transition-duration: 1.4s; transition-delay: 0ms; } }
+.js .piece .label { opacity: 0; transform: translateY(10px); }
+.js .piece.is-in .label { opacity: 1; transform: none; transition: opacity .9s var(--ease-out-x) calc(var(--d, 0ms) + 450ms), transform .9s var(--ease-out-x) calc(var(--d, 0ms) + 450ms); }
+
+/* Page to page: the picture you clicked becomes the next page's hero */
+@view-transition { navigation: auto; }
+.site-header { view-transition-name: site-header; }
+.p-hero > img { view-transition-name: work; }
+::view-transition-old(root) { animation: 220ms var(--ease-out-x) both vt-out; }
+::view-transition-new(root) { animation: 420ms var(--ease-out-x) 80ms both vt-in; }
+::view-transition-group(work) { animation-duration: 760ms; animation-timing-function: var(--ease-in-out-x); }
+::view-transition-old(work), ::view-transition-new(work) { height: 100%; object-fit: cover; animation-duration: 760ms; animation-timing-function: var(--ease-in-out-x); }
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in { from { opacity: 0; } }
+
+/* Community map: the plan builds itself once, lot by lot around the loop, then the houses appear */
+.js .plat .lot { opacity: 0; }
+.js .plat .fp { opacity: 0; }
+.plat.is-in .lot { opacity: 1; transition: opacity 520ms var(--ease-out-x) calc(var(--i, 0) * 34ms); }
+.plat.is-in .fp { opacity: 1; transition: opacity 600ms var(--ease-out-x) calc(var(--i, 0) * 34ms + 620ms); }
+.plat.is-settled .lot { transition: opacity .4s var(--ease-out-x); }
+.plat.is-settled .fp { transition: none; }
+/* The lot panel: content arrives in a short cascade; blur bridges the swap */
+.cm-lot > * { animation: cm-in 420ms var(--ease-out-x) both; }
+.cm-lot > :nth-child(2) { animation-delay: 40ms; } .cm-lot > :nth-child(3) { animation-delay: 80ms; }
+.cm-lot > :nth-child(4) { animation-delay: 120ms; } .cm-lot > :nth-child(5) { animation-delay: 160ms; } .cm-lot > :nth-child(n+6) { animation-delay: 200ms; }
+@keyframes cm-in { from { opacity: 0; transform: translateY(8px); filter: blur(3px); } }
+.cm-plans li { animation: cm-in 380ms var(--ease-out-x) both; }
+.cm-plans li:nth-child(2) { animation-delay: 160ms; } .cm-plans li:nth-child(3) { animation-delay: 200ms; } .cm-plans li:nth-child(4) { animation-delay: 240ms; }
+.cm-plans li:nth-child(5) { animation-delay: 280ms; } .cm-plans li:nth-child(6) { animation-delay: 320ms; } .cm-plans li:nth-child(1) { animation-delay: 120ms; }
+/* The tour opens with a small rise; views cross-fade through a soft blur */
+.tour[open] .tour-inner { animation: tour-rise 460ms var(--ease-out-x) both; }
+@keyframes tour-rise { from { opacity: 0; transform: scale(0.985); } }
+.tour-pic > img { transition: opacity .7s var(--ease-out-x), filter .7s var(--ease-out-x); }
+.tour-pic > img.is-entering { filter: blur(10px); }
+.tour-cap { animation: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal, .js .reveal.is-in { clip-path: none; transition: none; }
+  .js .reveal .frame img, .js .frame.reveal img, .js .gallery .reveal img { --zoom: 1; transform: none; }
+  .js .piece .label { opacity: 1; transform: none; }
+  @view-transition { navigation: none; }
+  .js .plat .lot, .js .plat .fp { opacity: 1; }
+  .cm-lot > *, .cm-plans li { animation: cm-fade 200ms ease both; }
+  .tour[open] .tour-inner { animation: none; }
+  .tour-pic > img.is-entering { filter: none; }
+  .btn:active, .seg button:active, .tour-close:active, .play:active i, .tour-arrow:active { transform: none; }
+}
+@keyframes cm-fade { from { opacity: 0; } }
+.plat.is-in .lot.is-dim { opacity: .2; }
+@media (hover: hover) and (pointer: fine) { .plat.is-in .lot.is-dim:hover { opacity: .45; } }
