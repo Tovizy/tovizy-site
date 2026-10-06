@@ -618,3 +618,15 @@ body.menu-open { overflow: hidden; }
   .tour-thumbs { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 @media (prefers-reduced-motion: reduce) { .tour[open] { animation: none; } .tour-pic > img { transition: none; } }
+
+/* 360° view in the tour */
+.tour-360 { position: absolute; inset: 0; background: #16221D; overflow: hidden; }
+.tour-360 canvas { display: block; width: 100%; height: 100%; cursor: grab; touch-action: none; outline: none; }
+.tour-360 canvas:active { cursor: grabbing; }
+.tour-360 canvas:focus-visible { box-shadow: inset 0 0 0 1px var(--brass); }
+.tour-360-hint { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); margin: 0; padding: 8px 14px; background: rgba(14, 24, 20, .6); color: var(--ivory);
+  font-size: var(--fs-xs); pointer-events: none; transition: opacity .6s; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.tour-360.is-touched .tour-360-hint { opacity: 0; }
+.tour-360.is-loading::after { content: "Loading the 360° view"; position: absolute; inset: 0; display: grid; place-items: center; color: var(--ivory-2); font-size: var(--fs-s); }
+.tour-thumbs button { position: relative; }
+.tour-thumbs .b360 { position: absolute; left: 4px; bottom: 4px; padding: 2px 5px; background: rgba(14, 24, 20, .75); color: var(--ivory); font-size: 10px; line-height: 1.2; }

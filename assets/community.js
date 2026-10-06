@@ -80,8 +80,11 @@
   svg.addEventListener("pointerleave", function () { tip.hidden = true; });
 
   /* ---------- lot panel ---------- */
+  var firstStill = function (p) {
+    for (var i = 0; i < p.rooms.length; i++) for (var k = 0; k < p.rooms[i].views.length; k++) if (!p.rooms[i].views[k].pano) return p.rooms[i].views[k];
+  };
   var homeCard = function (p, label) {
-    var v = p.rooms[0].views[0];
+    var v = firstStill(p);
     return '<h3 class="cm-sub">' + label + '</h3><button class="cm-home" type="button" data-tour="' + p.id + '">' +
       '<span class="ph"><img src="' + v.src + '" srcset="' + v.srcset + '" sizes="(max-width: 900px) 100vw, 360px" alt="' + esc(v.alt) + '"></span>' +
       '<span class="nm">' + esc(p.name) + '</span><span class="bl">' + esc(p.blurb) + '</span>' +
@@ -174,6 +177,109 @@
   };
   window.addEventListener("resize", function () { if (dlg.open) fit(); });
 
+  /* ---------- 360° viewer: equirectangular pano on a WebGL quad ---------- */
+  var panoBox = document.createElement("div");
+  panoBox.className = "tour-360";
+  panoBox.hidden = true;
+  panoBox.innerHTML = '<canvas tabindex="0" aria-label="360 degree view. Drag, or use the arrow keys, to look around."></canvas><p class="tour-360-hint" aria-hidden="true">Drag to look around</p>';
+  frame.appendChild(panoBox);
+  var Pano = (function (cv) {
+    var gl = cv.getContext("webgl", { antialias: false }) || cv.getContext("experimental-webgl");
+    if (!gl) return null;
+    var sh = function (type, src) { var o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o); return o; };
+    var prog = gl.createProgram();
+    gl.attachShader(prog, sh(gl.VERTEX_SHADER, "attribute vec2 p;varying vec2 v;void main(){v=p;gl_Position=vec4(p,0.,1.);}"));
+    gl.attachShader(prog, sh(gl.FRAGMENT_SHADER,
+      "precision highp float;varying vec2 v;uniform sampler2D t;uniform float yaw,pitch,f,asp;" +
+      "void main(){vec3 d=normalize(vec3(v.x*f*asp,v.y*f,-1.));" +
+      "float c=cos(pitch),s=sin(pitch);d=vec3(d.x,d.y*c-d.z*s,d.y*s+d.z*c);" +
+      "c=cos(yaw);s=sin(yaw);d=vec3(d.x*c-d.z*s,d.y,d.x*s+d.z*c);" +
+      "gl_FragColor=texture2D(t,vec2(atan(d.x,-d.z)/6.2831853+.5,acos(clamp(d.y,-1.,1.))/3.1415927));}"));
+    gl.linkProgram(prog);
+    gl.useProgram(prog);
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, "p");
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var U = {};
+    ["yaw", "pitch", "f", "asp"].forEach(function (k) { U[k] = gl.getUniformLocation(prog, k); });
+    var tex = gl.createTexture();
+    var st = { yaw: 0, pitch: 0, fov: 80, ready: false, idle: true, raf: 0, src: "" };
+    var maxTex = gl.getParameter(gl.MAX_TEXTURE_SIZE);
+    var draw = function () {
+      st.raf = 0;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var w = Math.round(cv.clientWidth * dpr), h = Math.round(cv.clientHeight * dpr);
+      if (!w || !h) return;
+      if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+      gl.viewport(0, 0, w, h);
+      if (!st.ready) { gl.clearColor(0.086, 0.133, 0.114, 1); gl.clear(gl.COLOR_BUFFER_BIT); return; }
+      gl.uniform1f(U.yaw, st.yaw); gl.uniform1f(U.pitch, st.pitch);
+      gl.uniform1f(U.f, Math.tan(st.fov * Math.PI / 360)); gl.uniform1f(U.asp, w / h);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      if (st.idle && !reduce && !panoBox.hidden) { st.yaw += 0.0007; kick(); }
+    };
+    var kick = function () { if (!st.raf) st.raf = requestAnimationFrame(draw); };
+    var load = function (srcs) {
+      var url = (maxTex >= 8192 && srcs["8192"]) || srcs["4096"];
+      if (url === st.src) { kick(); return; }
+      st.src = url; st.ready = false; st.yaw = 0; st.pitch = 0; st.fov = 80; st.idle = true;
+      panoBox.classList.add("is-loading");
+      kick();
+      var im = new Image();
+      im.onload = function () {
+        if (st.src !== url) return;
+        gl.bindTexture(gl.TEXTURE_2D, tex);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, im);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        st.ready = true;
+        panoBox.classList.remove("is-loading");
+        kick();
+      };
+      im.src = url;
+    };
+    // drag, pinch, wheel and keys
+    var ptrs = {}, pinch = 0;
+    var look = function (dx, dy) {
+      var hf = st.fov * Math.PI / 180, asp = cv.clientWidth / Math.max(cv.clientHeight, 1);
+      st.yaw -= dx / Math.max(cv.clientWidth, 1) * hf * asp;
+      st.pitch = Math.max(-1.45, Math.min(1.45, st.pitch + dy / Math.max(cv.clientHeight, 1) * hf));
+      kick();
+    };
+    var zoom = function (k) { st.fov = Math.max(35, Math.min(100, st.fov * k)); kick(); };
+    cv.addEventListener("pointerdown", function (e) { st.idle = false; ptrs[e.pointerId] = [e.clientX, e.clientY]; cv.setPointerCapture(e.pointerId); panoBox.classList.add("is-touched"); });
+    cv.addEventListener("pointermove", function (e) {
+      if (!ptrs[e.pointerId]) return;
+      var ids = Object.keys(ptrs);
+      if (ids.length === 2) {
+        ptrs[e.pointerId] = [e.clientX, e.clientY];
+        var a = ptrs[ids[0]], b = ptrs[ids[1]], dist = Math.hypot(a[0] - b[0], a[1] - b[1]);
+        if (pinch) zoom(pinch / dist);
+        pinch = dist;
+        return;
+      }
+      var p = ptrs[e.pointerId];
+      look(e.clientX - p[0], e.clientY - p[1]);
+      ptrs[e.pointerId] = [e.clientX, e.clientY];
+    });
+    var up = function (e) { delete ptrs[e.pointerId]; pinch = 0; };
+    cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
+    cv.addEventListener("wheel", function (e) { e.preventDefault(); st.idle = false; zoom(Math.exp(e.deltaY * 0.001)); }, { passive: false });
+    cv.addEventListener("keydown", function (e) {
+      var k = { ArrowLeft: [-40, 0], ArrowRight: [40, 0], ArrowUp: [0, -30], ArrowDown: [0, 30] }[e.key];
+      if (k) { e.preventDefault(); e.stopPropagation(); st.idle = false; look(k[0], k[1]); }
+      if (e.key === "+" || e.key === "=") { st.idle = false; zoom(0.9); }
+      if (e.key === "-") { st.idle = false; zoom(1.1); }
+    });
+    window.addEventListener("resize", kick);
+    return { load: load, kick: kick };
+  })(panoBox.querySelector("canvas"));
+
   var cur = function () { return T.plan.rooms[T.room].views[T.view]; };
   var setImage = function (s) {
     var old = pic.querySelector("img.shot");
@@ -202,7 +308,7 @@
     var r = T.plan.rooms[T.room];
     thumbs.innerHTML = r.views.length < 2 ? "" : r.views.map(function (v, i) {
       return '<button type="button" data-view="' + i + '" aria-label="View ' + (i + 1) + ': ' + esc(v.alt) + '"' +
-        (i === T.view ? ' aria-current="true"' : "") + '><img src="' + v.thumb + '" alt="" loading="lazy"></button>';
+        (i === T.view ? ' aria-current="true"' : "") + '><img src="' + v.thumb + '" alt="" loading="lazy">' + (v.pano ? '<span class="b360">360°</span>' : "") + '</button>';
     }).join("");
   };
   var drawTools = function (v) {
@@ -221,6 +327,17 @@
 
   var show = function () {
     var v = cur();
+    var r0 = T.plan.rooms[T.room];
+    var isPano = !!(v.pano && Pano);
+    pic.hidden = isPano;
+    panoBox.hidden = !isPano;
+    if (isPano) {
+      panoBox.classList.remove("is-touched");
+      Pano.load(v.pano);
+      capEl.innerHTML = "<strong>" + esc(r0.name) + ", 360°" + (r0.views.length > 1 ? ", view " + (T.view + 1) + " of " + r0.views.length : "") + "</strong>" + esc(v.alt);
+      drawRooms(); drawThumbs(); tools.innerHTML = "";
+      return;
+    }
     var s = v.light ? v.light[T.light] : v;
     ar = v.w / v.h;
     fit();
@@ -232,7 +349,7 @@
     drawRooms(); drawThumbs(); drawTools(v);
     // warm the next view
     var nx = step(1, true);
-    if (nx) { var pre = new Image(); pre.sizes = "75vw"; pre.srcset = nx.srcset; }
+    if (nx && nx.srcset) { var pre = new Image(); pre.sizes = "75vw"; pre.srcset = nx.srcset; }
   };
   var step = function (d, peek) {
     var seq = [];
@@ -301,7 +418,7 @@
   });
   // swipe between views on touch screens
   var sx = null, sy = null;
-  frame.addEventListener("touchstart", function (e) { if (pic.classList.contains("is-compare")) return; sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  frame.addEventListener("touchstart", function (e) { if (pic.classList.contains("is-compare") || !panoBox.hidden) return; sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
   frame.addEventListener("touchend", function (e) {
     if (sx === null) return;
     var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
