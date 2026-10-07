@@ -167,6 +167,15 @@ body.menu-open { overflow: hidden; }
 .facts div { border-top: 1px solid var(--line); padding-top: 16px; }
 .facts dt { font-size: var(--fs-xs); color: var(--fg-2); margin-bottom: 6px; }
 @media (max-width: 800px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.statement.has-portrait { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); column-gap: clamp(32px, 6vw, 112px); align-items: center; }
+.statement.has-portrait .facts { grid-column: 1 / -1; }
+.portrait .frame { aspect-ratio: 4 / 5; }
+.portrait .frame img { top: 0; height: 100%; }
+.portrait figcaption { margin-top: 12px; font-size: var(--fs-xs); color: var(--fg-2); }
+@media (max-width: 800px) {
+  .statement.has-portrait { grid-template-columns: 1fr; row-gap: 32px; }
+  .portrait { width: min(100%, 420px); }
+}
 
 /* Selected work */
 .works { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(16px, 2.4vw, 40px); row-gap: clamp(72px, 10vw, 168px); }
