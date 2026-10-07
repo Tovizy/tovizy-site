@@ -297,6 +297,11 @@
         method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data)
       }).then(function (r) {
         if (!r.ok) throw new Error(r.status);
+        return r.json();
+      }).then(function (res) {
+        /* FormSubmit answers 200 even when it did not deliver (e.g. "This form needs Activation"),
+           so only a success flag counts as sent; anything else shows the email fallback. */
+        if (!res || String(res.success) !== "true") throw new Error(res && res.message || "not sent");
         form.reset(); status.dataset.state = "ok"; status.textContent = "Sent. We'll reply within 24 hours.";
       }).catch(function () {
         status.dataset.state = "error";
