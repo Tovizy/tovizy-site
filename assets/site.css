@@ -1052,7 +1052,7 @@ h2 em, .lead em { font-style: italic; color: var(--brass); }
 .js .clients-list li { opacity: 0; transform: translateY(14px); }
 .js .clients.is-in .clients-list li { opacity: 1; transform: none; transition: opacity .9s var(--ease-out), transform 1s var(--ease-out); transition-delay: calc(var(--i, 0) * 90ms); }
 @media (max-width: 700px) { .clients-h { width: 100%; } .clients-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; } .clients-list b { font-size: var(--fs-m); } }
-.s4-case { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 18px; align-items: center; margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--line); text-decoration: none; max-width: 640px; }
+.s4-case { display: grid; grid-template-columns: 236px minmax(0, 1fr); gap: 20px; align-items: center; margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--line); text-decoration: none; max-width: 640px; }
 .s4-case-img { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: var(--wall-2); }
 .s4-case-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out); }
 .s4-case-t { font-size: var(--fs-s); color: var(--fg-2); line-height: 1.55; }
@@ -1061,3 +1061,17 @@ h2 em, .lead em { font-style: italic; color: var(--brass); }
 @media (prefers-reduced-motion: reduce) { .js .clients-list li { opacity: 1; transform: none; } .js .hero-social { opacity: 1; transition: none; } }
 
 .fees-terms { margin-top: 18px; font-size: var(--fs-xs); color: var(--fg-2); max-width: 52ch; }
+
+/* Posana: our render beside the room as it was built */
+.s4-case-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.s4-case-img { position: relative; }
+.s4-case-img i { position: absolute; left: 6px; bottom: 6px; padding: 3px 6px; font: 500 10px/1 var(--f-sans); font-style: normal; color: var(--ivory); background: rgba(13, 22, 19, .7); }
+@media (max-width: 520px) { .s4-case { grid-template-columns: 1fr; } }
+.built-list { display: grid; gap: clamp(40px, 5vw, 72px); }
+.built-pair { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(8px, 1.2vw, 16px); }
+.built-pair .bp { position: relative; }
+.built-pair .frame { aspect-ratio: var(--ar, 4 / 3); }
+.built-pair .frame img { top: 0; height: 100%; }
+.bp-tag { position: absolute; left: 12px; top: 12px; z-index: 4; padding: 6px 10px; font-size: var(--fs-xs); color: var(--ivory); background: rgba(13, 22, 19, .72); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.bp-tag.is-built { box-shadow: inset 0 0 0 1px rgba(201, 164, 106, .7); }
+.built-pair figcaption { grid-column: 1 / -1; font-size: var(--fs-s); color: var(--fg-2); }
