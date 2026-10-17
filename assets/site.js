@@ -328,4 +328,109 @@
     dlg.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") show(idx - 1); if (e.key === "ArrowRight") show(idx + 1); });
     dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
   }
+
+  (function () {
+  /* ---------- motion layer (v3) ---------- */
+  /* Headlines: each word rises from its own mask, the way the captions move in our films */
+  var heads = Array.prototype.slice.call(document.querySelectorAll("main h2:not(.skip), .split"));
+  heads = heads.filter(function (h, i) { return heads.indexOf(h) === i && !h.closest("dialog, .tour, .es-tip"); });
+  var splitWords = function (el) {
+    var n = 0;
+    var walk = function (node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (c) {
+        if (c.nodeType === 3) {
+          var parts = c.textContent.split(/(\s+)/), frag = document.createDocumentFragment();
+          parts.forEach(function (p) {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(" ")); return; }
+            var w = document.createElement("span"), i = document.createElement("span");
+            w.className = "w"; i.textContent = p; i.style.setProperty("--wi", n++); w.appendChild(i); frag.appendChild(w);
+          });
+          node.replaceChild(frag, c);
+        } else if (c.nodeType === 1 && !c.classList.contains("w")) walk(c);
+      });
+    };
+    walk(el);
+    el.classList.add("sp");
+  };
+  if (heads.length && !reduce && "IntersectionObserver" in window) {
+    heads.forEach(function (h) { if (!h.getAttribute("aria-label")) h.setAttribute("aria-label", h.textContent.replace(/\s+/g, " ").trim()); splitWords(h); });
+    var hio = new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("is-in"); hio.unobserve(x.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    heads.forEach(function (h) { hio.observe(h); });
+  }
+
+  /* Work cards: a label follows the pointer */
+  if (finePointer && !reduce) {
+    var cards = document.querySelectorAll("a.piece");
+    if (cards.length) {
+      var cur = document.createElement("div"); cur.className = "cur"; cur.setAttribute("aria-hidden", "true"); cur.textContent = "View project";
+      document.body.appendChild(cur);
+      var mx = -200, my = -200, kx = -200, ky = -200, sc = .6, ksc = .6, craf = 0;
+      var cloop = function () {
+        kx += (mx - kx) * .2; ky += (my - ky) * .2; ksc += (sc - ksc) * .18;
+        cur.style.transform = "translate3d(" + (kx + 18).toFixed(1) + "px," + (ky + 18).toFixed(1) + "px,0) scale(" + ksc.toFixed(3) + ")";
+        craf = (Math.abs(mx - kx) + Math.abs(my - ky) + Math.abs(sc - ksc) > .3) ? requestAnimationFrame(cloop) : 0;
+      };
+      var cgo = function () { if (!craf) craf = requestAnimationFrame(cloop); };
+      Array.prototype.forEach.call(cards, function (a) {
+        a.addEventListener("mouseenter", function (e) { if (!cur.classList.contains("is-on")) { kx = mx = e.clientX; ky = my = e.clientY; } cur.classList.add("is-on"); sc = 1; cgo(); });
+        a.addEventListener("mousemove", function (e) { mx = e.clientX; my = e.clientY; cgo(); });
+        a.addEventListener("mouseleave", function () { cur.classList.remove("is-on"); sc = .6; cgo(); });
+      });
+    }
+  }
+
+  /* Any hour: scroll scrubs the house from day to dusk to night, then wipes through the facades */
+  var dn = document.querySelector(".dn");
+  if (dn) {
+    if (reduce || !("IntersectionObserver" in window)) dn.classList.add("is-static");
+    else {
+      var L = {}; dn.querySelectorAll(".dn-l").forEach(function (im) { L[im.getAttribute("data-k")] = im; });
+      var hiDpi = (window.innerWidth * (window.devicePixelRatio || 1)) > 1500;
+      var loadAll = function () {
+        Object.keys(L).forEach(function (k) {
+          var im = L[k], src = hiDpi ? im.getAttribute("data-src2") : (im.getAttribute("data-src") || im.getAttribute("src"));
+          im.loading = "eager"; if (src && im.getAttribute("src") !== src) im.src = src;
+        });
+      };
+      new IntersectionObserver(function (en, o) { if (en[0].isIntersecting) { loadAll(); o.disconnect(); } }, { rootMargin: "100% 0px" }).observe(dn);
+      var line = dn.querySelector(".dn-line"), stage = dn.querySelector(".dn-stage"), steps = dn.querySelectorAll(".dn-step");
+      var clockEl = dn.querySelector(".dn-clock"), dial = dn.querySelector(".dn-dial"), cta = dn.querySelector(".dn-cta");
+      var cl = function (x) { return Math.max(0, Math.min(1, x)); }, seg = function (p, a, b) { return cl((p - a) / (b - a)); };
+      var ease = function (k) { return k * k * (3 - 2 * k); };
+      var clock = function (t) { var m = t <= 1 ? 840 + t * 345 : 1185 + (t - 1) * 105; m = Math.round(m / 5) * 5; var h = Math.floor(m / 60), mm = m % 60; return ((h % 12) || 12) + ":" + (mm < 10 ? "0" : "") + mm + " pm"; };
+      var wipe = function (im, k) { im.style.opacity = k > 0 ? 1 : 0; im.style.clipPath = "inset(0 " + ((1 - k) * 100).toFixed(2) + "% 0 0)"; };
+      var lastStep = -1, dnPending = false;
+      var dnFrame = function () {
+        dnPending = false;
+        var r = dn.getBoundingClientRect(), span = r.height - window.innerHeight;
+        if (r.bottom < 0 || r.top > window.innerHeight) return;
+        var p = cl(-r.top / Math.max(1, span));
+        var t = 2 * ease(seg(p, .12, .5));                       // time of day 0..2
+        L["limestone-dusk"].style.opacity = cl(t).toFixed(3);
+        L["limestone-night"].style.opacity = cl(t - 1).toFixed(3);
+        var w1 = ease(seg(p, .6, .72)), w2 = ease(seg(p, .76, .88));
+        wipe(L["ivory-night"], w1); wipe(L["charcoal-night"], w2);
+        var wk = w2 > 0 && w2 < 1 ? w2 : (w1 > 0 && w1 < 1 ? w1 : -1);
+        line.style.opacity = wk >= 0 ? 1 : 0;
+        if (wk >= 0) line.style.transform = "translate3d(" + (wk * stage.clientWidth).toFixed(1) + "px,0,0)";
+        stage.style.setProperty("--dz", (1.12 - 0.12 * ease(p)).toFixed(4));
+        var si = p < .26 ? 0 : p < .42 ? 1 : p < .56 ? 2 : 3;
+        if (si !== lastStep) { steps.forEach(function (s, i) { s.classList.toggle("is-on", i === si); }); lastStep = si; }
+        clockEl.textContent = si === 3 ? "Night" : clock(t);
+        var a = Math.PI * (1 - t / 2);                             // the sun rides an arc and sets into the moon
+        dial.style.setProperty("--sx", (Math.cos(a) * 66).toFixed(1)); dial.style.setProperty("--sy", (-Math.sin(a) * 66).toFixed(1));
+        dial.style.setProperty("--sunc", t < 1 ? "#F2D49B" : t < 1.6 ? "#E39A5C" : "#DDE6F2");
+        dial.style.setProperty("--sung", t < 1.6 ? "rgba(242, 180, 110, .5)" : "rgba(200, 215, 240, .45)");
+        cta.classList.toggle("is-on", p > .84);
+      };
+      var dnKick = function () { if (!dnPending) { dnPending = true; requestAnimationFrame(dnFrame); } };
+      window.addEventListener("scroll", dnKick, { passive: true });
+      window.addEventListener("resize", dnKick);
+      dnFrame();
+    }
+  }
+  })();
 })();

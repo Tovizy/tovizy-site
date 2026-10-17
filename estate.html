@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blue Ridge Estate: Interactive Estate Presentation Demo | Tovizy</title>
+<meta name="description" content="A working demo of the estate presentations we build for developers and custom home builders: pick a homesite, switch facades and outdoor options, move the light from day to night and walk through the rooms in 360°.">
+<link rel="canonical" href="https://tovizy.com/estate">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tovizy Studio">
+<meta property="og:title" content="Blue Ridge Estate: Interactive Estate Presentation Demo | Tovizy">
+<meta property="og:description" content="A working demo of the estate presentations we build for developers and custom home builders: pick a homesite, switch facades and outdoor options, move the light from day to night and walk through the rooms in 360°.">
+<meta property="og:url" content="https://tovizy.com/estate">
+<meta property="og:image" content="https://tovizy.com/assets/og/og-estate.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#13201B">
+<link rel="icon" href="assets/brand/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/brand/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Noto+Serif+Display:wght@300..500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/estate.css">
+<link rel="preload" as="image" href="assets/estate/estate-map-1600.webp" media="(max-width: 1200px)">
+<link rel="preload" as="image" href="assets/estate/estate-map-3200.webp" media="(min-width: 1201px)">
+<script defer src="/_vercel/insights/script.js"></script>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="./"><img src="assets/brand/logo-light.png" alt="Tovizy" width="55" height="30"></a>
+    <nav class="nav" aria-label="Main"><a href="./#work">Work</a><a href="./#process">Process</a><a href="./#commissions">Commissions</a><a href="estate">Builders</a><a href="./#studio">Studio</a><a class="btn" href="./#contact">Start a project</a></nav>
+    <button class="menu-btn" type="button" aria-controls="menu" aria-expanded="false">Menu</button>
+  </div>
+</header>
+<div id="menu" class="menu" aria-hidden="true"><nav aria-label="Menu"><a href="./#work">Work</a><a href="./#process">Process</a><a href="./#commissions">Commissions</a><a href="estate">Builders</a><a href="./#studio">Studio</a><a href="./#contact">Contact</a></nav><p>contact@tovizy.com</p></div>
+<main id="main" class="es-page">
+<section class="es-map on-wall" aria-labelledby="es-title">
+  <div class="es-scroll" tabindex="-1">
+    <div class="es-canvas">
+      <img class="es-aerial" src="assets/estate/estate-map-1600.webp" srcset="assets/estate/estate-map-800.webp 800w, assets/estate/estate-map-1600.webp 1600w, assets/estate/estate-map-3200.webp 3200w" sizes="max(100vw, 150svh)" alt="Aerial view of Blue Ridge Estate: ten homesites around a loop road in a forest clearing" width="3200" height="2133" fetchpriority="high">
+      <div class="es-pins"><button type="button" class="es-pin s-sold" style="--x:25.80%;--y:15.60%;--i:0" data-lot="1" aria-label="Homesite 1, sold, 1.12 acres"><span class="es-pin-n">1</span></button><button type="button" class="es-pin s-reserved" style="--x:50.00%;--y:10.00%;--i:1" data-lot="2" aria-label="Homesite 2, reserved, 1.36 acres"><span class="es-pin-n">2</span></button><button type="button" class="es-pin s-available" style="--x:74.20%;--y:17.50%;--i:2" data-lot="3" aria-label="Homesite 3, available, 1.05 acres"><span class="es-pin-n">3</span></button><button type="button" class="es-pin s-sold" style="--x:11.70%;--y:31.90%;--i:3" data-lot="4" aria-label="Homesite 4, sold, 0.94 acres"><span class="es-pin-n">4</span></button><button type="button" class="es-pin s-available" style="--x:35.00%;--y:35.00%;--i:4" data-lot="5" aria-label="Homesite 5, available, 0.88 acres"><span class="es-pin-n">5</span></button><button type="button" class="es-pin s-model" style="--x:63.30%;--y:37.50%;--i:5" data-lot="6" aria-label="Homesite 6, model home, 0.97 acres"><span class="es-pin-n">6</span></button><button type="button" class="es-pin s-reserved" style="--x:87.50%;--y:37.50%;--i:6" data-lot="7" aria-label="Homesite 7, reserved, 1.21 acres"><span class="es-pin-n">7</span></button><button type="button" class="es-pin s-available" style="--x:14.60%;--y:56.25%;--i:7" data-lot="8" aria-label="Homesite 8, available, 1.02 acres"><span class="es-pin-n">8</span></button><button type="button" class="es-pin s-sold" style="--x:32.10%;--y:73.75%;--i:8" data-lot="9" aria-label="Homesite 9, sold, 1.18 acres"><span class="es-pin-n">9</span></button><button type="button" class="es-pin s-available" style="--x:83.30%;--y:65.00%;--i:9" data-lot="10" aria-label="Homesite 10, available, 1.30 acres"><span class="es-pin-n">10</span></button></div>
+    </div>
+  </div>
+  <div class="es-veil" aria-hidden="true"></div>
+  <div class="es-over wrap">
+    <div class="es-head">
+      <p class="es-kicker"><span>Live demo</span> Estate presentation</p>
+      <h1 id="es-title" class="split">Blue Ridge <em>Estate</em></h1>
+      <p class="es-lede">Ten homesites in the forest. Choose one to see the home, change its facade, move the light from noon to night and walk inside.</p>
+    </div>
+    <ul class="es-legend" aria-label="Homesite status"><li class="s-available"><span class="sw" aria-hidden="true"></span>Available <b>4</b></li><li class="s-model"><span class="sw" aria-hidden="true"></span>Model home <b>1</b></li><li class="s-reserved"><span class="sw" aria-hidden="true"></span>Reserved <b>2</b></li><li class="s-sold"><span class="sw" aria-hidden="true"></span>Sold <b>3</b></li></ul>
+    <p class="es-hint" aria-hidden="true"><span class="es-hint-dot"></span>Tap a homesite</p>
+  </div>
+  <div class="es-tip" role="presentation" hidden></div>
+</section>
+
+<section id="home" class="es-home on-wall" aria-labelledby="es-home-title">
+  <div class="wrap">
+    <div class="es-home-head">
+      <div>
+        <p class="es-crumb"><span class="es-lot-label">Homesite 6</span> · <span class="es-status-pill s-model">Model home</span></p>
+        <h2 id="es-home-title" class="split">The Ridge House</h2>
+      </div>
+      <dl class="es-specs"><div><dt>Bedrooms</dt><dd>5</dd></div><div><dt>Baths</dt><dd>5.5</dd></div><div><dt>Living area</dt><dd>6,180 sq ft</dd></div><div><dt>Garage</dt><dd>3 cars</dd></div><div><dt>Homesite</dt><dd class="es-acres">0.97 acres</dd></div></dl>
+    </div>
+    <div class="es-config">
+      <figure class="es-stage" aria-label="The Ridge House, rear elevation">
+        <div class="es-stack" data-key="limestone"></div>
+        <figcaption class="es-cap"><span class="es-cap-design">Limestone · Garden lawn</span><span class="es-cap-time">2:00 pm</span></figcaption>
+        <button type="button" class="es-full" aria-label="View full screen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+      </figure>
+      <div class="es-panel">
+        <div class="es-group">
+          <h3>Light</h3>
+          <div class="es-time">
+            <input id="es-t" type="range" min="0" max="200" value="0" step="1" aria-label="Time of day" aria-valuetext="Day, 2:00 pm">
+            <div class="es-ticks" aria-hidden="true"><span>Day</span><span>Dusk</span><span>Night</span></div>
+            <button type="button" class="es-play tlink">Play day to night</button>
+          </div>
+        </div>
+        <div class="es-group" role="group" aria-labelledby="es-fac-h">
+          <h3 id="es-fac-h">Facade</h3>
+          <div class="es-sws"><button type="button" class="es-sw" data-facade="limestone" aria-pressed="true"><img src="assets/estate/sw-limestone.webp" alt="" width="80" height="80" loading="lazy"><span><b>Limestone</b><small>Honed limestone, standing-seam roof</small></span></button><button type="button" class="es-sw" data-facade="ivory" aria-pressed="false"><img src="assets/estate/sw-ivory.webp" alt="" width="80" height="80" loading="lazy"><span><b>Ivory &amp; oak</b><small>Ivory mineral render with white-oak wings</small></span></button><button type="button" class="es-sw" data-facade="charcoal" aria-pressed="false"><img src="assets/estate/sw-charcoal.webp" alt="" width="80" height="80" loading="lazy"><span><b>Charcoal &amp; timber</b><small>Charcoal brick with cedar-clad wings</small></span></button></div>
+        </div>
+        <div class="es-group" role="group" aria-labelledby="es-out-h">
+          <h3 id="es-out-h">Outdoor</h3>
+          <div class="es-sws"><button type="button" class="es-sw" data-outdoor="garden" aria-pressed="true"><img src="assets/estate/sw-garden.webp" alt="" width="80" height="80" loading="lazy"><span><b>Garden lawn</b><small>Terraced lawn and clipped boxwood</small></span></button><button type="button" class="es-sw" data-outdoor="pool" aria-pressed="false"><img src="assets/estate/sw-pool.webp" alt="" width="80" height="80" loading="lazy"><span><b>Pool terrace</b><small>A 60-foot pool on a limestone deck</small></span></button><button type="button" class="es-sw" data-outdoor="fire" aria-pressed="false"><img src="assets/estate/sw-fire.webp" alt="" width="80" height="80" loading="lazy"><span><b>Fire court</b><small>Sunken lounge around a fire table</small></span></button></div>
+          <p class="es-note" hidden>Pool and fire court are shown with the limestone facade in this demo.</p>
+        </div>
+        <button type="button" class="btn btn-solid es-ask">Ask about this home</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="es-inside on-wall" aria-labelledby="es-in-title">
+  <div class="wrap">
+    <div class="head-row"><h2 id="es-in-title" class="split">Step <em>inside</em></h2><p>Every room rendered from the plans, and the ones that sell the home as 360° views buyers can look around on a phone.</p></div>
+    <div class="es-tabs" role="tablist" aria-label="Rooms">
+      <button role="tab" type="button" aria-selected="true" data-room="living">Great room</button>
+      <button role="tab" type="button" aria-selected="false" data-room="bedroom">Primary suite</button>
+      <button role="tab" type="button" aria-selected="false" data-room="pano">Primary suite <span class="b360">360°</span></button>
+    </div>
+    <div class="es-room" role="tabpanel" aria-label="Room view">
+      <img class="es-room-img is-on" data-room="living" src="assets/estate/living-1280.webp" srcset="assets/estate/living-1280.webp 1280w, assets/estate/living-2560.webp 2560w" sizes="(min-width: 1200px) 1200px, 100vw" alt="Great room with a coffered ceiling, a limestone fireplace and a wall of glass onto the lawn" loading="lazy" width="2560" height="1707">
+      <img class="es-room-img" data-room="bedroom" src="assets/estate/bedroom-1280.webp" srcset="assets/estate/bedroom-1280.webp 1280w, assets/estate/bedroom-2560.webp 2560w" sizes="(min-width: 1200px) 1200px, 100vw" alt="Primary suite under a vaulted ceiling with a tall window onto the hills" loading="lazy" width="2560" height="1707">
+      <button type="button" class="es-hot" data-go="bedroom" style="--x:19%;--y:47%"><span class="es-hot-dot" aria-hidden="true"></span><span class="es-hot-t">Primary suite</span></button>
+      <button type="button" class="es-hot" data-go="pano" style="--x:58%;--y:45%" hidden><span class="es-hot-dot" aria-hidden="true"></span><span class="es-hot-t">Look around in 360°</span></button>
+      <div class="es-pano" hidden data-src4="assets/estate/pano-bedroom-4096.jpg" data-src8="assets/estate/pano-bedroom-8192.jpg">
+        <canvas tabindex="0" aria-label="360 degree view of the primary suite. Drag, or use the arrow keys, to look around."></canvas>
+        <p class="es-pano-hint" aria-hidden="true">Drag to look around</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="es-gets on-wall section" aria-labelledby="es-gets-title">
+  <div class="wrap">
+    <div class="head-row"><h2 id="es-gets-title" class="split">Your community, <em>one page</em></h2><p>For developers and custom home builders selling from plans. We build the same presentation from your site plan, elevations and finish schedule, and host it or hand it to your web team.</p></div>
+    <ul class="es-steps">
+      <li><h3>The estate from above</h3><p>An aerial render of your site plan with every homesite, its status and acreage. Status changes from a shared sheet, so the map stays current.</p></li>
+      <li><h3>Homes buyers can configure</h3><p>Each plan rendered from your elevations, with the facades and outdoor options you actually offer, in day, dusk and night light.</p></li>
+      <li><h3>Rooms in 360°</h3><p>Interiors from your floor plans and finish schedule, with the rooms that sell the home as 360° views that open on any phone.</p></li>
+      <li><h3>Inquiries that arrive complete</h3><p>Every inquiry names the homesite, the facade and the options the buyer chose. Try it with the button above.</p></li>
+    </ul>
+    <p class="es-also">Selling a larger subdivision with production plans? See the <a class="tlink" href="community">lot-map demo, Cedar Hollow</a>.</p>
+  </div>
+</section>
+<section id="contact" class="on-wall on-raised section" aria-labelledby="contact-title">
+  <div class="wrap contact">
+    <div class="copy">
+      <h2 id="contact-title">Put your estate on one page.</h2>
+      <p>Send the site plan and the elevations, or tell us about the community you are launching. We reply with a quote and a schedule within 24 hours.</p>
+      <dl class="spec">
+        <dt>Email</dt><dd><a class="tlink" href="mailto:contact@tovizy.com">contact@tovizy.com</a></dd>
+        <dt>Instagram</dt><dd><a class="tlink" href="https://www.instagram.com/tovizystudio/" rel="noopener">@tovizystudio</a></dd>
+        <dt>LinkedIn</dt><dd><a class="tlink" href="https://www.linkedin.com/in/tovizy/" rel="noopener">Tovizy</a></dd>
+      </dl>
+    </div>
+    <form id="project-form" class="form" data-mode="live" data-endpoint="https://formsubmit.co/ajax/63939df8ea43ed2aaa8d864a7de30e62" data-email="contact@tovizy.com">
+      <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field full"><label for="f-company">Studio or company</label><input id="f-company" name="company" autocomplete="organization"></div>
+      <div class="field"><label for="f-type">What you need</label><select id="f-type" name="service">
+        <option>Single view</option><option>Presentation set</option><option>Concept sprint</option><option>Film or motion reel</option><option>Client presentation</option><option>Virtual model home (360°)</option><option selected>Interactive estate site</option><option>Design partner hours</option><option>Brand scenes</option><option>Not sure yet</option></select></div>
+      <div class="field"><label for="f-when">When</label><select id="f-when" name="timeline">
+        <option>As soon as possible</option><option>Within 2–4 weeks</option><option>Next month or later</option></select></div>
+      <div class="field full"><label for="f-msg">About the project</label><textarea id="f-msg" name="message" required placeholder="Community, number of homesites and plans, launch date, and a link to the site plan and elevations"></textarea></div>
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="form-foot"><button class="btn btn-solid" type="submit">Send project details</button><p class="form-status" role="status" aria-live="polite"></p></div>
+    </form>
+  </div>
+</section>
+<p class="es-fine wrap">Blue Ridge Estate is a fictional concept community. Its images are AI-assisted concept renders made by Tovizy; homesite data is sample data.</p>
+<script type="application/json" id="es-data">{"lots": [{"n": 1, "x": 0.258, "y": 0.156, "status": "sold", "acres": 1.12}, {"n": 2, "x": 0.5, "y": 0.1, "status": "reserved", "acres": 1.36}, {"n": 3, "x": 0.742, "y": 0.175, "status": "available", "acres": 1.05}, {"n": 4, "x": 0.117, "y": 0.319, "status": "sold", "acres": 0.94}, {"n": 5, "x": 0.35, "y": 0.35, "status": "available", "acres": 0.88}, {"n": 6, "x": 0.633, "y": 0.375, "status": "model", "acres": 0.97}, {"n": 7, "x": 0.875, "y": 0.375, "status": "reserved", "acres": 1.21}, {"n": 8, "x": 0.146, "y": 0.5625, "status": "available", "acres": 1.02}, {"n": 9, "x": 0.321, "y": 0.7375, "status": "sold", "acres": 1.18}, {"n": 10, "x": 0.833, "y": 0.65, "status": "available", "acres": 1.3}], "status": {"available": "Available", "model": "Model home", "reserved": "Reserved", "sold": "Sold"}, "home": "The Ridge House", "name": "Blue Ridge Estate"}</script>
+</main>
+<footer class="site-footer on-wall">
+  <div class="wrap">
+    <a href="./"><img src="assets/brand/logo-light.png" alt="Tovizy" width="48" height="26"></a>
+    <nav aria-label="Contact"><a href="mailto:contact@tovizy.com">contact@tovizy.com</a><a href="https://www.instagram.com/tovizystudio/" rel="noopener">Instagram</a><a href="https://www.linkedin.com/in/tovizy/" rel="noopener">LinkedIn</a></nav>
+    <span>© 2026 Tovizy Studio</span>
+  </div>
+</footer>
+<script src="assets/site.js" defer></script>
+<script src="assets/estate.js" defer></script>
+</body>
+</html>
