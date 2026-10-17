@@ -21,8 +21,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Noto+Serif+Display:wght@300..500&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=dcf37162">
-<link rel="stylesheet" href="assets/estate.css?v=b4795126">
+<link rel="stylesheet" href="assets/site.css?v=8b28015c">
+<link rel="stylesheet" href="assets/estate.css?v=b9831a78">
 <link rel="preload" as="image" href="assets/estate/estate-map-1600.webp" media="(max-width: 1200px)">
 <link rel="preload" as="image" href="assets/estate/estate-map-3200.webp" media="(min-width: 1201px)">
 <script defer src="/_vercel/insights/script.js"></script>
@@ -32,12 +32,12 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="./"><img src="assets/brand/logo-light.png" alt="Tovizy" width="55" height="30"></a>
-    <nav class="nav" aria-label="Main"><a href="./#work">Work</a><a href="./#process">Process</a><a href="./#commissions">Commissions</a><a href="estate">Builders</a><a href="./#studio">Studio</a><a class="btn" href="./#contact">Start a project</a></nav>
+    <a class="logo" href="./"><img src="assets/brand/logo-sm-light.png" alt="Tovizy" width="60" height="38"></a>
+    <nav class="nav" aria-label="Main"><a href="work">Work</a><a href="services">Services</a><a href="estate">Builders</a><a href="./#studio">Studio</a><a class="btn" href="#contact">Start a project</a></nav>
     <button class="menu-btn" type="button" aria-controls="menu" aria-expanded="false">Menu</button>
   </div>
 </header>
-<div id="menu" class="menu" aria-hidden="true"><nav aria-label="Menu"><a href="./#work">Work</a><a href="./#process">Process</a><a href="./#commissions">Commissions</a><a href="estate">Builders</a><a href="./#studio">Studio</a><a href="./#contact">Contact</a></nav><p>contact@tovizy.com</p></div>
+<div id="menu" class="menu" aria-hidden="true"><nav aria-label="Menu"><a href="work">Work</a><a href="services">Services</a><a href="estate">Builders</a><a href="./#studio">Studio</a><a href="#contact">Start a project</a></nav><p>contact@tovizy.com</p><p class="menu-social"><a href="https://www.instagram.com/tovizystudio/" rel="noopener">Instagram</a><a href="https://www.linkedin.com/in/tovizy/" rel="noopener">LinkedIn</a></p></div>
 <main id="main" class="es-page">
 <section class="es-map on-wall" aria-labelledby="es-title">
   <div class="es-scroll" tabindex="-1">
@@ -53,7 +53,10 @@
       <h1 id="es-title" class="split">Blue Ridge <em>Estate</em></h1>
       <p class="es-lede">Ten homesites in the forest. Choose one to see the home, change its facade, move the light from noon to night and walk inside.</p>
     </div>
-    <ul class="es-legend" aria-label="Homesite status"><li class="s-available"><span class="sw" aria-hidden="true"></span>Available <b>4</b></li><li class="s-model"><span class="sw" aria-hidden="true"></span>Model home <b>1</b></li><li class="s-reserved"><span class="sw" aria-hidden="true"></span>Reserved <b>2</b></li><li class="s-sold"><span class="sw" aria-hidden="true"></span>Sold <b>3</b></li></ul>
+    <div class="es-foot">
+      <p class="es-mini" aria-hidden="true">Blue Ridge <em>Estate</em><span>Live demo · tap a homesite</span></p>
+      <ul class="es-legend" aria-label="Homesite status"><li class="s-available"><span class="sw" aria-hidden="true"></span>Available <b>4</b></li><li class="s-model"><span class="sw" aria-hidden="true"></span>Model home <b>1</b></li><li class="s-reserved"><span class="sw" aria-hidden="true"></span>Reserved <b>2</b></li><li class="s-sold"><span class="sw" aria-hidden="true"></span>Sold <b>3</b></li></ul>
+    </div>
     <p class="es-hint" aria-hidden="true"><span class="es-hint-dot"></span>Tap a homesite</p>
   </div>
   <div class="es-tip" role="presentation" hidden></div>
@@ -136,6 +139,7 @@
     <div class="copy">
       <h2 id="contact-title">Put your estate on one page.</h2>
       <p>Send the site plan and the elevations, or tell us about the community you are launching. We reply with a quote and a schedule within 24 hours.</p>
+      <p class="contact-note">New to Tovizy? Start with one pilot view for $390 and judge the fit. We are glad to sign your NDA before you send drawings.</p>
       <dl class="spec">
         <dt>Email</dt><dd><a class="tlink" href="mailto:contact@tovizy.com">contact@tovizy.com</a></dd>
         <dt>Instagram</dt><dd><a class="tlink" href="https://www.instagram.com/tovizystudio/" rel="noopener">@tovizystudio</a></dd>
@@ -156,17 +160,17 @@
     </form>
   </div>
 </section>
-<p class="es-fine wrap">Blue Ridge Estate is a fictional concept community. Its images are AI-assisted concept renders made by Tovizy; homesite data is sample data.</p>
+<p class="es-fine wrap">Blue Ridge Estate is a Tovizy demonstration project; homesite availability is sample data.</p>
 <script type="application/json" id="es-data">{"lots": [{"n": 1, "x": 0.258, "y": 0.156, "status": "sold", "acres": 1.12}, {"n": 2, "x": 0.5, "y": 0.1, "status": "reserved", "acres": 1.36}, {"n": 3, "x": 0.742, "y": 0.175, "status": "available", "acres": 1.05}, {"n": 4, "x": 0.117, "y": 0.319, "status": "sold", "acres": 0.94}, {"n": 5, "x": 0.35, "y": 0.35, "status": "available", "acres": 0.88}, {"n": 6, "x": 0.633, "y": 0.375, "status": "model", "acres": 0.97}, {"n": 7, "x": 0.875, "y": 0.375, "status": "reserved", "acres": 1.21}, {"n": 8, "x": 0.146, "y": 0.5625, "status": "available", "acres": 1.02}, {"n": 9, "x": 0.321, "y": 0.7375, "status": "sold", "acres": 1.18}, {"n": 10, "x": 0.833, "y": 0.65, "status": "available", "acres": 1.3}], "status": {"available": "Available", "model": "Model home", "reserved": "Reserved", "sold": "Sold"}, "home": "The Ridge House", "name": "Blue Ridge Estate", "v": 2}</script>
 </main>
 <footer class="site-footer on-wall">
   <div class="wrap">
-    <a href="./"><img src="assets/brand/logo-light.png" alt="Tovizy" width="48" height="26"></a>
+    <a href="./"><img src="assets/brand/logo-sm-light.png" alt="Tovizy" width="48" height="30"></a>
     <nav aria-label="Contact"><a href="mailto:contact@tovizy.com">contact@tovizy.com</a><a href="https://www.instagram.com/tovizystudio/" rel="noopener">Instagram</a><a href="https://www.linkedin.com/in/tovizy/" rel="noopener">LinkedIn</a></nav>
     <span>© 2026 Tovizy Studio</span>
   </div>
 </footer>
-<script src="assets/site.js?v=ccad4eb2" defer></script>
-<script src="assets/estate.js?v=99ecdc3f" defer></script>
+<script src="assets/site.js?v=f2877d0a" defer></script>
+<script src="assets/estate.js?v=9f447f05" defer></script>
 </body>
 </html>

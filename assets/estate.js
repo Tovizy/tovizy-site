@@ -12,7 +12,9 @@
   /* ---------------- the map: settle in, pins drop, a card follows the homesite under the pointer ---------------- */
   var map = $(".es-map"), scroller = $(".es-scroll"), tip = $(".es-tip");
   var aerial = $(".es-aerial");
-  var settle = function () { requestAnimationFrame(function () { map.classList.add("es-ready"); }); };
+  var compact = function () { map.classList.add("es-compact"); };
+  var settle = function () { requestAnimationFrame(function () { map.classList.add("es-ready"); }); setTimeout(compact, reduce ? 1500 : 3400); };
+  ["pointerdown", "wheel", "keydown", "touchstart"].forEach(function (t) { map.addEventListener(t, compact, { passive: true, once: true }); });
   if (aerial.complete) settle(); else { aerial.addEventListener("load", settle); setTimeout(settle, 2500); }
   // on phones the aerial scrolls sideways: start with the model home in view
   var centreMap = function () {

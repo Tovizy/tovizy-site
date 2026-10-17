@@ -101,7 +101,7 @@
   }
 
   /* Imagery develops once as it scrolls in; pictures that arrive together are staggered */
-  var reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  var reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal, .reveal-x"));
   var markIn = function (el, delay) {
     el.style.setProperty("--d", (delay || 0) + "ms");
     el.classList.add("is-in");
@@ -431,6 +431,257 @@
       window.addEventListener("resize", dnKick);
       dnFrame();
     }
+  }
+  })();
+  (function () {
+  /* ---------- v4: hero exit, the reel, service panels, counters, work filters ---------- */
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var esc = function (t) { var d = document.createElement("div"); d.textContent = t; return d.innerHTML; };
+  var words = function (t) { var n = 0; return String(t).split(/\s+/).filter(Boolean).map(function (w) { return '<span class="w"><span style="--wi:' + (n++) + '">' + esc(w) + "</span></span>"; }).join(" "); };
+  var raf2 = function (fn) { requestAnimationFrame(function () { requestAnimationFrame(fn); }); };
+  /* a masked line changes: the old one leaves upward while the new one rises in */
+  var swapIn = function (box, el) {
+    var olds = Array.prototype.filter.call(box.children, function (c) { return !c.classList.contains("is-out"); });
+    if (reduce) { olds.forEach(function (o) { o.remove(); }); box.appendChild(el); return; }
+    el.classList.add("is-pre"); box.appendChild(el);
+    olds.forEach(function (o) { o.classList.add("is-out"); setTimeout(function () { if (o.parentNode) o.remove(); }, 1000); });
+    raf2(function () { el.classList.remove("is-pre"); });
+  };
+
+  /* Hero: as you scroll away the picture sinks and the title lifts off */
+  var hero = $(".hero");
+  if (hero && !reduce) {
+    var hpPending = false, lastHp = -1;
+    var hpFrame = function () {
+      hpPending = false;
+      var p = Math.max(0, Math.min(1, window.scrollY / Math.max(1, hero.offsetHeight)));
+      if (Math.abs(p - lastHp) < 0.001) return;
+      lastHp = p; hero.style.setProperty("--hp", p.toFixed(4));
+    };
+    window.addEventListener("scroll", function () { if (!hpPending) { hpPending = true; requestAnimationFrame(hpFrame); } }, { passive: true });
+    hpFrame();
+  }
+
+  /* Reel: selected work full screen; frames change in rising slices with a brass leading edge */
+  var reel = $(".reel");
+  if (reel) {
+    var data = JSON.parse($(".reel-data", reel).textContent);
+    var stage = $(".reel-stage", reel), thumbBox = $(".reel-thumbs", reel), thumbs = $$(".reel-thumbs a", reel);
+    var titleBox = $(".reel-title", reel), metaBox = $(".reel-meta", reel), cntBox = $(".rc-cur", reel), goBtn = $(".reel-go", reel);
+    var pauseBtn = $(".reel-pause", reel);
+    var N = data.length, cur = 0, busy = false, queued = null, DUR = 6500;
+    var SL = window.innerWidth < 760 ? 5 : 8;
+    reel.style.setProperty("--dur", DUR + "ms");
+    thumbBox.style.setProperty("--n", N);
+    $(".rt", titleBox).innerHTML = words(data[0].name);
+    metaBox.innerHTML = "<span>" + words(data[0].meta) + "</span>";
+    var s0 = $(".reel-slide", stage), kb0 = document.createElement("div");
+    kb0.className = "kb"; kb0.appendChild(s0.firstElementChild); s0.appendChild(kb0);
+    var mkImg = function (d) { var im = new Image(); im.decoding = "async"; im.alt = ""; im.sizes = "100vw"; im.srcset = d.srcset; im.src = d.src; return im; };
+    var ready = {};
+    var preload = function (i) {
+      var d = data[(i + N) % N];
+      if (!ready[d.src]) { var im = mkImg(d); ready[d.src] = im.decode ? im.decode().catch(function () {}) : Promise.resolve(); }
+      return ready[d.src];
+    };
+    var build = function (d, dir) {
+      var s = document.createElement("div"); s.className = "reel-slide"; s.style.setProperty("--dir", dir);
+      var kb = document.createElement("div"); kb.className = "kb"; s.appendChild(kb);
+      if (reduce) { var one = mkImg(d); one.alt = d.alt; kb.appendChild(one); return s; }
+      for (var k = 0; k < SL; k++) {
+        var c = document.createElement("div"); c.className = "reel-slice";
+        var l = k * 100 / SL, r = 100 - (k + 1) * 100 / SL;
+        c.style.clipPath = "inset(0 calc(" + r.toFixed(3) + "% - 1px) 0 calc(" + l.toFixed(3) + "% - 1px))";
+        c.style.setProperty("--k", dir > 0 ? k : SL - 1 - k);
+        var im = mkImg(d); if (k === 0) im.alt = d.alt;
+        c.appendChild(im); kb.appendChild(c);
+      }
+      return s;
+    };
+    var mark = function (n) {
+      thumbs.forEach(function (a, i) {
+        if (i === n) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+        a.classList.toggle("is-done", i < n);
+      });
+    };
+    var show = function (n, dir) {
+      n = (n + N) % N;
+      if (n === cur) return;
+      if (busy) { queued = [n, dir]; return; }
+      busy = true;
+      dir = dir || (n > cur ? 1 : -1);
+      var d = data[n];
+      mark(n);
+      var old = $$(".reel-slide", stage);
+      preload(n).then(function () {
+        var s = build(d, dir);
+        stage.appendChild(s);
+        var t = document.createElement("a"); t.className = "rt"; t.href = d.href; t.innerHTML = words(d.name); t.style.setProperty("--wd", "260ms");
+        swapIn(titleBox, t);
+        var m = document.createElement("span"); m.innerHTML = words(d.meta); m.style.setProperty("--wd", "420ms");
+        swapIn(metaBox, m);
+        var c = document.createElement("span"); c.textContent = (n + 1 < 10 ? "0" : "") + (n + 1);
+        swapIn(cntBox, c);
+        goBtn.href = d.href;
+        cur = n;
+        var done = function () {
+          old.forEach(function (o) { if (o.parentNode) o.remove(); });
+          busy = false;
+          preload(cur + 1);
+          if (queued) { var q = queued; queued = null; show(q[0], q[1]); }
+        };
+        if (reduce) { s.classList.add("is-on"); done(); return; }
+        raf2(function () {
+          s.classList.add("go", "is-on");
+          old.forEach(function (o) { o.classList.add("is-out"); });
+          setTimeout(done, 1150 + SL * 58);
+        });
+      });
+    };
+    thumbs.forEach(function (a, i) {
+      a.addEventListener("click", function (e) {
+        if (i === cur) return;   // the current one opens the project
+        e.preventDefault(); show(i);
+      });
+    });
+    var inView = false, paused = reduce, hovering = false;
+    var sync = function () { reel.classList.toggle("is-playing", inView && !paused && !hovering && document.visibilityState === "visible"); };
+    if (reduce) reel.classList.add("is-manual");
+    thumbBox.addEventListener("animationend", function (e) { if (e.animationName === "reel-prog") show(cur + 1, 1); });
+    [thumbBox, $(".reel-info", reel)].forEach(function (el) {
+      el.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") { hovering = true; sync(); } });
+      el.addEventListener("pointerleave", function () { hovering = false; sync(); });
+    });
+    reel.addEventListener("focusin", function () { hovering = true; sync(); });
+    reel.addEventListener("focusout", function () { hovering = false; sync(); });
+    pauseBtn.addEventListener("click", function () {
+      paused = !paused;
+      if (!paused) reel.classList.remove("is-manual");
+      pauseBtn.setAttribute("aria-pressed", paused ? "true" : "false");
+      $(".lb", pauseBtn).textContent = paused ? "Play" : "Pause";
+      sync();
+    });
+    if (reduce) { pauseBtn.setAttribute("aria-pressed", "true"); $(".lb", pauseBtn).textContent = "Play"; }
+    document.addEventListener("visibilitychange", sync);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) { inView = en[0].isIntersecting; if (inView) preload(cur + 1); sync(); }, { threshold: 0.35 }).observe(reel);
+    } else { inView = true; sync(); }
+    reel.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { show(cur + 1, 1); e.preventDefault(); }
+      if (e.key === "ArrowLeft") { show(cur - 1, -1); e.preventDefault(); }
+    });
+    var sx = 0, sy = 0, st = 0;
+    stage.addEventListener("pointerdown", function (e) { sx = e.clientX; sy = e.clientY; st = Date.now(); });
+    stage.addEventListener("pointerup", function (e) {
+      var dx = e.clientX - sx, dy = e.clientY - sy;
+      if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.3 && Date.now() - st < 900) show(cur + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+    });
+  }
+
+  /* Service panels: the one you point at opens and plays its own media */
+  var row = $(".svc-row");
+  if (row) {
+    var panels = $$(".svc-p", row);
+    var narrow = window.matchMedia("(max-width: 900px)");
+    var svcIn = false;
+    var tagSwap = function (p, text) { var box = $(".svc-tag", p); if (!box) return; var sp = document.createElement("span"); sp.textContent = text; swapIn(box, sp); };
+    var player = function (p) {
+      var kind = p.getAttribute("data-kind"), on = false, timer = 0;
+      if (kind === "film") {
+        var v = $("video", p);
+        return function (want) {
+          if (want === on) return; on = want;
+          if (on && !reduce) { if (!v.getAttribute("src")) { var wb = v.getAttribute("data-webm"); v.src = wb && v.canPlayType('video/webm; codecs="vp9"') ? wb : v.getAttribute("data-src"); } var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
+          else v.pause();
+        };
+      }
+      var imgs = $$(".svc-media img", p), line = $(".svc-line", p), i = 0, steps = 0;
+      for (var q = 0; q < imgs.length; q++) if (imgs[q].classList.contains("is-on")) i = q;
+      var facade = function (im) { return (im.getAttribute("data-tag") || "").split(" · ")[0]; };
+      var step = function () {
+        var a = imgs[i], j = (i + 1) % imgs.length, b = imgs[j];
+        if (!b.complete) return;
+        var wipe = kind === "render" || facade(a) !== facade(b);
+        b.classList.add(wipe ? "is-wipe" : "is-fade"); void b.offsetWidth; b.classList.add("go");
+        if (wipe && line) { line.classList.remove("go"); void line.offsetWidth; line.classList.add("go"); }
+        tagSwap(p, b.getAttribute("data-tag"));
+        setTimeout(function () { b.classList.remove("is-wipe", "is-fade", "go"); b.classList.add("is-on"); if (a !== b) a.classList.remove("is-on"); }, wipe ? 1250 : 1450);
+        i = j;
+      };
+      return function (want) {
+        if (want === on) return; on = want;
+        clearInterval(timer);
+        if (on && !reduce) {
+          imgs.forEach(function (im) { im.loading = "eager"; });
+          steps = 0;   // one full loop per opening, then it rests on the image it started from
+          timer = setInterval(function () { if (steps >= imgs.length) { clearInterval(timer); return; } steps++; step(); }, 3800);
+        }
+      };
+    };
+    var players = panels.map(player);
+    var run = function () {
+      panels.forEach(function (p, i) { players[i](svcIn && (narrow.matches ? p.classList.contains("is-vis") : p.classList.contains("is-open"))); });
+    };
+    var open = function (p) { panels.forEach(function (q) { q.classList.toggle("is-open", q === p); }); run(); };
+    var ht = 0;
+    panels.forEach(function (p) {
+      p.addEventListener("pointerenter", function (e) { if (e.pointerType !== "mouse" || narrow.matches) return; clearTimeout(ht); ht = setTimeout(function () { open(p); }, 80); });
+      p.addEventListener("pointerleave", function () { clearTimeout(ht); });
+      p.addEventListener("focusin", function () { if (!narrow.matches) open(p); });
+      p.addEventListener("click", function (e) { if (!narrow.matches && !p.classList.contains("is-open")) { e.preventDefault(); open(p); } });
+    });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) { svcIn = en[0].isIntersecting; run(); }, { threshold: 0.25 }).observe(row);
+      var vio = new IntersectionObserver(function (en) { en.forEach(function (x) { x.target.classList.toggle("is-vis", x.intersectionRatio >= 0.6); }); run(); }, { root: row, threshold: [0, 0.6, 1] });
+      panels.forEach(function (p) { vio.observe(p); });
+    } else { svcIn = true; run(); }
+    if (narrow.addEventListener) narrow.addEventListener("change", run);
+  }
+
+  /* Client names arrive one after another */
+  var cl = $(".clients");
+  if (cl) {
+    $$(".clients-list li", cl).forEach(function (li, i) { li.style.setProperty("--i", i); });
+    if (reduce || !("IntersectionObserver" in window)) cl.classList.add("is-in");
+    else new IntersectionObserver(function (en, o) { if (en[0].isIntersecting) { cl.classList.add("is-in"); o.disconnect(); } }, { threshold: 0.4 }).observe(cl);
+  }
+
+  /* Numbers count up once when they arrive */
+  var counters = $$(".cnt[data-to]");
+  if (counters.length && !reduce && "IntersectionObserver" in window) {
+    var cio = new IntersectionObserver(function (en) {
+      en.forEach(function (x) {
+        if (!x.isIntersecting) return;
+        cio.unobserve(x.target);
+        var el = x.target, to = +el.getAttribute("data-to"), t0 = performance.now(), D = 1600;
+        var tick = function (now) { var k = Math.min(1, (now - t0) / D); el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(tick); };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(function (c) { c.textContent = "0"; cio.observe(c); });
+  }
+
+  /* Work page: filter by kind of project */
+  var chips = $$(".chips button");
+  if (chips.length) {
+    var items = $$(".wk");
+    chips.forEach(function (b) {
+      b.addEventListener("click", function () {
+        if (b.getAttribute("aria-pressed") === "true") return;
+        chips.forEach(function (c) { c.setAttribute("aria-pressed", c === b ? "true" : "false"); });
+        var f = b.getAttribute("data-f");
+        var keep = items.filter(function (it) { return f === "all" || it.getAttribute("data-cat").split(" ").indexOf(f) >= 0; });
+        var apply = function () {
+          items.forEach(function (it) { it.classList.remove("is-leaving", "is-entering"); it.classList.toggle("is-hidden", keep.indexOf(it) < 0); });
+          if (reduce) return;
+          keep.forEach(function (it, n) { it.style.setProperty("--n", n); void it.offsetWidth; it.classList.add("is-entering"); });
+        };
+        if (reduce) { apply(); return; }
+        items.forEach(function (it) { if (!it.classList.contains("is-hidden")) it.classList.add("is-leaving"); });
+        setTimeout(apply, 260);
+      });
+    });
   }
   })();
 })();
