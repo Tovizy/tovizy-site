@@ -75,7 +75,7 @@
     st.className = "es-stack"; st.setAttribute("data-key", key);
     ["day", "dusk", "night"].forEach(function (t) {
       var im = new Image(); im.alt = ""; im.className = "l-" + t; im.decoding = "async";
-      im.src = A + "house-" + key + "-" + t + "-" + big() + ".webp";
+      im.src = A + "house-" + key + "-" + t + "-" + big() + ".webp?v=" + (D.v || 1);
       st.appendChild(im);
     });
     return st;
@@ -104,20 +104,28 @@
   // first stack, rendered on the server as an empty div
   var first = $(".es-stack", stage), init = makeStack(keyOf());
   stage.replaceChild(init, first);
-  var swapping = false;
+  // each change gets a number; only the newest one may land, and a landing stack removes only what lies under it
+  var gen = 0, wanted = keyOf(), cap = $(".es-cap", stage);
+  var line = document.createElement("span"); line.className = "es-line"; line.setAttribute("aria-hidden", "true"); stage.insertBefore(line, cap);
   var swap = function () {
-    var key = keyOf(), old = $$(".es-stack", stage).pop();
-    if (old.getAttribute("data-key") === key) return;
+    var key = keyOf();
+    if (key === wanted) return;
+    wanted = key;
+    var my = ++gen;
     var nx = makeStack(key);
     applyTime(nx);
     var imgs = Array.prototype.slice.call(nx.querySelectorAll("img"));
     var ready = Promise.all(imgs.map(function (im) { return im.decode ? im.decode().catch(function () {}) : Promise.resolve(); }));
-    if (reduce) { ready.then(function () { stage.insertBefore(nx, old.nextSibling); old.remove(); }); return; }
-    nx.classList.add("is-entering");
     ready.then(function () {
-      stage.insertBefore(nx, old.nextSibling);
-      requestAnimationFrame(function () { requestAnimationFrame(function () { nx.classList.add("go"); }); });
-      setTimeout(function () { nx.classList.remove("is-entering", "go"); $$(".es-stack", stage).forEach(function (s) { if (s !== nx) s.remove(); }); }, 1300);
+      if (my !== gen) return;                       // a newer choice arrived while this one was loading
+      var under = $$(".es-stack", stage);
+      if (!reduce) nx.classList.add("is-entering");
+      stage.insertBefore(nx, cap);
+      var clear = function () { under.forEach(function (s) { if (s.parentNode) s.remove(); }); nx.classList.remove("is-entering", "go"); line.classList.remove("go"); };
+      if (reduce) { clear(); return; }
+      line.classList.remove("go"); void line.offsetWidth;
+      requestAnimationFrame(function () { requestAnimationFrame(function () { nx.classList.add("go"); line.classList.add("go"); }); });
+      setTimeout(clear, 1250);
     });
   };
   var press = function (group, val) {

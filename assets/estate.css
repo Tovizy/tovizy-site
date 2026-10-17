@@ -99,10 +99,11 @@
 .es-stack img.l-day { opacity: 1; }
 .es-stack.is-entering { clip-path: inset(0 100% 0 0); }
 .es-stack.is-entering.go { clip-path: inset(0 0 0 0); transition: clip-path 1.1s var(--ease); }
-.es-stack.is-entering::after { /* the developing line */
-  content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 2px; background: var(--brass);
-  box-shadow: 0 0 18px 4px rgba(201, 164, 106, .55); }
-.es-stack.is-entering.go::after { opacity: 0; transition: opacity .3s 1s; }
+.es-line { /* the developing line rides the edge of the wipe */
+  position: absolute; top: 0; bottom: 0; left: 0; width: 2px; z-index: 3; background: var(--brass); pointer-events: none;
+  box-shadow: 0 0 18px 4px rgba(201, 164, 106, .55); opacity: 0; }
+.es-line.go { left: 100%; opacity: 1; transition: left 1.1s var(--ease), opacity .2s; animation: es-line-out 1.25s linear forwards; }
+@keyframes es-line-out { 0%, 85% { opacity: 1; } 100% { opacity: 0; } }
 .es-cap { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; gap: 12px; padding: 40px 20px 16px;
   background: linear-gradient(180deg, rgba(10, 16, 13, 0), rgba(10, 16, 13, .6)); font-size: var(--fs-s); pointer-events: none; }
 .es-cap-time { font-variant-numeric: tabular-nums; letter-spacing: .04em; }
