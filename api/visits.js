@@ -21,8 +21,9 @@ module.exports = async (req, res) => {
   if (!authorized(key)) return res.status(401).json({ error: "unauthorized" });
 
   const token = process.env.BLOB_READ_WRITE_TOKEN;
-  const out = { generated: new Date().toISOString(), store: !!token, pages: {}, events: [] };
-  if (!token) return res.status(200).json(out);
+  const hasStore = !!(token || process.env.BLOB_STORE_ID);
+  const out = { generated: new Date().toISOString(), store: hasStore, pages: {}, events: [] };
+  if (!hasStore) return res.status(200).json(out);
 
   let since = String(q.since || "");
   if (!/^\d{4}-\d{2}-\d{2}$/.test(since)) since = new Date(Date.now() - 60 * 864e5).toISOString().slice(0, 10);
@@ -42,7 +43,7 @@ module.exports = async (req, res) => {
       let cursor;
       let pages = 0;
       do {
-        const r = await list({ prefix: `v/${m}/`, cursor, limit: 1000, token });
+        const r = await list({ prefix: `v/${m}/`, cursor, limit: 1000, ...(token ? { token } : {}) });
         for (const b of r.blobs || []) {
           const parts = String(b.pathname || "").split("/");
           if (parts.length !== 4) continue;
