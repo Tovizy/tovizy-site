@@ -1,0 +1,8 @@
+{
+  "name": "tovizy-site",
+  "private": true,
+  "description": "Static site plus two small functions for the personal-folio open counter",
+  "dependencies": {
+    "@vercel/blob": ">=0.27.0"
+  }
+}
