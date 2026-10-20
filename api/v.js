@@ -1,12 +1,22 @@
-// Open counter for personal folios (/for/<slug>). Called by /assets/pv.js.
-// Stores one empty marker file per event in Vercel Blob; everything is in the file name.
+// Visit counter for tovizy.com. Called by /assets/pv.js.
+// Kinds: "p" = page view (any page), "v" = personal folio view, "r" = personal folio read.
+// Stores one empty marker file per event in Vercel Blob; everything is in the file name:
+//   e/<YYYY-MM>/<ts>_<kind>_<cc>_<dev>_<sid>_<src>_<ref>_<target>_<rand>.txt
 // Nothing personal is kept: no IP, no cookies, only country code and device type.
+// Visits from Russia are the studio itself: not stored (also saves the free storage quota).
 
 const BOT = /bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|headless|lighthouse|pingdom|python|curl|wget|httpclient|scanner|proofpoint|mimecast|barracuda|safelinks|phantom|puppeteer|playwright/i;
+const INTERNAL = new Set(["ru"]);
 let access = null; // "private" or "public", learned on the first write
 
 function clean(s, n) {
   return String(s || "").toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, n) || "x";
+}
+
+function pageKey(path) {
+  const p = String(path || "/").toLowerCase().replace(/\.html$/, "").replace(/\/+$/, "");
+  if (!p || p === "/") return "home";
+  return p.slice(1).replace(/\//g, ".").replace(/[^a-z0-9.-]/g, "").slice(0, 60) || "home";
 }
 
 module.exports = async (req, res) => {
@@ -21,19 +31,26 @@ module.exports = async (req, res) => {
     if (Buffer.isBuffer(b)) b = b.toString("utf8");
     if (typeof b === "string") { try { b = JSON.parse(b); } catch (e) { b = {}; } }
     if (!b || typeof b !== "object") b = {};
-    const slug = String(b.slug || "").toLowerCase();
-    if (!/^[a-z0-9-]{2,80}$/.test(slug)) return res.status(204).end();
     const ua = String(req.headers["user-agent"] || "");
     if (!ua || BOT.test(ua)) return res.status(204).end();
 
-    const kind = b.k === "r" ? "r" : "v";
+    const kind = b.k === "r" ? "r" : b.k === "p" ? "p" : "v";
+    let target;
+    if (kind === "p") {
+      target = pageKey(b.page);
+    } else {
+      target = String(b.slug || "").toLowerCase();
+      if (!/^[a-z0-9-]{2,80}$/.test(target)) return res.status(204).end();
+    }
+    const cc = clean(req.headers["x-vercel-ip-country"], 2);
+    if (INTERNAL.has(cc)) return res.status(204).end();
+
     const now = new Date();
     const ts = now.toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "z").toLowerCase(); // 20261020t175600z
     const month = now.toISOString().slice(0, 7);
-    const cc = clean(req.headers["x-vercel-ip-country"], 2);
     const dev = /mobi|iphone|ipad|android/i.test(ua) ? "m" : "d";
-    const name = [ts, kind, cc, dev, clean(b.sid, 8), clean(b.src, 12), clean(b.ref, 12), Math.random().toString(36).slice(2, 6)].join("_");
-    const path = `v/${month}/${slug}/${name}.txt`;
+    const name = [ts, kind, cc, dev, clean(b.sid, 8), clean(b.src, 12), clean(b.ref, 12), target, Math.random().toString(36).slice(2, 6)].join("_");
+    const path = `e/${month}/${name}.txt`;
 
     if (!hasStore) { console.log("pv (no store yet)", path); return res.status(204).end(); }
     const { put } = await import("@vercel/blob");
