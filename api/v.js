@@ -33,6 +33,9 @@ module.exports = async (req, res) => {
     if (!b || typeof b !== "object") b = {};
     const ua = String(req.headers["user-agent"] || "");
     if (!ua || BOT.test(ua)) return res.status(204).end();
+    // pv.js v3 sends h=1 only after a real action on the page (mouse, tap, wheel, key).
+    // Old cached scripts and mail link scanners send no h: not stored.
+    if (String(b.h) !== "1") return res.status(204).end();
 
     const kind = b.k === "r" ? "r" : b.k === "p" ? "p" : "v";
     let target;

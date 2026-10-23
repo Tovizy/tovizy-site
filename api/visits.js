@@ -6,10 +6,14 @@
 //   site:     whole-site page views: today / 7 / 30 days, by day (New York dates), top pages, sources, countries, devices
 //   personal: folio summary: today / 7 / 30 days, top folios of the week
 // Visits from Russia (the studio itself) are never stored. Pages starting with zz-test are checks and are skipped.
+// Since 23.10.2026 a view needs a real action on the page (pv.js v3); earlier views are ignored, earlier reads kept.
 
 const crypto = require("crypto");
 const KEY_SHA256 = "2ec99af2ce72fd26f1565eed60ade71d0c71bb66d14f5be2dd22c2e10f449eb3";
 const TZ = "America/New_York";
+// Before this moment views were counted without a human check, and mail link scanners looked like visitors.
+// Views ("p", "v") from before it are ignored; reads ("r") are kept.
+const HUMAN_CHECK_FROM = "20261023t103000z";
 
 function authorized(key) {
   if (!key) return false;
@@ -67,6 +71,7 @@ module.exports = async (req, res) => {
           if (f.length < 9) continue;
           const [ts, k, ccRaw, dev, sid, src, ref, target] = f;
           if (target.startsWith("zz-test")) continue;
+          if (k !== "r" && ts < HUMAN_CHECK_FROM) continue;
           const t = `${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}T${ts.slice(9, 11)}:${ts.slice(11, 13)}:${ts.slice(13, 15)}Z`;
           const day = nyDate(new Date(t));
           const cc = ccRaw === "x" ? "" : ccRaw.toUpperCase();
