@@ -13,7 +13,7 @@ const KEY_SHA256 = "2ec99af2ce72fd26f1565eed60ade71d0c71bb66d14f5be2dd22c2e10f44
 const TZ = "America/New_York";
 // Before this moment views were counted without a human check, and mail link scanners looked like visitors.
 // Views ("p", "v") from before it are ignored; reads ("r") are kept.
-const HUMAN_CHECK_FROM = "20261023t103000z";
+const HUMAN_CHECK_FROM = "20261023t095700z"; // v3 went live 09:56 UTC
 
 function authorized(key) {
   if (!key) return false;
