@@ -95,13 +95,13 @@ module.exports = async (req, res) => {
           // personal folio view / read
           if (in30) {
             const bucket = k === "r" ? "reads" : "views";
-            personal.d30[bucket]++; if (k !== "r") pf.d30.add(target);
+            personal.d30[bucket]++; pf.d30.add(target);
             if (in7) {
-              personal.d7[bucket]++; if (k !== "r") pf.d7.add(target);
+              personal.d7[bucket]++; pf.d7.add(target);
               const w = week[target] || (week[target] = { slug: target, views: 0, reads: 0, last_seen: t });
               w[bucket]++; if (t > w.last_seen) w.last_seen = t;
             }
-            if (inToday) { personal.today[bucket]++; if (k !== "r") pf.today.add(target); }
+            if (inToday) { personal.today[bucket]++; pf.today.add(target); }
           }
           if (ts.slice(0, 8) < since.replace(/-/g, "")) continue;
           out.events.push({ t, slug: target, kind: k === "r" ? "read" : "view", country: cc, device: dev === "m" ? "mobile" : "desktop",
