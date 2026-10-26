@@ -423,14 +423,14 @@ void main(){
     };
     const ps = { a: null, b: null, da: flat, db: flat, p: 0, mode: 0, o: [0.5, 0.55], par: [0, 0] };
     const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
-    let raf = 0, dirtyP = true, cur = -1, curHouse = -1, curCh = -1, curClock = '';
+    let curHouse = -1, curCh = -1, curClock = '';
     const size = () => {
       if (!g) return;
       const r = cv.getBoundingClientRect(); let d = Math.min(devicePixelRatio || 1, 2);
       if (r.width * r.height * d * d > 4.2e6) d = Math.sqrt(4.2e6 / (r.width * r.height));
       const w = Math.max(2, Math.round(r.width * d)), h = Math.max(2, Math.round(r.height * d));
       if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
-      g.viewport(0, 0, w, h); dirtyP = true;
+      g.viewport(0, 0, w, h);
     };
     const draw = () => {
       if (!g || !ps.a || !ps.b) return;
@@ -441,21 +441,28 @@ void main(){
       g.uniform1f(PU.uP, ps.p); g.uniform1f(PU.uMode, ps.mode); g.uniform1f(PU.uCell, Math.max(22, Math.round(cv.height / 9))); g.uniform1f(PU.uZ, 0.06);
       g.drawArrays(g.TRIANGLE_STRIP, 0, 4);
     };
-    const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
-    function loop() {
+    /* the camera never stops: a slow sway, plus the pointer on a computer */
+    let visible = false, raf = 0;
+    const t0 = performance.now();
+    function loop(now) {
       raf = 0;
+      if (!visible) return;
       mouse.x += (mouse.tx - mouse.x) * 0.06; mouse.y += (mouse.ty - mouse.y) * 0.06;
-      ps.par[0] = drift + mouse.x * 0.9; ps.par[1] = mouse.y * 0.6;
+      const t = (now - t0) / 1000;
+      ps.par[0] = (RM ? 0 : Math.sin(t * 0.33) * 0.85) + mouse.x * 0.9;
+      ps.par[1] = (RM ? 0 : Math.cos(t * 0.27) * 0.25) + mouse.y * 0.6;
       draw();
-      if (Math.abs(mouse.tx - mouse.x) > 0.002 || Math.abs(mouse.ty - mouse.y) > 0.002) kick();
+      raf = requestAnimationFrame(loop);
     }
-    let drift = 0, tok = 0;
+    const startLoop = () => { if (g && !raf) raf = requestAnimationFrame(loop); };
+    const tabs = qa('.pres-bar [data-h]', presEl), prog = q('.pres-prog i', presEl);
     const hud = (i) => {
       const f = F[i], H = HOUSES[f.house];
       if (f.house !== curHouse) {
         curHouse = f.house;
         nameEl.textContent = H.name; subEl.textContent = H.sub; pnEl.textContent = `${String(f.house + 1).padStart(2, '0')} / ${String(HOUSES.length).padStart(2, '0')}`;
         urlEl.textContent = H.slug; goEl.href = H.href;
+        tabs.forEach((b) => b.setAttribute('aria-current', +b.dataset.h === f.house ? 'true' : 'false'));
         if (!RM) gsap.fromTo([nameEl, subEl], { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.9, ease: 'expo.out', stagger: 0.06, overwrite: true });
       }
       if (f.ch !== curCh) { curCh = f.ch; chEls.forEach((li, j) => li.classList.toggle('on', j === f.ch)); }
@@ -465,57 +472,63 @@ void main(){
         if (c) { tEl.textContent = c; lEl.textContent = f.hour || ''; if (!RM) gsap.fromTo(tEl, { opacity: 0.2, y: 10 }, { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out', overwrite: true }); }
       }
     };
-    const at = async (X) => {
-      const N = F.length - 1; X = Math.max(0, Math.min(N, X));
-      const i = Math.min(N - 1, Math.floor(X)), f = X - i;
-      drift = (f - 0.5) * 1.4;
-      ps.p = sm((f - 0.18) / 0.62);
-      hud(ps.p > 0.5 ? i + 1 : i);
-      if (i !== cur) {
-        cur = i; const t = ++tok;
-        const A = F[i], B = F[i + 1];
-        const [ta, tb, da, db] = await Promise.all([getTex(srcOf(A)), getTex(srcOf(B)), getTex(A.depth), getTex(B.depth)]);
-        if (t !== tok) return;
-        ps.a = ta; ps.b = tb; ps.da = da; ps.db = db; ps.mode = B.mode; ps.o = B.o || [0.5, 0.55];
-        [i + 2, i + 3].forEach((j) => { if (F[j]) { getTex(srcOf(F[j])); getTex(F[j].depth); } });
-        if (!g) fb.src = srcOf(ps.p > 0.5 ? B : A);
-      } else if (!g) fb.src = srcOf(ps.p > 0.5 ? F[i + 1] : F[i]);
-      kick();
-    };
-    if (g) { new ResizeObserver(() => { size(); kick(); }).observe(stage); size(); }
-    if (!COARSE) stage.addEventListener('pointermove', (e) => { const r = stage.getBoundingClientRect(); mouse.tx = ((e.clientX - r.left) / r.width - 0.5) * 2; mouse.ty = ((e.clientY - r.top) / r.height - 0.5) * 2; kick(); });
-    const screen = q('.pres-screen', presEl), bar = q('.pres-bar', presEl), hudEl = q('.pres-hud', presEl);
-    const N = F.length - 1;
-    const pin = q('.pres-pin', presEl);
-    ScrollTrigger.create({ trigger: presEl, start: 'top 220%', once: true, onEnter: () => { at(0); } });
-    if (!RM) {
-      const STEP = () => innerHeight * 0.72, OPEN = () => innerHeight * 0.7, CLOSE = () => innerHeight * 0.5;
-      const portrait = () => innerWidth / innerHeight < 0.9;
-      ScrollTrigger.create({
-        trigger: pin, start: 'top top', end: () => `+=${OPEN() + STEP() * N + CLOSE()}`, pin: true, anticipatePin: 1, invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          const tot = OPEN() + STEP() * N + CLOSE(), y = self.progress * tot;
-          const o = clamp01(y / OPEN()), c = clamp01((y - OPEN() - STEP() * N) / CLOSE());
-          const open = sm(o) * (1 - sm(c));
-          if (!portrait()) {
-            gsap.set(screen, { '--inset': (1 - open).toFixed(4) });
-            gsap.set(bar, { opacity: 1 - open * 0.85 });
-          }
-          at((y - OPEN()) / STEP());
-          gsap.set(hudEl, { opacity: sm((o - 0.55) / 0.45) });
-        },
-      });
-    } else { gsap.set(hudEl, { opacity: 1 }); }
-    // chapters jump to their first frame
+    /* it plays by itself: hold, change, hold. Clicks jump anywhere. */
+    const HOLD = (f) => (f.ch === 0 ? 2.1 : 2.8);
+    const DUR = [1.7, 2.6, 2.0];
+    const load = (f) => Promise.all([getTex(srcOf(f)), getTex(f.depth)]);
+    let cur = 0, busy = false, want = -1, timer = null, started = false;
+    function schedule() {
+      clearTimeout(timer);
+      if (!visible || RM) return;
+      const h = HOLD(F[cur]);
+      if (prog) gsap.fromTo(prog, { scaleX: 0 }, { scaleX: 1, duration: h, ease: 'none', overwrite: true });
+      timer = setTimeout(() => go((cur + 1) % F.length), h * 1000);
+    }
+    async function go(j) {
+      if (busy) { want = j; return; }
+      if (j === cur) { schedule(); return; }
+      busy = true; clearTimeout(timer);
+      const A = F[cur], B = F[j];
+      const [[ta, da], [tb, db]] = await Promise.all([load(A), load(B)]);
+      ps.a = ta; ps.da = da; ps.b = tb; ps.db = db;
+      const mode = A.house !== B.house ? 2 : (j === cur + 1 ? B.mode : 0);
+      ps.mode = mode; ps.o = mode === 2 ? [0.5, 0.68] : (B.o || [0.5, 0.55]); ps.p = 0;
+      load(F[(j + 1) % F.length]);
+      if (!g) fb.src = srcOf(B);
+      if (prog) gsap.to(prog, { scaleX: 0, duration: 0.4, overwrite: true });
+      let flipped = false;
+      gsap.to(ps, { p: 1, duration: RM ? 0.01 : DUR[mode], ease: mode === 1 ? 'sine.inOut' : 'power2.inOut',
+        onUpdate: () => { if (!flipped && ps.p > 0.45) { flipped = true; hud(j); } },
+        onComplete: () => {
+          cur = j; ps.a = ps.b; ps.da = ps.db; ps.p = 0; busy = false;
+          if (want >= 0 && want !== cur) { const w = want; want = -1; go(w); } else { want = -1; schedule(); }
+        } });
+    }
+    if (g) { new ResizeObserver(() => size()).observe(stage); size(); }
+    if (!COARSE) stage.addEventListener('pointermove', (e) => { const r = stage.getBoundingClientRect(); mouse.tx = ((e.clientX - r.left) / r.width - 0.5) * 2; mouse.ty = ((e.clientY - r.top) / r.height - 0.5) * 2; });
+    const screen = q('.pres-screen', presEl), hudEl = q('.pres-hud', presEl);
+    new IntersectionObserver((es) => es.forEach(async (e) => {
+      visible = e.isIntersecting;
+      if (visible) {
+        startLoop();
+        if (!started) {
+          started = true;
+          const [t, d] = await load(F[0]); ps.a = ps.b = t; ps.da = ps.db = d; ps.p = 0; hud(0); load(F[1]);
+          if (!RM) {
+            gsap.fromTo(screen, { '--inset': 1 }, { '--inset': 0.42, duration: 1.8, ease: 'expo.inOut' });
+            gsap.fromTo(hudEl, { opacity: 0 }, { opacity: 1, duration: 1, delay: 0.7 });
+          } else gsap.set(hudEl, { opacity: 1 });
+        }
+        if (!busy) schedule();
+      } else { clearTimeout(timer); if (prog) gsap.killTweensOf(prog); }
+    }), { threshold: 0.3 }).observe(stage);
     chEls.forEach((li, j) => li.addEventListener('click', () => {
-      const k = F.findIndex((f) => f.house === Math.max(0, curHouse) && f.ch === j); if (k < 0) return;
-      const st = ScrollTrigger.getAll().find((s) => s.pin === pin); if (!st) return;
-      const tot = innerHeight * 0.7 + innerHeight * 0.72 * N + innerHeight * 0.5;
-      scrollToY(st.start + (innerHeight * 0.7 + innerHeight * 0.72 * k) / tot * (st.end - st.start) + 2);
+      const k = F.findIndex((f) => f.house === Math.max(0, curHouse) && f.ch === j); if (k >= 0) go(k);
     }));
+    tabs.forEach((b) => b.addEventListener('click', () => { const k = F.findIndex((f) => f.house === +b.dataset.h); if (k >= 0 && F[cur].house !== +b.dataset.h) go(k); }));
   }
 
-  /* ---------------- selected work: one stage, scroll through the projects ---------------- */
+  /* ---------------- selected work: one stage that changes by itself ---------------- */
   const workEl = q('.work');
   if (workEl) {
     const P = JSON.parse(q('.work-data', workEl).textContent);
@@ -525,6 +538,7 @@ void main(){
     const ORIG = [[0.5, 0.56], [0.5, 0.5], [0.5, 0.5], [0.5, 0.64]];
     const big = (p) => (pickW() > 1700 && p.big ? p.big : p.src);
     const info = q('.work-info', workEl), nEl = q('.n', info), tEl = q('.work-title a', info), mEl = q('.work-meta', info), goEl = q('.work-go', info);
+    const prog = q('.work-prog i', workEl);
     const split = (el, text) => {
       el.textContent = '';
       text.split(' ').forEach((w, wi, arr) => {
@@ -534,9 +548,7 @@ void main(){
       });
       return qa('.ch', el);
     };
-    let pi = -1, on = -1, trig = null;
     const show = (i, dir) => {
-      if (i === on) return; on = i;
       btns.forEach((b, j) => b.classList.toggle('on', j === i));
       nEl.textContent = `${String(i + 1).padStart(2, '0')} / ${String(P.length).padStart(2, '0')}`;
       tEl.href = P[i].href; goEl.href = P[i].href;
@@ -547,27 +559,36 @@ void main(){
         gsap.fromTo(mEl, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out', delay: 0.15, overwrite: true });
       }
     };
-    let lastX = 0;
-    const at = (X) => {
-      const n = P.length - 1;
-      X = Math.max(0, Math.min(n, X));
-      const i = Math.min(n - 1, Math.floor(X));
-      if (i !== pi) {
-        pi = i; st.s.mode = MODES[i % MODES.length]; st.s.o = ORIG[i % ORIG.length];
-        st.set(big(P[i]), big(P[i + 1])); [i + 2, i - 1].forEach((j) => { if (P[j]) img(big(P[j])); });
-      }
-      st.s.p = X - i; st.render();
-      show(Math.round(X), X - lastX); lastX = X;
-    };
-    ScrollTrigger.create({ trigger: workEl, start: 'top 250%', once: true, onEnter: async () => { await st.set(big(P[0]), big(P[1])); pi = 0; at(trig ? trig.progress * (P.length - 1) : 0); } });
-    if (!RM) {
-      trig = ScrollTrigger.create({ trigger: workEl, start: 'top top', end: () => `+=${(P.length - 1) * 60}%`, pin: q('.work-pin', workEl), anticipatePin: 1, scrub: true,
-        snap: { snapTo: 1 / (P.length - 1), duration: { min: 0.3, max: 0.8 }, delay: 0.1, ease: 'power2.inOut' },
-        onUpdate: (self) => { if (pi >= 0) at(self.progress * (P.length - 1)); } });
-      // the picture breathes while it is held: a slow push in
-      gsap.fromTo(q('.stage', workEl), { scale: 1.06 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: workEl, start: 'top bottom', end: 'top top', scrub: true } });
+    const HOLD = 4.2;
+    let cur = 0, busy = false, want = -1, timer = null, visible = false, k = 0, started = false;
+    function schedule() {
+      clearTimeout(timer);
+      if (!visible || RM) return;
+      if (prog) gsap.fromTo(prog, { scaleX: 0 }, { scaleX: 1, duration: HOLD, ease: 'none', overwrite: true });
+      timer = setTimeout(() => go((cur + 1) % P.length), HOLD * 1000);
     }
-    btns.forEach((b, i) => b.addEventListener('click', () => { if (trig) scrollToY(trig.start + (trig.end - trig.start) * (i / (P.length - 1))); }));
+    async function go(j) {
+      if (busy) { want = j; return; }
+      if (j === cur) { schedule(); return; }
+      busy = true; clearTimeout(timer);
+      st.s.mode = MODES[k % MODES.length]; st.s.o = ORIG[k % ORIG.length]; k++;
+      await st.set(big(P[cur]), big(P[j])); st.s.p = 0; st.render();
+      img(big(P[(j + 1) % P.length]));
+      if (prog) gsap.to(prog, { scaleX: 0, duration: 0.4, overwrite: true });
+      const dir = j > cur ? 1 : -1; let flipped = false;
+      gsap.to(st.s, { p: 1, duration: RM ? 0.01 : 1.7, ease: 'power2.inOut',
+        onUpdate: () => { st.render(); if (!flipped && st.s.p > 0.35) { flipped = true; show(j, dir); } },
+        onComplete: () => { cur = j; busy = false; if (want >= 0 && want !== cur) { const w = want; want = -1; go(w); } else { want = -1; schedule(); } } });
+    }
+    new IntersectionObserver((es) => es.forEach(async (e) => {
+      visible = e.isIntersecting;
+      if (visible) {
+        if (!started) { started = true; await st.set(big(P[0]), big(P[0])); st.s.p = 0; st.render(); img(big(P[1])); }
+        if (!busy) schedule();
+      } else { clearTimeout(timer); if (prog) gsap.killTweensOf(prog); }
+    }), { threshold: 0.35 }).observe(workEl);
+    btns.forEach((b, i) => b.addEventListener('click', () => go(i)));
+    if (!RM) gsap.fromTo(q('.stage', workEl), { scale: 1.08 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: workEl, start: 'top bottom', end: 'top top', scrub: true } });
     show(0, 1);
   }
 

@@ -343,3 +343,30 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 300; letter-spacing: -.02em
 @media (max-width: 860px) { .c-pres { grid-column: 1 / -1; aspect-ratio: 4 / 4.2; } .fees { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 520px) { .fees { grid-template-columns: 1fr; } }
 @media (max-width: 860px) { .est-key { bottom: auto; top: 100%; padding: 8px 0 0; } }
+
+/* v3c: presentations and work play by themselves, one screen each */
+.pres-screen { --inset: .42; }
+.pres-bar { pointer-events: auto; }
+.pres-bar .url { margin: 0 0 0 auto; }
+.pres-bar .tabs { display: flex; gap: 2px; margin-left: 8px; }
+.pres-bar .tabs button { padding: 7px 14px; font-size: 12px; color: var(--ivory-3); border-radius: 6px 6px 0 0; transition: color .3s var(--ease), background .3s var(--ease); }
+.pres-bar .tabs button:hover { color: var(--ivory); }
+.pres-bar .tabs button[aria-current="true"] { color: var(--ivory); background: rgba(234, 229, 216, .1); }
+.pres-hud { inset: calc(var(--inset) * 11vh + 42px) calc(var(--inset) * 9vw) calc(var(--inset) * 7vh); --pad: clamp(20px, 2.6vw, 44px); }
+.pres-name { left: var(--pad); bottom: calc(var(--pad) + 58px); }
+.pres-clock { right: var(--pad); bottom: calc(var(--pad) + 72px); }
+.pres-ch { left: var(--pad); bottom: var(--pad); }
+.pres-go { right: var(--pad); bottom: var(--pad); }
+.pres-prog { position: absolute; z-index: 6; left: calc(var(--inset) * 9vw); right: calc(var(--inset) * 9vw); bottom: calc(var(--inset) * 7vh); height: 2px; background: rgba(234, 229, 216, .14); pointer-events: none; }
+.pres-prog i, .work-prog i { display: block; height: 100%; background: var(--brass-2); transform-origin: left; transform: scaleX(0); }
+.work-prog { left: 0; right: 0; bottom: 0; height: 2px; background: rgba(234, 229, 216, .12); }
+.work-list button { cursor: pointer; }
+@media (max-aspect-ratio: 1/1) {
+  .pres-hud { inset: 0; --pad: var(--gut); }
+  .pres-name { bottom: calc(clamp(28px, 6vh, 56px) + 112px); }
+  .pres-ch { bottom: calc(clamp(28px, 6vh, 56px) + 60px); }
+  .pres-go { bottom: clamp(28px, 6vh, 56px); }
+  .pres-prog { left: 0; right: 0; bottom: 0; }
+}
+@media (max-aspect-ratio: 1/1) { .pres-clock { top: calc(env(safe-area-inset-top, 0px) + 80px); bottom: auto; right: var(--gut); } }
+@media (max-aspect-ratio: 1/1) { .pres-go { left: var(--gut); right: auto; } }
