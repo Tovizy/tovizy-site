@@ -299,9 +299,10 @@ void main(){
   const TEX = new Map();
   const texLoader = new THREE.TextureLoader();
   const pickW = () => { const w = Math.max(innerWidth, innerHeight * 1.5) * Math.min(window.devicePixelRatio || 1, 2); return w > 1700 ? 2400 : 1600; };
+  const HI6 = new Set(["c1", "c3", "c6", "c7"]); /*HI6*/
   const tex = (key) => {
     if (!TEX.has(key)) {
-      TEX.set(key, new Promise((res) => texLoader.load(`${A}${key}-${pickW()}.webp`, (t) => {
+      TEX.set(key, new Promise((res) => texLoader.load(`${A}${key}-${HI6.has(key) && Math.max(innerWidth, innerHeight * 1.5) * Math.min(window.devicePixelRatio || 1, 2) > 2600 ? 3200 : pickW()}.webp${HI6.has(key) ? '?v=6k' : ''}`, (t) => {
         t.minFilter = THREE.LinearFilter; t.generateMipmaps = false; t.needsUpdate = true; res(t); dirty = true;
       }, undefined, () => res(null))));
     }

@@ -22,7 +22,8 @@
     const w = Math.max(innerWidth, innerHeight * 1.5) * r;
     return w > 2700 ? 3200 : w > 1700 ? 2400 : 1600;
   };
-  const url = (key) => `${A}${key}-${Math.min(pickW(), MAXW[key] || 2400)}.webp`;
+  const HI6 = new Set(["c1", "c3", "c6", "c7"]); /*HI6*/
+  const url = (key) => `${A}${key}-${Math.min(pickW(), HI6.has(key) ? 3200 : (MAXW[key] || 2400))}.webp${HI6.has(key) ? '?v=6k' : ''}`;
   const IMG = new Map();
   const img = (u) => {
     if (!IMG.has(u)) IMG.set(u, new Promise((res, rej) => {
@@ -426,7 +427,7 @@ void main(){
     const nameEl = q('.mo-name', moEl);
     const st = new Stage(q('.stage', moEl), { mode: 0, k: 0.03, cellDiv: 10, fit: () => (innerWidth / innerHeight < 0.9 ? 0.62 : 0) });
     st.s.o = [0.52, 0.56];
-    const mu = (k) => `${A}${k}-${Math.min(pickW(), 2400)}.webp`;
+    const mu = (k) => `${A}${k}-${Math.min(pickW(), 2400)}.webp${HI6.has(k) ? '?v=6k' : ''}`;
     let pi = -1, on = -1, trig = null;
     const showName = (i) => {
       if (i === on) return; on = i;
