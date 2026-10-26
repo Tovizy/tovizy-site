@@ -58,12 +58,12 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 300; letter-spacing: -.02em
 .h3d-labels { position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; }
 .h3d-labels span { position: absolute; left: 0; top: 0; font-size: 12px; font-stretch: 82%; letter-spacing: .05em; color: var(--ivory); white-space: nowrap; text-shadow: 0 1px 10px rgba(10, 18, 15, .9); }
 .h3d-labels span.dim { font-family: var(--serif); font-size: 17px; letter-spacing: 0; color: var(--brass-2); }
-.h3d-scrim { position: absolute; inset: 0; z-index: 3; pointer-events: none; background: linear-gradient(180deg, rgba(19, 32, 27, .5) 0%, rgba(19, 32, 27, 0) 18%, rgba(19, 32, 27, 0) 50%, rgba(19, 32, 27, .82) 100%); opacity: .6; transition: opacity 1.4s var(--ease); }
+.h3d-scrim { position: absolute; inset: 0; z-index: 3; pointer-events: none; background: radial-gradient(90% 60% at 0% 100%, rgba(19, 32, 27, .5), rgba(19, 32, 27, 0) 70%), linear-gradient(180deg, rgba(19, 32, 27, .5) 0%, rgba(19, 32, 27, 0) 18%, rgba(19, 32, 27, 0) 50%, rgba(19, 32, 27, .82) 100%); opacity: .6; transition: opacity 1.4s var(--ease); }
 .h3d-built .h3d-scrim { opacity: 1; }
 .h3d-outline { position: absolute; inset: 0; z-index: 4; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
 .h3d-outline polyline { fill: none; stroke: var(--brass); stroke-width: 1; vector-effect: non-scaling-stroke; opacity: 0; }
 .h3d-copy { position: absolute; z-index: 5; left: var(--gut); right: var(--gut); bottom: clamp(28px, 6vh, 64px); display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 28px 56px; }
-.h3d-copy h1 { font-size: clamp(48px, 5.6vw, 112px); line-height: .9; letter-spacing: -.035em; }
+.h3d-copy h1 { font-size: clamp(48px, 5.6vw, 112px); line-height: .9; letter-spacing: -.035em; text-shadow: 0 2px 28px rgba(10, 18, 15, .4); }
 .h3d-copy h1 .ln { display: block; overflow: hidden; padding-bottom: .05em; margin-bottom: -.05em; }
 .h3d-copy h1 .ln > span { display: block; }
 .h3d-copy .lede { margin-top: clamp(16px, 2vw, 26px); max-width: 44ch; font-size: clamp(15px, 1.2vw, 18px); color: var(--ivory-2); }
