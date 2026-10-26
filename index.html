@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Noto+Serif+Display:ital,wght@0,300..500;1,300..400&display=swap">
 <link rel="preload" as="fetch" href="/assets/home/model.bin" crossorigin>
-<link rel="stylesheet" href="/assets/home/home.css?v=2">
+<link rel="stylesheet" href="/assets/home/v3/home.css?v=3d">
 <script>if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('rm');setTimeout(function(){if(!window.gsap){var h=document.documentElement;h.classList.remove('js');h.classList.add('no-js')}},6000)</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -32,10 +32,10 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="hdr">
   <a class="logo" href="/" aria-label="Tovizy home"><img src="/assets/brand/logo-sm-light.png" alt="Tovizy" width="60" height="38"></a>
-  <nav aria-label="Main"><a href="/work">Work</a><a href="/services">Services</a><a href="/estate">Builders</a><a href="/showcase">Presentations</a><a href="#studio">Studio</a><a class="btn" href="#contact">Start a project</a></nav>
+  <nav aria-label="Main"><a href="/showcase">Presentations</a><a href="/estate">Estates</a><a href="/work">Work</a><a href="/services">Services</a><a href="#studio">Studio</a><a class="btn" href="#contact">Start a project</a></nav>
   <button class="menu-btn" type="button" aria-controls="menu" aria-expanded="false">Menu</button>
 </header>
-<div id="menu" class="menu" aria-hidden="true"><nav aria-label="Menu"><a href="/work">Work</a><a href="/services">Services</a><a href="/estate">Builders</a><a href="/showcase">Presentations</a><a href="#studio">Studio</a><a href="#contact">Start a project</a></nav><p>contact@tovizy.com</p></div>
+<div id="menu" class="menu" aria-hidden="true"><nav aria-label="Menu"><a href="/showcase">Presentations</a><a href="/estate">Estates</a><a href="/work">Work</a><a href="/services">Services</a><a href="#studio">Studio</a><a href="#contact">Start a project</a></nav><p>contact@tovizy.com</p></div>
 <main id="main">
 <section class="hero3d" id="top" aria-labelledby="hero-title">
   <div class="h3d-frame">
@@ -46,18 +46,51 @@
   </div>
   <svg class="h3d-outline" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,47 50,0 100,47 100,100 0,100 0,47"/></svg>
   <div class="h3d-copy">
-    <div>
+    <div class="h3d-main">
       <h1 id="hero-title"><span class="ln"><span>From drawing</span></span><span class="ln"><span>to light.</span></span></h1>
       <p class="lede">Renderings, films and sales presentations for designers, architects and home builders, made from your drawings.</p>
-      <div class="actions"><a class="btn" href="#contact">Start a project</a><a class="tlink" href="#work">See the work</a></div>
+      <div class="actions"><a class="btn" href="#contact">Start a project</a><a class="tlink" href="#presentations">See the presentations</a></div>
     </div>
     <div class="h3d-side">
       <p class="h3d-cap" aria-live="polite"></p>
       <nav class="h3d-views" aria-label="Views of the model"><button type="button" data-k="c1" data-name="Front&lt;small&gt;Golden hour&lt;/small&gt;" data-o="0.574,0.381" aria-label="Front, golden hour"><i></i><span>Front</span></button><button type="button" data-k="c7" data-name="Front elevation&lt;small&gt;Blue hour&lt;/small&gt;" data-o="0.5,0.52" aria-label="Front elevation, blue hour"><i></i><span>Front elevation</span></button><button type="button" data-k="c6" data-name="Along the porch&lt;small&gt;Golden hour&lt;/small&gt;" data-o="0.62,0.5" aria-label="Along the porch, golden hour"><i></i><span>Along the porch</span></button><button type="button" data-k="c3" data-name="Entry&lt;small&gt;Dusk&lt;/small&gt;" data-o="0.5,0.56" aria-label="Entry, dusk"><i></i><span>Entry</span></button><button type="button" data-k="c4" data-name="Back porch&lt;small&gt;Sunset&lt;/small&gt;" data-o="0.837,0.399" aria-label="Back porch, sunset"><i></i><span>Back porch</span></button><button type="button" data-k="c5" data-name="From above&lt;small&gt;Late sun&lt;/small&gt;" data-o="0.609,0.484" aria-label="From above, late sun"><i></i><span>From above</span></button><button type="button" data-k="c2" data-name="Garage side&lt;small&gt;Midday&lt;/small&gt;" data-o="0.317,0.538" aria-label="Garage side, midday"><i></i><span>Garage side</span></button></nav>
-      <p class="h3d-note">A spec home we drew, built in 3D and lit: plan, model and every view from one file.</p>
+      <p class="h3d-hint">Scroll to walk around the house</p>
+      <p class="h3d-note">The Catawba, a spec home: plan, model and seven views from one file.</p>
     </div>
   </div>
   <span class="cue" aria-hidden="true"></span>
+</section>
+
+<section class="pres" id="presentations" aria-labelledby="pres-h">
+  <div class="pres-head">
+    <div>
+      <p class="kick">Presentations</p>
+      <h2 class="h2" id="pres-h">A website for every house, before it is built.</h2>
+    </div>
+    <div>
+      <p class="lead-s">Builders send buyers one link: the house from every side, from afternoon to night, the materials, the rooms and the site. You just walked around one.</p>
+      <div class="acts"><a class="btn" href="/showcase">See the presentations</a><a class="tlink" href="#contact">Ask about yours</a></div>
+    </div>
+  </div>
+  <div class="pres-pin">
+    <div class="pres-screen">
+      <div class="pres-stage">
+        <img class="pres-fb" src="/assets/showcase/larkspur-ridge/hero-1600.webp" srcset="/assets/showcase/larkspur-ridge/hero-900.webp 900w, /assets/showcase/larkspur-ridge/hero-1600.webp 1600w, /assets/showcase/larkspur-ridge/hero-2400.webp 2400w" sizes="100vw" width="1600" height="900" alt="Larkspur Ridge, a cedar and stone house among pines with the mountains behind, late afternoon" loading="lazy" decoding="async">
+        <canvas aria-hidden="true"></canvas>
+        <div class="pres-scrim"></div>
+      </div>
+      <div class="pres-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="tabs" role="group" aria-label="Presentations"><button type="button" data-h="0" aria-current="true">Larkspur Ridge</button><button type="button" data-h="1" aria-current="false">Casa Ocotillo</button></span><span class="url" aria-hidden="true">tovizy.com/showcase/<b>larkspur-ridge</b></span></div>
+      <div class="pres-prog" aria-hidden="true"><i></i></div>
+      <div class="pres-hud">
+        <div class="pres-name"><span class="pn">01 / 02</span><h3>Larkspur Ridge</h3><p>A mountain modern residence in Summit County, Colorado</p></div>
+        <p class="pres-clock" aria-live="polite"><span class="t">4:40 PM</span><span class="l">Late afternoon</span></p>
+        <ol class="pres-ch" aria-label="Chapters of the presentation"><li class="on">Day to night</li><li>The approach</li><li>Materials</li><li>Rooms</li></ol>
+        <a class="btn pres-go" href="/showcase/larkspur-ridge">Open the presentation</a>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" class="pres-data">[{"house": 0, "src": "/assets/showcase/larkspur-ridge/hero", "depth": "/assets/showcase/larkspur-ridge/hero-depth.webp", "ch": 0, "clock": "4:40 PM", "hour": "Late afternoon", "mode": 0}, {"house": 0, "src": "/assets/showcase/larkspur-ridge/hero_bluehour", "depth": "/assets/showcase/larkspur-ridge/hero-depth.webp", "ch": 0, "clock": "7:55 PM", "hour": "Blue hour", "mode": 1}, {"house": 0, "src": "/assets/showcase/larkspur-ridge/hero_night", "depth": "/assets/showcase/larkspur-ridge/hero-depth.webp", "ch": 0, "clock": "10:20 PM", "hour": "Night", "mode": 1}, {"house": 0, "src": "/assets/showcase/larkspur-ridge/street", "depth": "/assets/showcase/larkspur-ridge/street-depth.webp", "ch": 1, "mode": 0, "o": [0.3, 0.62]}, {"house": 0, "src": "/assets/showcase/larkspur-ridge/entry", "depth": "/assets/showcase/larkspur-ridge/entry-depth.webp", "ch": 1, "mode": 0, "o": [0.5, 0.5]}, {"house": 0, "src": "/assets/showcase/larkspur-ridge/detail_1", "ch": 2, "mode": 0, "o": [0.5, 0.4]}, {"house": 0, "src": "/assets/showcase/larkspur-ridge/int_great_room", "ch": 3, "mode": 0, "o": [0.7, 0.5]}, {"house": 1, "src": "/assets/showcase/casa-ocotillo/hero", "depth": "/assets/showcase/casa-ocotillo/hero-depth.webp", "ch": 0, "clock": "6:10 PM", "hour": "Golden hour", "mode": 2, "o": [0.5, 0.68]}, {"house": 1, "src": "/assets/showcase/casa-ocotillo/hero_bluehour", "depth": "/assets/showcase/casa-ocotillo/hero-depth.webp", "ch": 0, "clock": "7:25 PM", "hour": "Blue hour", "mode": 1}, {"house": 1, "src": "/assets/showcase/casa-ocotillo/hero_night", "depth": "/assets/showcase/casa-ocotillo/hero-depth.webp", "ch": 0, "clock": "10:05 PM", "hour": "Night", "mode": 1}, {"house": 1, "src": "/assets/showcase/casa-ocotillo/rear", "depth": "/assets/showcase/casa-ocotillo/rear-depth.webp", "ch": 1, "mode": 0, "o": [0.5, 0.7]}, {"house": 1, "src": "/assets/showcase/casa-ocotillo/entry", "depth": "/assets/showcase/casa-ocotillo/entry-depth.webp", "ch": 1, "mode": 0, "o": [0.4, 0.5]}, {"house": 1, "src": "/assets/showcase/casa-ocotillo/detail_1", "ch": 2, "mode": 0, "o": [0.5, 0.4]}, {"house": 1, "src": "/assets/showcase/casa-ocotillo/int_living", "ch": 3, "mode": 0, "o": [0.6, 0.55]}]</script>
+  <script type="application/json" class="pres-houses">[{"name": "Larkspur Ridge", "sub": "A mountain modern residence in Summit County, Colorado", "slug": "larkspur-ridge", "href": "/showcase/larkspur-ridge"}, {"name": "Casa Ocotillo", "sub": "A courtyard residence in the high Sonoran Desert, Arizona", "slug": "casa-ocotillo", "href": "/showcase/casa-ocotillo"}]</script>
 </section>
 
 <section class="work" id="work" aria-labelledby="work-h">
@@ -77,6 +110,7 @@
     </div>
     <ol class="ov work-list" aria-label="Projects"><li><button type="button">Posana Restaurant &amp; Bar</button></li><li><button type="button">Modern Farmhouse</button></li><li><button type="button">Board-and-Batten Farmhouse</button></li><li><button type="button">Kitchens</button></li><li><button type="button">Mountain Modern Residence</button></li><li><button type="button">Postero Restaurant &amp; Wine Bar</button></li><li><button type="button">Transitional Home</button></li><li><button type="button">Timber-Frame Event Venue</button></li><li><button type="button">Hillside Farmhouse</button></li></ol>
     <a class="ov tlink work-all" href="/work">All 17 projects</a>
+    <div class="ov work-prog" aria-hidden="true"><i></i></div>
   </div>
   <script type="application/json" class="work-data">[{"href": "/projects/posana", "name": "Posana Restaurant & Bar", "meta": "Restaurant interior. Herringbone oak, wine walls, a cage chandelier.", "count": "8 views and a film", "src": "/assets/img/posana-01-1600.webp", "big": "/assets/img/posana-01-2400.webp", "alt": "Oval bar under a cage chandelier at Posana, evening"}, {"href": "/projects/modern-farmhouse", "name": "Modern Farmhouse", "meta": "Residential interior. White oak, steel windows, green velvet.", "count": "10 views", "src": "/assets/img/mfarm-01-1600.webp", "big": "/assets/img/mfarm-01-2400.webp", "alt": "Living room with a green velvet sectional, arched glass cabinets and steel windows"}, {"href": "/projects/board-and-batten-farmhouse", "name": "Board-and-Batten Farmhouse", "meta": "Exterior. Board and batten, standing-seam roofs, stone.", "count": "4 views", "src": "/assets/img/fx-sunset-1600.webp", "big": "/assets/img/fx-sunset-2400.webp", "alt": "Farmhouse at sunrise with light siding and a planted walk"}, {"href": "/projects/kitchens", "name": "Kitchens", "meta": "Kitchens, several projects. Contemporary, farmhouse, shaker.", "count": "10 views", "src": "/assets/img/k-modern-1600.webp", "big": "/assets/img/k-modern-2400.webp", "alt": "Contemporary kitchen with a long black island and a lit ceiling cove"}, {"href": "/projects/mountain-modern-residence", "name": "Mountain Modern Residence", "meta": "Exterior. Dark timber, stone, standing-seam roofs.", "count": "1 view", "src": "/assets/img/mtn-modern-1600.webp", "big": "/assets/img/mtn-modern-2400.webp", "alt": "Dark-timber mountain home with a stone base and lit porch at dusk"}, {"href": "/projects/postero", "name": "Postero Restaurant & Wine Bar", "meta": "Restaurant interior. Green velvet, lit wine displays, patterned stone.", "count": "7 views", "src": "/assets/img/postero-01-1600.webp", "big": "/assets/img/postero-01-2400.webp", "alt": "Dining room with green velvet banquettes and globe pendants"}, {"href": "/projects/transitional-home", "name": "Transitional Home", "meta": "Residential interior. Plaster arches, beamed ceilings, day and evening.", "count": "10 views", "src": "/assets/img/transitional-02-1600.webp", "big": "/assets/img/transitional-02-2400.webp", "alt": "Living room with boucle chairs and a walnut coffee table, daylight"}, {"href": "/projects/event-venue", "name": "Timber-Frame Event Venue", "meta": "Event venue. Timber trusses, flagstone, string lights.", "count": "10 views", "src": "/assets/img/venue-01-1600.webp", "big": "/assets/img/venue-01-2400.webp", "alt": "Wedding reception at night under timber trusses and string lights"}, {"href": "/projects/hillside-farmhouse", "name": "Hillside Farmhouse", "meta": "Residential interior. Timber trusses, fieldstone, shiplap.", "count": "6 views", "src": "/assets/img/hf-living-1600.webp", "big": "/assets/img/hf-living-1600.webp", "alt": "Great room with a stone fireplace, green sofas and mountain views"}]</script>
 </section>
@@ -86,8 +120,32 @@
   <ul><li>Stratton Design Group<span>Asheville</span></li><li>Posana<span>Biltmore Park</span></li><li>Bita Interior Design<span>San Diego</span></li><li>Garonzi Interiors<span>Verona</span></li><li>Lisa Goh<span>Singapore</span></li></ul>
 </section>
 
+<section class="est" id="estates" aria-labelledby="est-h">
+  <div class="est-grid">
+    <div class="est-copy">
+      <p class="kick">Estates</p>
+      <h2 class="h2" id="est-h">The whole community on one page.</h2>
+      <p>Buyers pick a homesite, change the facade, move the light and walk inside. Every inquiry arrives with the homesite and the choices.</p>
+      <div class="est-ui">
+        <fieldset><legend>Facade</legend><button type="button" data-f="limestone" aria-pressed="true">Limestone</button><button type="button" data-f="ivory" aria-pressed="false">Ivory &amp; oak</button><button type="button" data-f="charcoal" aria-pressed="false">Charcoal &amp; timber</button></fieldset>
+        <fieldset><legend>Light</legend><button type="button" data-t="day" aria-pressed="true">2:00 pm</button><button type="button" data-t="dusk" aria-pressed="false">7:45 pm</button><button type="button" data-t="night" aria-pressed="false">9:30 pm</button></fieldset>
+      </div>
+      <p class="est-lot" aria-live="polite">Homesite 6, model home, 0.97 acres</p>
+      <p class="est-price">Interactive estate site <b>from $7,500</b>, with a year of hosting.</p>
+      <div class="est-acts"><a class="btn" href="/estate">Open the estate demo</a><a class="tlink" href="/estate">Blue Ridge Estate, ten homesites</a></div>
+    </div>
+    <div class="est-view">
+      <div class="est-house"><div class="stage"><img class="stage-img" src="/assets/estate/house-limestone-day-1280.webp" alt="The Ridge House, a limestone model home, shown with the facade and light chosen above" loading="lazy" decoding="async"><img class="stage-img-b" alt="" aria-hidden="true"><canvas aria-hidden="true"></canvas></div><p class="est-tag">Limestone, 2:00 pm</p></div>
+      <div class="est-map"><img src="/assets/estate/estate-map-800.webp" srcset="/assets/estate/estate-map-800.webp 800w, /assets/estate/estate-map-1600.webp 1600w" sizes="(max-width: 860px) 72vw, 26vw" width="800" height="534" alt="Site plan of Blue Ridge Estate with ten homesites" loading="lazy" decoding="async"><button type="button" class="est-pin s-sold" style="--x:25.80%;--y:15.60%" aria-label="Homesite 1, sold, 1.12 acres"></button><button type="button" class="est-pin s-reserved" style="--x:50.00%;--y:10.00%" aria-label="Homesite 2, reserved, 1.36 acres"></button><button type="button" class="est-pin s-available" style="--x:74.20%;--y:17.50%" aria-label="Homesite 3, available, 1.05 acres"></button><button type="button" class="est-pin s-sold" style="--x:11.70%;--y:31.90%" aria-label="Homesite 4, sold, 0.94 acres"></button><button type="button" class="est-pin s-available" style="--x:35.00%;--y:35.00%" aria-label="Homesite 5, available, 0.88 acres"></button><button type="button" class="est-pin s-model" style="--x:63.30%;--y:37.50%" aria-label="Homesite 6, model home, 0.97 acres"></button><button type="button" class="est-pin s-reserved" style="--x:87.50%;--y:37.50%" aria-label="Homesite 7, reserved, 1.21 acres"></button><button type="button" class="est-pin s-available" style="--x:14.60%;--y:56.25%" aria-label="Homesite 8, available, 1.02 acres"></button><button type="button" class="est-pin s-sold" style="--x:32.10%;--y:73.75%" aria-label="Homesite 9, sold, 1.18 acres"></button><button type="button" class="est-pin s-available" style="--x:83.30%;--y:65.00%" aria-label="Homesite 10, available, 1.30 acres"></button>
+        <p class="est-key" aria-hidden="true"><span style="--c:#9DC29A">Available</span><span style="--c:#D2B57C">Reserved</span><span style="--c:#A7766A">Sold</span><span style="--c:#F2EEE3">Model home</span></p>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" class="est-data">{"base": "/assets/estate/", "facades": {"limestone": "Limestone", "ivory": "Ivory & oak", "charcoal": "Charcoal & timber"}, "times": {"day": "2:00 pm", "dusk": "7:45 pm", "night": "9:30 pm"}}</script>
+</section>
+
 <section class="sec svc" id="services" aria-labelledby="svc-h">
-  <div class="sec-head"><h2 class="h2" id="svc-h">See it before it is built.</h2><a class="tlink" href="/services">All services</a></div>
+  <div class="sec-head"><h2 class="h2" id="svc-h">Services and fees.</h2><a class="tlink" href="/services">All services</a></div>
   <div class="svc-grid">
     <article class="card c-render">
       <div class="media lens-host">
@@ -111,17 +169,24 @@
         <p>Short reels from your approved views from $750; 30–60 second 4K walkthroughs from $3,500.</p>
       </div>
     </article>
-    <article class="card c-estate">
-      <div class="media"><div class="stage" data-seq="[{&quot;src&quot;: &quot;/assets/estate/house-limestone-day-2560.webp?v=2&quot;, &quot;tag&quot;: &quot;Limestone · 2:00 pm&quot;}, {&quot;src&quot;: &quot;/assets/estate/house-limestone-dusk-2560.webp?v=2&quot;, &quot;tag&quot;: &quot;Limestone · 7:45 pm&quot;}, {&quot;src&quot;: &quot;/assets/estate/house-limestone-night-2560.webp?v=2&quot;, &quot;tag&quot;: &quot;Limestone · 9:30 pm&quot;}, {&quot;src&quot;: &quot;/assets/estate/house-ivory-night-2560.webp?v=2&quot;, &quot;tag&quot;: &quot;Ivory &amp; oak · 9:30 pm&quot;}, {&quot;src&quot;: &quot;/assets/estate/house-charcoal-night-2560.webp?v=2&quot;, &quot;tag&quot;: &quot;Charcoal &amp; timber · 9:30 pm&quot;}, {&quot;src&quot;: &quot;/assets/estate/house-charcoal-day-2560.webp?v=2&quot;, &quot;tag&quot;: &quot;Charcoal &amp; timber · 2:00 pm&quot;}]"><img class="stage-img" src="/assets/estate/house-limestone-day-2560.webp?v=2" alt="A model home in limestone, the same house shown from morning to night" loading="lazy" decoding="async"><img class="stage-img-b" alt="" aria-hidden="true"><canvas aria-hidden="true"></canvas></div></div>
+    <article class="card c-pres">
+      <div class="media"><img src="/assets/showcase/casa-ocotillo/hero_night-1600.webp" srcset="/assets/showcase/casa-ocotillo/hero_night-900.webp 900w, /assets/showcase/casa-ocotillo/hero_night-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw" width="1600" height="900" alt="Casa Ocotillo at night, lit from inside, with saguaro and the mountains behind" loading="lazy" decoding="async"></div>
       <div class="shade"></div>
       <div class="copy">
-        <p class="tag">Limestone · 2:00 pm</p>
-        <h3><a href="/estate">Estate presentations</a></h3>
-        <p>Your community on one page: buyers pick a homesite, change the facade, move the light and walk inside. From $7,500.</p>
-        <p><a class="tlink" href="/estate">Try the live demo</a></p>
+        <p class="tag">Casa Ocotillo, Arizona</p>
+        <h3><a href="/showcase">Presentations &amp; estates</a></h3>
+        <p>A sales site for one home, a model home in 360° that opens on any phone, or a whole community on one page.</p>
       </div>
     </article>
   </div>
+  <ul class="fees">
+    <li><span>Single view</span><b>from $590</b><small>Your first view can be a $390 pilot</small></li>
+    <li><span>Presentation set, three views</span><b>from $1,690</b><small>Day and evening, a client deck included</small></li>
+    <li><span>Films</span><b>from $750</b><small>4K walkthroughs from $3,500</small></li>
+    <li><span>Virtual model home in 360°</span><b>from $1,900</b><small>a plan, up to six rooms</small></li>
+    <li><span>Interactive estate site</span><b>from $7,500</b><small>with a year of hosting</small></li>
+    <li><span>Sales presentation for one home</span><b>a fixed quote</b><small>from your plans, within a day</small></li>
+  </ul>
 </section>
 
 <section class="sec studio" id="studio" aria-labelledby="studio-h">
@@ -162,7 +227,7 @@
       <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
       <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
       <div class="field full"><label for="f-company">Studio or company</label><input id="f-company" name="company" autocomplete="organization"></div>
-      <div class="field"><label for="f-type">What you need</label><select id="f-type" name="service"><option>Single view</option><option>Presentation set</option><option>Concept sprint</option><option>Film or motion reel</option><option>Client presentation</option><option>Virtual model home (360°)</option><option>Interactive estate site</option><option>Design partner hours</option><option>Brand scenes</option><option>Not sure yet</option></select></div>
+      <div class="field"><label for="f-type">What you need</label><select id="f-type" name="service"><option>Single view</option><option>Presentation set</option><option>Concept sprint</option><option>Film or motion reel</option><option>Client presentation</option><option>Sales presentation for a home</option><option>Virtual model home (360°)</option><option>Interactive estate site</option><option>Design partner hours</option><option>Brand scenes</option><option>Not sure yet</option></select></div>
       <div class="field"><label for="f-when">When</label><select id="f-when" name="timeline"><option>As soon as possible</option><option>Within 2–4 weeks</option><option>Next month or later</option></select></div>
       <div class="field full"><label for="f-msg">About the project</label><textarea id="f-msg" name="message" required placeholder="Rooms, style, number of views, and a link to your drawings"></textarea></div>
       <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -180,8 +245,8 @@
 <script src="/assets/vendor/ScrollTrigger-3.13.0.min.js"></script>
 <script src="/assets/vendor/lenis-1.3.4.min.js"></script>
 <script src="/assets/vendor/three-0.149.0.min.js"></script>
-<script src="/assets/home/home.js?v=2"></script>
-<script src="/assets/home/home3d.js?v=2"></script>
+<script src="/assets/home/v3/home.js?v=3d"></script>
+<script src="/assets/home/v3/home3d.js?v=3d"></script>
 <script src="/assets/pv.js?v=3" defer></script>
 </body>
 </html>
