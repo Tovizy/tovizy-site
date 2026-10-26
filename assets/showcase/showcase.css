@@ -283,3 +283,11 @@ ol, ul { list-style: none; }
 .tour-list button { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; padding: 9px 14px; border-radius: 99px; border: 1px solid rgba(255,255,255,.35); background: rgba(0,0,0,.3); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; transition: background .3s, color .3s; }
 .tour-list button.on, .tour-list button:hover { background: #fff; color: #111; }
 @media (max-width: 760px) { .tour-list { display: none; } .tour-map { width: 46vw; bottom: auto; top: clamp(86px, 13vh, 130px); padding: 6px; } .tour-map p { display: none; } .tour-head { top: auto; bottom: 28px; } }
+
+/* ---------- presentations switch ---------- */
+.tb-r { display: flex; align-items: center; gap: 18px; }
+.tb-all { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; opacity: .86; transition: opacity .3s; }
+.tb-all:hover { opacity: 1; }
+.tb-name { white-space: nowrap; }
+.tb-all .s { display: none; }
+@media (max-width: 520px) { .tb-all .l { display: none; } .tb-all .s { display: inline; } .tb-name { font-size: 19px; } .tb-r { gap: 14px; } .tb-cta { padding: 9px 14px; font-size: 10.5px; } }
