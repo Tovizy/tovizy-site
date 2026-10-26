@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Catawba, a spec home for 13 Stripes Construction | Tovizy</title>
+<meta name="description" content="An example spec home for Marion, North Carolina, built by Tovizy as a real 3D model and rendered so it can be listed before it is built.">
+<link rel="canonical" href="https://tovizy.com/for/13-stripes-spec-house">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tovizy Studio">
+<meta property="og:title" content="The Catawba: a spec home buyers can see before it is framed">
+<meta property="og:description" content="An example one-level farmhouse for Marion, built as a real 3D model: five views, a floor plan, two films, twelve moments and six print layouts.">
+<meta property="og:url" content="https://tovizy.com/for/13-stripes-spec-house">
+<meta property="og:image" content="https://tovizy.com/assets/13-stripes-spec-house/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#13201B">
+<link rel="icon" href="../assets/brand/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/brand/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Noto+Serif+Display:wght@300..500&display=swap">
+<link rel="stylesheet" href="../assets/site.css?v=0e1006c4">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../assets/pitch.css?v=37132777">
+<style>
+.km .gallery li:not(.g-full) img { aspect-ratio: 3 / 2; }
+.km .km-duo { grid-template-columns: 8fr 15fr; margin-top: clamp(16px, 2vw, 32px); }
+.km .km-duo li, .km .km-tri li { grid-column: auto; }
+.km .km-duo li img { aspect-ratio: auto !important; height: 100%; object-fit: cover; }
+.km .km-duo button { height: 100%; }
+.km .km-tri { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(16px, 2vw, 32px); }
+.km .km-moments li { grid-column: span 4; }
+.km .km-cap { margin-top: 10px; font-size: var(--fs-s); color: var(--fg-2); }
+.km .km-cap b { color: var(--fg); font-weight: 500; }
+.km .pf-letter .body p:not(.sign) + p:not(.sign) { margin-top: 0.9em; }
+.km .km-film { margin: 0; }
+.km .km-film video { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; background: var(--wall-2); }
+.km .km-film figcaption { margin-top: 12px; font-size: var(--fs-s); color: var(--fg-2); }
+.km .km-films { display: grid; grid-template-columns: 2fr 1fr; gap: clamp(16px, 2vw, 32px); align-items: start; }
+.km .km-steps { list-style: none; margin: clamp(28px, 4vw, 48px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 24px); counter-reset: st; }
+.km .km-steps li { counter-increment: st; min-width: 0; }
+.km .km-steps .ph { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--wall-2); }
+.km .km-steps .ph img { width: 100%; height: 100%; object-fit: cover; }
+.km .km-steps h3 { margin-top: 14px; font-size: var(--fs-l); }
+.km .km-steps h3::before { content: counter(st) "  "; color: var(--fg-2); font-family: var(--f-serif); font-weight: 300; }
+.km .km-steps p { margin-top: 6px; font-size: var(--fs-s); color: var(--fg-2); }
+.km .km-gfx li { grid-column: 1 / -1; }
+.km .km-gfx-duo { display: grid; grid-template-columns: 0.667fr 0.773fr; gap: clamp(16px, 2vw, 32px); align-items: start; }
+.km .km-gfx-duo li { grid-column: auto; min-width: 0; }
+.km .km-gfx img, .km .km-gfx-duo img { aspect-ratio: auto !important; object-fit: contain; }
+.km .km-gfx .km-cap, .km .km-gfx-duo .km-cap { max-width: 62ch; }
+.km .km-badge { display: inline-block; margin-top: 18px; padding: 8px 14px; border: 1px solid currentColor; font-size: var(--fs-xs); letter-spacing: .06em; text-transform: uppercase; opacity: .85; }
+@media (max-width: 700px) {
+  .km .km-duo, .km .km-films, .km .km-gfx-duo, .km .km-tri { grid-template-columns: 1fr; }
+  .km .km-moments li { grid-column: span 6; }
+  .km .km-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.km .km-plan { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: clamp(24px, 4vw, 64px); align-items: start; }
+.km .km-plan .gallery li { grid-column: 1 / -1; }
+.km .km-plan .gallery img { aspect-ratio: auto !important; object-fit: contain; background: #E6E7DE; }
+.km .km-plan dl { display: grid; grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--line); }
+.km .km-plan dl div { display: grid; grid-template-columns: minmax(0, 9fr) minmax(0, 11fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.km .km-plan dt { font-size: var(--fs-xs); color: var(--fg-2); }
+.km .km-plan dd { font-size: var(--fs-s); font-variant-numeric: tabular-nums; }
+.km .km-plan .note { margin-top: 22px; font-size: var(--fs-s); color: var(--fg-2); max-width: 44ch; }
+@media (max-width: 700px) { .km .km-plan { grid-template-columns: 1fr; } }
+</style>
+<script defer src="/_vercel/insights/script.js"></script>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="km">
+<header class="pf-top on-wall">
+  <div class="wrap">
+    <a href="../"><img src="../assets/brand/logo-light.png" alt="Tovizy" width="55" height="30"></a>
+    <a class="tlink" href="../">tovizy.com</a>
+  </div>
+</header>
+<main id="main">
+<section class="pf-cover on-wall" aria-labelledby="pf-title">
+  <div class="wrap">
+    <div>
+      <h1 id="pf-title">A spec home buyers can see before it is framed</h1>
+      <p class="lede">We drew an example spec home for Marion, built it as a real 3D model and rendered it, for Johnny.</p>
+      <p class="km-badge">Example plan and 3D model by Tovizy</p>
+      <dl class="tblock"><div><dt>Prepared for</dt><dd>Johnny, 13 Stripes Construction</dd></div><div><dt>Home</dt><dd>The Catawba, an example spec home</dd></div><div><dt>Place</dt><dd>Marion, North Carolina</dd></div><div><dt>Date</dt><dd>October 2026</dd></div><div class="span"><dt>Plan, 3D model and renderings</dt><dd>Alex and Alexandra Lane, Tovizy</dd></div></dl>
+    </div>
+    <div class="frame reveal"><img src="../assets/13-stripes-spec-house/hero-lines-1600.webp" srcset="../assets/13-stripes-spec-house/hero-lines-800.webp 800w, ../assets/13-stripes-spec-house/hero-lines-1600.webp 1600w, ../assets/13-stripes-spec-house/hero-lines-2400.webp 2400w" sizes="(max-width: 900px) 100vw, 58vw" width="1600" height="1067" alt="The Catawba drawn in lines from our 3D model, turning into the finished rendering" fetchpriority="high" decoding="async"></div>
+  </div>
+</section>
+<section class="pf-letter on-vellum" aria-label="A note from Alex">
+  <div class="wrap">
+    <p class="salute">Johnny,</p>
+    <div class="body"><p>In your last email you mentioned a spec house, and that renderings could help it sell faster. We had no plans from you yet, so we drew one ourselves to show you what that looks like: The Catawba, a one-level mountain farmhouse of about 1,700 square feet with three bedrooms, two baths, a two-car garage and a porch across the whole front.</p><p>We built it as a real 3D model and rendered it on a level lot with the Blue Ridge behind it. Everything on this page comes from that one model: five views, the floor plan, two short films, twelve ways to show the same home and six layouts for a listing, a yard sign or a showing.</p><p>With your own plan we would do the same, so buyers can see the finished house from every side while the lot is still being cleared.</p><p class="sign"><strong>Alex Lane</strong>Tovizy, 3D visualization studio</p></div>
+  </div>
+</section>
+<section class="pf-sec on-wall" aria-labelledby="km-model">
+  <div class="wrap">
+    <div class="pf-head"><h2 id="km-model">A plan, a 3D model, a drawing, then the light.</h2><p>We drew the plan, built the house in 3D, drew it from the model and then lit it. Drag across the picture below to see the drawing and the rendering line up.</p></div>
+    <ol class="km-steps"><li><div class="ph"><img src="../assets/13-stripes-spec-house/plan-step-1600.webp" srcset="../assets/13-stripes-spec-house/plan-step-800.webp 800w, ../assets/13-stripes-spec-house/plan-step-1600.webp 1600w" sizes="(max-width: 700px) 50vw, 25vw" width="1600" height="1067" alt="The example floor plan of The Catawba" loading="lazy" decoding="async"></div><h3>Our example plan</h3><p>Three bedrooms and two baths on one level.</p></li><li><div class="ph"><img src="../assets/13-stripes-spec-house/clay-800.webp" srcset="../assets/13-stripes-spec-house/clay-800.webp 800w" sizes="(max-width: 700px) 50vw, 25vw" width="800" height="533" alt="Our 3D model of The Catawba in plain white" loading="lazy" decoding="async"></div><h3>Our 3D model</h3><p>Every wall, post, pier and step.</p></li><li><div class="ph"><img src="../assets/13-stripes-spec-house/drawing-1600.webp" srcset="../assets/13-stripes-spec-house/drawing-800.webp 800w, ../assets/13-stripes-spec-house/drawing-1600.webp 1600w, ../assets/13-stripes-spec-house/drawing-2400.webp 2400w" sizes="(max-width: 700px) 50vw, 25vw" width="1600" height="1067" alt="The line drawing generated from the model" loading="lazy" decoding="async"></div><h3>The drawing</h3><p>Lines taken straight from the model.</p></li><li><div class="ph"><img src="../assets/13-stripes-spec-house/photo-1600.webp" srcset="../assets/13-stripes-spec-house/photo-800.webp 800w, ../assets/13-stripes-spec-house/photo-1600.webp 1600w, ../assets/13-stripes-spec-house/photo-2400.webp 2400w" sizes="(max-width: 700px) 50vw, 25vw" width="1600" height="1067" alt="The finished rendering in golden-hour light" loading="lazy" decoding="async"></div><h3>The light</h3><p>Materials, planting and Blue Ridge light.</p></li></ol>
+    <figure style="margin-top:clamp(28px,4vw,48px)"><div class="compare reveal"><img src="../assets/13-stripes-spec-house/photo-1600.webp" srcset="../assets/13-stripes-spec-house/photo-800.webp 800w, ../assets/13-stripes-spec-house/photo-1600.webp 1600w, ../assets/13-stripes-spec-house/photo-2400.webp 2400w" sizes="100vw" width="1600" height="1067" alt="The finished rendering" loading="lazy" decoding="async"><div class="top"><img src="../assets/13-stripes-spec-house/drawing-1600.webp" srcset="../assets/13-stripes-spec-house/drawing-800.webp 800w, ../assets/13-stripes-spec-house/drawing-1600.webp 1600w, ../assets/13-stripes-spec-house/drawing-2400.webp 2400w" sizes="100vw" width="1600" height="1067" alt="The line drawing from our 3D model" loading="lazy" decoding="async"></div><span class="bar" aria-hidden="true"></span><input type="range" min="0" max="100" value="50" aria-label="Slide between the line drawing and the rendering"></div><figcaption class="compare-cap"><span>Line drawing from our 3D model</span><span>Drag to compare</span><span>The finished rendering</span></figcaption></figure>
+  </div>
+</section>
+<section class="pf-sec on-wall" aria-labelledby="km-views">
+  <div class="wrap">
+    <div class="pf-head"><h2 id="km-views">Five views of the home.</h2><p>The front in golden light and at midday, the lot from above, the entry at dusk and the back porch at sunset. Tap any picture to see it larger.</p></div>
+    <ul class="gallery"><li class="g-full"><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/c1-2400.webp" aria-label="Open larger: The Catawba in golden-hour light, the porch across the whole front and the Blue Ridge behind"><img src="../assets/13-stripes-spec-house/c1-1600.webp" srcset="../assets/13-stripes-spec-house/c1-800.webp 800w, ../assets/13-stripes-spec-house/c1-1600.webp 1600w, ../assets/13-stripes-spec-house/c1-2400.webp 2400w" sizes="100vw" width="1600" height="1067" alt="The Catawba in golden-hour light, the porch across the whole front and the Blue Ridge behind" loading="lazy" decoding="async"></button></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/c2-2400.webp" aria-label="Open larger: The front at midday, seen past the garage toward the porch"><img src="../assets/13-stripes-spec-house/c2-1600.webp" srcset="../assets/13-stripes-spec-house/c2-800.webp 800w, ../assets/13-stripes-spec-house/c2-1600.webp 1600w, ../assets/13-stripes-spec-house/c2-2400.webp 2400w" sizes="(max-width: 700px) 100vw, 50vw" width="1600" height="1067" alt="The front at midday, seen past the garage toward the porch" loading="lazy" decoding="async"></button></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/c5-2400.webp" aria-label="Open larger: The house and lot from above in golden light, woods and ridges around it"><img src="../assets/13-stripes-spec-house/c5-1600.webp" srcset="../assets/13-stripes-spec-house/c5-800.webp 800w, ../assets/13-stripes-spec-house/c5-1600.webp 1600w, ../assets/13-stripes-spec-house/c5-2400.webp 2400w" sizes="(max-width: 700px) 100vw, 50vw" width="1600" height="1067" alt="The house and lot from above in golden light, woods and ridges around it" loading="lazy" decoding="async"></button></li></ul><ul class="gallery km-duo"><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/c3-1600.webp" aria-label="Open larger: The entry at dusk: the gable over the steps, cedar posts and a lit wood door"><img src="../assets/13-stripes-spec-house/c3-1600.webp" srcset="../assets/13-stripes-spec-house/c3-800.webp 800w, ../assets/13-stripes-spec-house/c3-1600.webp 1600w" sizes="(max-width: 700px) 100vw, 35vw" width="1600" height="2000" alt="The entry at dusk: the gable over the steps, cedar posts and a lit wood door" loading="lazy" decoding="async"></button></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/c4-2400.webp" aria-label="Open larger: The covered back porch at sunset, looking out to the ridges"><img src="../assets/13-stripes-spec-house/c4-1600.webp" srcset="../assets/13-stripes-spec-house/c4-800.webp 800w, ../assets/13-stripes-spec-house/c4-1600.webp 1600w, ../assets/13-stripes-spec-house/c4-2400.webp 2400w" sizes="(max-width: 700px) 100vw, 65vw" width="1600" height="1067" alt="The covered back porch at sunset, looking out to the ridges" loading="lazy" decoding="async"></button></li></ul>
+  </div>
+</section>
+<section class="pf-sec on-vellum" aria-labelledby="km-plan">
+  <div class="wrap">
+    <div class="pf-head"><h2 id="km-plan">The plan behind the pictures.</h2><p>We drew The Catawba for a level lot near Marion: everything on one floor, a great room in the middle, bedrooms on both ends. Every rendering on this page is cut from this plan.</p></div>
+    <div class="km-plan">
+      <ul class="gallery"><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/plan-2400.webp" aria-label="Open larger: Floor plan of The Catawba: three bedrooms, two baths, a vaulted great room, a two-car garage and porches front and back"><img src="../assets/13-stripes-spec-house/plan-1600.webp" srcset="../assets/13-stripes-spec-house/plan-800.webp 800w, ../assets/13-stripes-spec-house/plan-1600.webp 1600w, ../assets/13-stripes-spec-house/plan-2400.webp 2400w" sizes="(max-width: 700px) 100vw, 58vw" width="1600" height="1458" alt="Floor plan of The Catawba: three bedrooms, two baths, a vaulted great room, a two-car garage and porches front and back" loading="lazy" decoding="async"></button></li></ul>
+      <div><dl><div><dt>Bedrooms</dt><dd>3</dd></div><div><dt>Baths</dt><dd>2</dd></div><div><dt>Heated area</dt><dd>about 1,700 sq ft</dd></div><div><dt>Footprint</dt><dd>50 × 34 ft</dd></div><div><dt>Great room</dt><dd>22 × 18 ft, vaulted</dd></div><div><dt>Garage</dt><dd>2 cars, 22 × 28 ft</dd></div><div><dt>Front porch</dt><dd>50 × 8 ft</dd></div><div><dt>Back porch</dt><dd>23 × 10 ft, covered</dd></div></dl>
+      <p class="note">This is our example. Your own spec plan works the same way: send it, even as a sketch, and we build it.</p></div>
+    </div>
+  </div>
+</section>
+<section class="pf-sec on-wall" aria-labelledby="km-films">
+  <div class="wrap">
+    <div class="pf-head"><h2 id="km-films">The same house through the year.</h2><p>Every picture comes from the same 3D model, so the camera never moves: only the season and the light change.</p></div>
+    <div class="km-films">
+      <figure class="km-film"><video src="../assets/13-stripes-spec-house/four-seasons.mp4" poster="../assets/13-stripes-spec-house/four-seasons-poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="Spring, golden hour, autumn, first snow and dusk at the same house"></video><figcaption>Four seasons, 12 seconds</figcaption></figure>
+      <figure class="km-film"><video src="../assets/13-stripes-spec-house/day-to-dusk.mp4" poster="../assets/13-stripes-spec-house/day-to-dusk-poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="The house going from golden hour to dusk"></video><figcaption>From day to dusk, 6 seconds</figcaption></figure>
+    </div>
+  </div>
+</section>
+<section class="pf-sec on-wall" aria-labelledby="km-moments">
+  <div class="wrap">
+    <div class="pf-head"><h2 id="km-moments">Same home, same site, twelve moments.</h2><p>The house and the lot stay exactly the same in every picture. Only the season, the weather and the story around the home change, so you can pick the ones that sell best.</p></div>
+    <ul class="gallery km-moments"><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/signaturedusk-2400.webp" aria-label="Open larger: Signature Dusk. Front of the house at dusk with every window lit"><img src="../assets/13-stripes-spec-house/signaturedusk-1600.webp" srcset="../assets/13-stripes-spec-house/signaturedusk-800.webp 800w, ../assets/13-stripes-spec-house/signaturedusk-1600.webp 1600w, ../assets/13-stripes-spec-house/signaturedusk-2400.webp 2400w" sizes="(max-width: 700px) 50vw, 33vw" width="1600" height="1067" alt="Signature Dusk. Front of the house at dusk with every window lit" loading="lazy" decoding="async"></button><p class="km-cap">Signature Dusk</p></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/goldenhour-2400.webp" aria-label="Open larger: Golden Hour. Front of the house in low golden sun"><img src="../assets/13-stripes-spec-house/goldenhour-1600.webp" srcset="../assets/13-stripes-spec-house/goldenhour-800.webp 800w, ../assets/13-stripes-spec-house/goldenhour-1600.webp 1600w, ../assets/13-stripes-spec-house/goldenhour-2400.webp 2400w" sizes="(max-width: 700px) 50vw, 33vw" width="1600" height="1067" alt="Golden Hour. Front of the house in low golden sun" loading="lazy" decoding="async"></button><p class="km-cap">Golden Hour</p></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/peakautumn-2400.webp" aria-label="Open larger: Peak Autumn. The house among scarlet and gold trees"><img src="../assets/13-stripes-spec-house/peakautumn-1600.webp" srcset="../assets/13-stripes-spec-house/peakautumn-800.webp 800w, ../assets/13-stripes-spec-house/peakautumn-1600.webp 1600w, ../assets/13-stripes-spec-house/peakautumn-2400.webp 2400w" sizes="(max-width: 700px) 50vw, 33vw" width="1600" height="1067" alt="Peak Autumn. The house among scarlet and gold trees" loading="lazy" decoding="async"></button><p class="km-cap">Peak Autumn</p></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/firstsnow-2400.webp" aria-label="Open larger: First Snow. Early evening after the first snow"><img src="../assets/13-stripes-spec-house/firstsnow-1600.webp" srcset="../assets/13-stripes-spec-house/firstsnow-800.webp 800w, ../assets/13-stripes-spec-house/firstsnow-1600.webp 1600w, ../assets/13-stripes-spec-house/firstsnow-2400.webp 2400w" sizes="(max-width: 700px) 50vw, 33vw" width="1600" height="1067" alt="First Snow. Early evening after the first snow" loading="lazy" decoding="async"></button><p class="km-cap">First Snow</p></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/springbloom-2400.webp" aria-label="Open larger: Spring Bloom. Dogwood and redbud in bloom"><img src="../assets/13-stripes-spec-house/springbloom-1600.webp" srcset="../assets/13-stripes-spec-house/springbloom-800.webp 800w, ../assets/13-stripes-spec-house/springbloom-1600.webp 1600w, ../assets/13-stripes-spec-house/springbloom-2400.webp 2400w" sizes="(max-width: 700px) 50vw, 33vw" width="1600" height="1067" alt="Spring Bloom. Dogwood and redbud in bloom" loading="lazy" decoding="async"></button><p class="km-cap">Spring Bloom</p></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/valleyfog-2400.webp" aria-label="Open larger: Valley Fog. Sunrise with fog in the valley behind the house"><img src="../assets/13-stripes-spec-house/valleyfog-1600.webp" srcset="../assets/13-stripes-spec-house/valleyfog-800.webp 800w, ../assets/13-stripes-spec-house/valleyfog-1600.webp 1600w, ../assets/13-stripes-spec-house/valleyfog-2400.webp 2400w" sizes="(max-width: 700px) 50vw, 33vw" width="1600" height="1067" alt="Valley Fog. Sunrise with fog in the valley behind the house" loading="lazy" decoding="async"></button><p class="km-cap">Valley Fog</p></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/aftertherain-2400.webp" aria-label="Open larger: After the Rain. Blue hour after rain, the wet drive reflecting the lights"><img src="../assets/13-stripes-spec-house/aftertherain-1600.webp" srcset="../assets/13-stripes-spec-house/aftertherain-800.webp 800w, ../assets/13-stripes-spec-house/aftertherain-1600.webp 1600w, ../assets/13-stripes-spec-house/aftertherain-2400.webp 2400w" sizes="(max-width: 700px) 50vw, 33vw" width="1600" height="1067" alt="After the Rain. Blue hour after rain, the wet drive reflecting the lights" loading="lazy" decoding="async"></button><p class="km-cap">After the Rain</p></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/starrynight-2400.webp" aria-label="Open larger: Starry Night. The Milky Way over the house"><img src="../assets/13-stripes-spec-house/starrynight-1600.webp" srcset="../assets/13-stripes-spec-house/starrynight-800.webp 800w, ../assets/13-stripes-spec-house/starrynight-1600.webp 1600w, ../assets/13-stripes-spec-house/starrynight-2400.webp 2400w" sizes="(max-width: 700px) 50vw, 33vw" width="1600" height="1067" alt="Starry Night. The Milky Way over the house" loading="lazy" decoding="async"></button><p class="km-cap">Starry Night</p></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/cinematic-2400.webp" aria-label="Open larger: Cinematic. Low sun through the trees"><img src="../assets/13-stripes-spec-house/cinematic-1600.webp" srcset="../assets/13-stripes-spec-house/cinematic-800.webp 800w, ../assets/13-stripes-spec-house/cinematic-1600.webp 1600w, ../assets/13-stripes-spec-house/cinematic-2400.webp 2400w" sizes="(max-width: 700px) 50vw, 33vw" width="1600" height="1067" alt="Cinematic. Low sun through the trees" loading="lazy" decoding="async"></button><p class="km-cap">Cinematic</p></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/editorial-2400.webp" aria-label="Open larger: Editorial. Soft overcast daylight, lights off"><img src="../assets/13-stripes-spec-house/editorial-1600.webp" srcset="../assets/13-stripes-spec-house/editorial-800.webp 800w, ../assets/13-stripes-spec-house/editorial-1600.webp 1600w, ../assets/13-stripes-spec-house/editorial-2400.webp 2400w" sizes="(max-width: 700px) 50vw, 33vw" width="1600" height="1067" alt="Editorial. Soft overcast daylight, lights off" loading="lazy" decoding="async"></button><p class="km-cap">Editorial</p></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/welcomehome-2400.webp" aria-label="Open larger: Welcome Home. A young family and their dog walking up to the porch at golden hour"><img src="../assets/13-stripes-spec-house/welcomehome-1600.webp" srcset="../assets/13-stripes-spec-house/welcomehome-800.webp 800w, ../assets/13-stripes-spec-house/welcomehome-1600.webp 1600w, ../assets/13-stripes-spec-house/welcomehome-2400.webp 2400w" sizes="(max-width: 700px) 50vw, 33vw" width="1600" height="1067" alt="Welcome Home. A young family and their dog walking up to the porch at golden hour" loading="lazy" decoding="async"></button><p class="km-cap">Welcome Home</p></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/nativegarden-2400.webp" aria-label="Open larger: Native Garden. The yard planted as a native meadow"><img src="../assets/13-stripes-spec-house/nativegarden-1600.webp" srcset="../assets/13-stripes-spec-house/nativegarden-800.webp 800w, ../assets/13-stripes-spec-house/nativegarden-1600.webp 1600w, ../assets/13-stripes-spec-house/nativegarden-2400.webp 2400w" sizes="(max-width: 700px) 50vw, 33vw" width="1600" height="1067" alt="Native Garden. The yard planted as a native meadow" loading="lazy" decoding="async"></button><p class="km-cap">Native Garden</p></li></ul>
+  </div>
+</section>
+<section class="pf-sec on-vellum" aria-labelledby="km-gfx">
+  <div class="wrap">
+    <div class="pf-head"><h2 id="km-gfx">Six ways to put it on paper.</h2><p>The same renderings, laid out for print, sales and social: the line drawing from the model, an architect's sheet, a magazine spread, a poster and a sales sheet ready to hand to a buyer.</p></div>
+    <ul class="gallery km-gfx"><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/g1-2400.webp" aria-label="Open larger: Line to light: the line drawing from our 3D model turns into the rendering"><img src="../assets/13-stripes-spec-house/g1-1600.webp" srcset="../assets/13-stripes-spec-house/g1-1600.webp 1600w, ../assets/13-stripes-spec-house/g1-2400.webp 2400w" sizes="100vw" width="1600" height="1067" alt="Line to light: the line drawing from our 3D model turns into the rendering" loading="lazy" decoding="async"></button><p class="km-cap"><b>Line to light.</b> The drawing comes straight from our 3D model, so every line lands on the photograph.</p></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/g2-2400.webp" aria-label="Open larger: Architect's sheet with finishes keyed by number"><img src="../assets/13-stripes-spec-house/g2-1600.webp" srcset="../assets/13-stripes-spec-house/g2-1600.webp 1600w, ../assets/13-stripes-spec-house/g2-2400.webp 2400w" sizes="100vw" width="1600" height="1067" alt="Architect's sheet with finishes keyed by number" loading="lazy" decoding="async"></button><p class="km-cap"><b>Architect's sheet.</b> Finishes keyed by number, datum lines and a title block, for architects and lenders.</p></li></ul>
+<ul class="gallery km-gfx-duo" style="margin-top:clamp(28px,4vw,48px)"><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/g5-1600.webp" aria-label="Open larger: Poster with the photograph inside the drawing"><img src="../assets/13-stripes-spec-house/g5-1600.webp" srcset="../assets/13-stripes-spec-house/g5-1000.webp 1000w, ../assets/13-stripes-spec-house/g5-1600.webp 1600w" sizes="(max-width: 700px) 100vw, 46vw" width="1600" height="2400" alt="Poster with the photograph inside the drawing" loading="lazy" decoding="async"></button><p class="km-cap"><b>Poster.</b> The photograph sits in a window and the drawing runs on past its edges.</p></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/g6-1600.webp" aria-label="Open larger: Printable sales sheet"><img src="../assets/13-stripes-spec-house/g6-1600.webp" srcset="../assets/13-stripes-spec-house/g6-1000.webp 1000w, ../assets/13-stripes-spec-house/g6-1600.webp 1600w" sizes="(max-width: 700px) 100vw, 54vw" width="1600" height="2071" alt="Printable sales sheet" loading="lazy" decoding="async"></button><p class="km-cap"><b>Sales sheet.</b> Letter size, ready for an open house or the lot, with a QR code to this page.</p></li></ul>
+<ul class="gallery km-gfx" style="margin-top:clamp(28px,4vw,48px)"><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/g3-2400.webp" aria-label="Open larger: Magazine spread"><img src="../assets/13-stripes-spec-house/g3-1600.webp" srcset="../assets/13-stripes-spec-house/g3-1600.webp 1600w, ../assets/13-stripes-spec-house/g3-2400.webp 2400w" sizes="100vw" width="1600" height="1000" alt="Magazine spread" loading="lazy" decoding="async"></button><p class="km-cap"><b>Magazine spread.</b> A full-page photograph, a headline and the facts of the home.</p></li><li><button class="reveal" type="button" data-full="../assets/13-stripes-spec-house/g4-2400.webp" aria-label="Open larger: One year in one frame"><img src="../assets/13-stripes-spec-house/g4-1600.webp" srcset="../assets/13-stripes-spec-house/g4-1600.webp 1600w, ../assets/13-stripes-spec-house/g4-2400.webp 2400w" sizes="100vw" width="1600" height="1067" alt="One year in one frame" loading="lazy" decoding="async"></button><p class="km-cap"><b>One year in one frame.</b> Four seasons side by side, possible only because the camera never moves.</p></li></ul>
+  </div>
+</section>
+<section class="pf-sec pf-steps on-vellum" aria-labelledby="pf-how">
+  <div class="wrap">
+    <div class="pf-head"><h2 id="pf-how">What we would do next.</h2></div>
+    <ol><li><h3>Your plan, built the same way</h3><p>Send the plan for your spec house, even a sketch or a phone photo, and we build and render it like The Catawba.</p></li><li><h3>Finish options for early buyers</h3><p>Siding colors, roofs and stone shown on the same house, so a buyer who signs early can see their version.</p></li><li><h3>A page for the listing</h3><p>A page like this one under your name, ready for the listing, the yard sign and texts to buyers.</p></li></ol>
+  </div>
+</section>
+<section class="pf-sec pf-next on-raised on-wall" aria-labelledby="pf-next">
+  <div class="wrap">
+    <div><h2 id="pf-next">Send us your plan.</h2><p>Reply to my email with what you think, or send the plan for your spec house and we will start on it.</p></div>
+    <div class="pf-contact">
+      <span class="addr">alex@tovizystudio.com</span>
+      <a class="btn btn-solid" href="mailto:alex@tovizystudio.com?subject=The%20Catawba%20spec%20home">Write to Alex</a>
+      <a class="tlink" href="../">See the full site</a>
+    </div>
+  </div>
+</section>
+</main>
+<dialog class="lightbox" aria-label="Image viewer"><div class="lightbox-inner"><button class="close" type="button">Close</button><img src="" alt=""><div class="lightbox-bar"><span class="lightbox-caption"></span><span class="lightbox-nav"><button class="prev" type="button">Previous</button><button class="next-img" type="button">Next</button></span></div></div></dialog>
+<footer class="pf-foot on-wall"><div class="wrap"><span>Prepared for Johnny, 13 Stripes Construction. Example plan, 3D model and renderings by Tovizy. Concept, not for construction. This page is not listed on our site.</span><span>© 2026 Tovizy Studio</span></div></footer>
+<script src="../assets/pv.js?v=3" defer></script>
+<script src="../assets/site.js?v=f2877d0a" defer></script>
+</body>
+</html>
