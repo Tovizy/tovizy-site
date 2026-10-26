@@ -414,8 +414,8 @@ void main(){
     };
     let flat = null;
     if (g) { flat = { t: g.createTexture(), w: 1, h: 1 }; g.bindTexture(g.TEXTURE_2D, flat.t); g.texImage2D(g.TEXTURE_2D, 0, g.RGB, 1, 1, 0, g.RGB, g.UNSIGNED_BYTE, new Uint8Array([102, 102, 102])); }
-    const W = () => (pickW() > 1900 ? 2400 : 1600);
-    const srcOf = (f) => `${f.src}-${W()}.webp${f.v ? '?' + f.v : ''}`;
+    const W = (f) => (f.hi && pickW() > 2600 ? 3200 : pickW() > 1900 ? 2400 : 1600);
+    const srcOf = (f) => `${f.src}-${W(f)}.webp${f.v ? '?v=' + f.v : ''}`;
     const getTex = (u) => {
       if (!u) return Promise.resolve(flat);
       if (!TX.has(u)) TX.set(u, img(u).then((im) => (g ? mk(im) : im)).catch(() => flat));

@@ -17,7 +17,8 @@
   const DPR = Math.min(devicePixelRatio || 1, CAPTURE ? 3 : 2);
   const SZ = innerWidth * DPR > 1700 ? 2400 : innerWidth * DPR > 1000 ? 1600 : 900;
   const GSZ = innerWidth * DPR > 1100 ? 2400 : 1600;           // texture size for WebGL
-  const img = (n, s) => `${C.base}/${n}-${s || SZ}.webp`;
+  const HI = new Set(C.hi || []);   // pictures redrawn at 6K: they also come in 3200 and carry a version
+  const img = (n, s) => { let z = s || SZ; if (z >= 2400 && HI.has(n) && innerWidth * DPR > 2600) z = 3200; return `${C.base}/${n}-${z}.webp${HI.has(n) ? '?v=' + (C.v || '6k') : ''}`; };
   const dep = n => `${C.base}/${n}-depth.webp`;
   const flip = f => [f[0], 1 - f[1]];
 
