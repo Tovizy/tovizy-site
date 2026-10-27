@@ -22,7 +22,7 @@
     const w = Math.max(innerWidth, innerHeight * 1.5) * r;
     return w > 2700 ? 3200 : w > 1700 ? 2400 : 1600;
   };
-  const HI6 = new Set(["c1", "c3", "c6", "c7"]); /*HI6*/
+  const HI6 = new Set(["c1", "c2", "c3", "c4", "c5", "c6", "c7"]); /*HI6*/
   const url = (key) => `${A}${key}-${Math.min(pickW(), HI6.has(key) ? 3200 : (MAXW[key] || 2400))}.webp${HI6.has(key) ? '?v=6k' : ''}`;
   const IMG = new Map();
   const img = (u) => {
