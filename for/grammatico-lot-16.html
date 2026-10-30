@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Residential Lot 16, for Dan Grammatico and Brad Moore | Tovizy</title>
+<meta name="description" content="What Tovizy can make from the Lot 16 drawings: photoreal views in any light and season, a buyer presentation, films, 360° tours and a community map.">
+<link rel="canonical" href="https://tovizy.com/for/grammatico-lot-16">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tovizy Studio">
+<meta property="og:title" content="Residential Lot 16: what we can make from your drawings">
+<meta property="og:description" content="Views in any light and season, a buyer presentation, films and a community map for Grove Park Cove.">
+<meta property="og:url" content="https://tovizy.com/for/grammatico-lot-16">
+<meta property="og:image" content="https://tovizy.com/assets/grammatico-lot16/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#13201B">
+<link rel="icon" href="../assets/brand/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/brand/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Noto+Serif+Display:ital,wght@0,300..500;1,300..400&display=swap">
+<link rel="stylesheet" href="../assets/site.css?v=0e1006c4">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ---------- Lot 16 deck: one room at a time, each opens through a house-shaped iris ---------- */
+:root { --top: 84px; --bot: 92px; --pad: clamp(16px, 4.2vw, 72px); }
+.on-brass { --bg: var(--brass); --fg: var(--wall); --fg-2: #3A3220; --line: rgba(19,32,27,.28); --focus: var(--wall); background: var(--bg); color: var(--fg); color-scheme: light; }
+.js body { overflow: hidden; height: 100dvh; }
+.dk { position: relative; }
+.js .dk { position: fixed; inset: 0; }
+.sl { position: relative; min-height: 100dvh; background: var(--bg); color: var(--fg); }
+.js .sl { position: absolute; inset: 0; min-height: 0; visibility: hidden; overflow: hidden; }
+.js .sl.is-on { visibility: visible; z-index: 2; }
+.sl-dim { position: absolute; inset: 0; background: #0b130f; opacity: 0; pointer-events: none; z-index: 8; }
+.sl-in { position: relative; z-index: 3; height: 100%; padding: var(--top) var(--pad) var(--bot); display: flex; flex-direction: column; gap: clamp(20px, 3vh, 40px); }
+.js .sl-in { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
+.js .sl-in::-webkit-scrollbar { display: none; }
+
+.eyebrow { font: 500 var(--fs-s)/1.3 var(--f-sans); letter-spacing: .04em; color: var(--brass); }
+.on-vellum .eyebrow { color: #7A6236; }
+.on-brass .eyebrow { color: var(--wall); }
+.sl h1 { font-size: clamp(3.4rem, 9.6vw, 9.5rem); line-height: .96; }
+.sl h2 { font-size: clamp(2.2rem, 4.5vw, 4.6rem); line-height: 1.02; max-width: 18ch; }
+.sl h3 { font: 500 var(--fs-l)/1.25 var(--f-sans); letter-spacing: -.005em; }
+.lead { font-size: clamp(1.05rem, 1.45vw, 1.45rem); line-height: 1.45; color: var(--fg-2); max-width: 40ch; }
+.sl-head { display: flex; flex-direction: column; gap: 14px; }
+[data-r] { will-change: transform, opacity; }
+
+/* chrome */
+.dk-top, .dk-nav { position: fixed; left: 0; right: 0; z-index: 20; display: flex; align-items: center; gap: 20px; padding-inline: var(--pad); color: var(--ivory); transition: color .6s var(--ease-out); pointer-events: none; }
+.dk-top > *, .dk-nav > * { pointer-events: auto; }
+.dk-top { top: 0; height: var(--top); padding-top: env(safe-area-inset-top, 0px); }
+.dk-nav { bottom: 0; height: var(--bot); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body[data-theme="vellum"] .dk-top, body[data-theme="vellum"] .dk-nav, body[data-theme="brass"] .dk-top, body[data-theme="brass"] .dk-nav { color: var(--wall); }
+.dk-logo { display: block; width: 52px; height: 33px; position: relative; }
+.dk-logo img { position: absolute; inset: 0; width: 100%; height: auto; transition: opacity .6s; }
+.dk-logo .l-dark { opacity: 0; }
+body[data-theme="vellum"] .dk-logo .l-light, body[data-theme="brass"] .dk-logo .l-light { opacity: 0; }
+body[data-theme="vellum"] .dk-logo .l-dark, body[data-theme="brass"] .dk-logo .l-dark { opacity: 1; }
+.dk-title { font-size: var(--fs-s); opacity: .8; }
+.dk-right { margin-left: auto; display: flex; align-items: center; gap: 18px; }
+.dk-count { font: 400 var(--fs-s)/1 var(--f-sans); font-variant-numeric: tabular-nums; opacity: .8; }
+.dk-count b { font-weight: 600; opacity: 1; }
+.dk-btn { appearance: none; background: none; border: 1px solid currentColor; color: inherit; width: 44px; height: 44px; display: grid; place-items: center; cursor: pointer; border-radius: 50%; opacity: .8; transition: opacity .3s, background-color .3s; }
+.dk-btn:hover { opacity: 1; }
+.dk-btn svg { width: 18px; height: 18px; }
+.dk-segs { flex: 1; display: flex; gap: 6px; align-items: center; height: 44px; }
+.dk-seg { appearance: none; flex: 1; height: 44px; background: none; border: 0; padding: 0; cursor: pointer; position: relative; color: inherit; }
+.dk-seg::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: currentColor; opacity: .22; }
+.dk-seg i { position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: var(--brass); transform: scaleX(0); transform-origin: 0 50%; transition: transform .9s var(--ease-out); }
+body[data-theme="brass"] .dk-seg i { background: var(--wall); }
+.dk-seg.is-done i { transform: scaleX(1); }
+.dk-hint { font-size: var(--fs-xs); opacity: .65; white-space: nowrap; transition: opacity .6s; }
+.dk-hint.is-gone { opacity: 0; }
+.dk-iris { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 15; pointer-events: none; opacity: 0; }
+.dk-iris polygon { fill: none; stroke: var(--brass); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+
+/* 1 cover */
+.cv-art { position: absolute; z-index: 1; right: var(--pad); bottom: calc(var(--bot) + 2vh); width: min(52vw, 104vh); aspect-ratio: 2470 / 1270; }
+.cv-art img { width: 100%; height: 100%; object-fit: contain; }
+.cv-scan { position: absolute; top: -4%; bottom: -4%; width: 1px; left: 0; background: var(--brass); box-shadow: 0 0 18px 2px rgba(184,154,99,.55); opacity: 0; }
+.cv { justify-content: flex-start; padding-top: calc(var(--top) + 8vh); gap: 22px; }
+.cv .lead { max-width: 30ch; }
+.cv-foot { position: absolute; z-index: 3; left: var(--pad); bottom: calc(var(--bot) + 8px); font-size: var(--fs-xs); color: var(--ivory-2); }
+
+/* 2 capabilities */
+.cap-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(14px, 1.5vw, 24px); margin-top: auto; margin-bottom: auto; }
+.cap-grid li { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.cap-media { position: relative; aspect-ratio: 4 / 5; max-height: 46vh; overflow: hidden; background: var(--wall-2); }
+.cap-media img, .cap-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cap-grid p { font-size: var(--fs-s); line-height: 1.45; color: var(--fg-2); }
+.cap-still img { opacity: 0; animation: capfade 12s infinite; }
+.cap-still img:nth-child(2) { animation-delay: 4s; }
+.cap-still img:nth-child(3) { animation-delay: 8s; }
+@keyframes capfade { 0% { opacity: 0; transform: scale(1.08); } 6% { opacity: 1; } 33% { opacity: 1; } 40% { opacity: 0; transform: scale(1); } 100% { opacity: 0; } }
+.mini-chrome { position: absolute; z-index: 2; left: 0; right: 0; top: 0; height: 26px; display: flex; align-items: center; gap: 5px; padding: 0 10px; background: rgba(19,32,27,.82); font-size: 11px; color: var(--ivory-2); }
+.mini-chrome i, .bf-chrome i { width: 7px; height: 7px; border-radius: 50%; background: rgba(234,229,216,.35); }
+.mini-chrome span { margin-left: 8px; }
+.cap-pres img { top: 26px; height: calc(100% - 26px); animation: kb 14s ease-in-out infinite alternate; }
+.cap-pano { background: var(--wall-2) url(../assets/estate/pano-bedroom-4096.jpg) 0 50% / auto 100% repeat-x; animation: pan 40s linear infinite; }
+@keyframes pan { to { background-position: -200% 50%; } }
+@keyframes kb { from { transform: scale(1); } to { transform: scale(1.12) translate(-2%, 1%); } }
+.cap-map img { animation: kb 16s ease-in-out infinite alternate; }
+.pin { position: absolute; z-index: 2; left: var(--x); top: var(--y); width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: var(--brass); box-shadow: 0 0 0 0 rgba(184,154,99,.7); animation: ping 2.4s infinite; animation-delay: var(--d, 0s); }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(184,154,99,.7); } 70% { box-shadow: 0 0 0 16px rgba(184,154,99,0); } 100% { box-shadow: 0 0 0 0 rgba(184,154,99,0); } }
+
+/* 3 mood picker */
+.md-canvas, .md-fallback, .cd-canvas, .cd-fallback { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; display: block; object-fit: cover; }
+.md-fallback, .cd-fallback { display: none; }
+.no-gl .md-fallback, .no-gl .cd-fallback { display: block; }
+.no-gl .md-canvas, .no-gl .cd-canvas { display: none; }
+.md-scrim { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(90deg, rgba(10,18,14,.72) 0%, rgba(10,18,14,.25) 42%, rgba(10,18,14,0) 62%), linear-gradient(0deg, rgba(10,18,14,.82) 0%, rgba(10,18,14,0) 38%); }
+.md { justify-content: space-between; }
+.md-head { display: flex; flex-direction: column; gap: 16px; max-width: 34rem; }
+.md-pick { display: flex; flex-wrap: wrap; gap: 18px 44px; align-items: flex-end; }
+.md-group { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.md-label { font-size: var(--fs-xs); color: var(--ivory-2); }
+.md-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.md-chips button { appearance: none; position: relative; overflow: hidden; border: 1px solid rgba(234,229,216,.4); background: rgba(19,32,27,.35); color: var(--ivory); font: 500 var(--fs-s)/1 var(--f-sans); padding: 11px 16px; border-radius: 999px; cursor: pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: background-color .35s, border-color .35s, color .35s; }
+.md-chips button:hover { border-color: var(--ivory); }
+.md-chips button[aria-pressed="true"] { background: var(--ivory); color: var(--wall); border-color: var(--ivory); }
+.md-chips button::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--brass); transform: scaleX(0); transform-origin: 0 50%; }
+.md-chips button.is-auto::after { animation: chipfill 4.2s linear forwards; }
+@keyframes chipfill { to { transform: scaleX(1); } }
+.md-now { position: absolute; z-index: 3; right: var(--pad); top: calc(var(--top) + 6px); font: 300 italic clamp(1.1rem, 1.6vw, 1.6rem)/1.2 var(--f-serif); color: var(--ivory); text-align: right; }
+.md-now small { display: block; font: 400 var(--fs-xs)/1.4 var(--f-sans); font-style: normal; color: var(--ivory-2); margin-top: 4px; }
+
+/* 4 buyer presentation */
+.by { align-content: safe center; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 72px); align-items: center; }
+.by-text { display: flex; flex-direction: column; gap: 22px; }
+.by-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.by-list li { padding-left: 26px; position: relative; font-size: clamp(1rem, 1.2vw, 1.2rem); line-height: 1.45; }
+.by-list li::before { content: ""; position: absolute; left: 0; top: .62em; width: 12px; height: 1px; background: #7A6236; }
+.by-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 18px; border-top: 1px solid var(--rule); padding-top: 18px; }
+.by-tag { width: 100%; font-size: var(--fs-s); color: var(--ink-2); }
+.by-num { font: 300 clamp(2.6rem, 4.4vw, 4.4rem)/1 var(--f-serif); }
+.by-num s { font-size: .5em; color: var(--ink-2); margin-right: 10px; text-decoration-thickness: 1px; }
+.by-note { font-size: var(--fs-s); color: var(--ink-2); }
+.by-links { font-size: var(--fs-s); color: var(--ink-2); }
+.by-frame { margin: 0; background: var(--wall); box-shadow: 0 40px 80px -30px rgba(19,32,27,.55); border-radius: 10px; overflow: hidden; }
+.bf-chrome { height: 34px; display: flex; align-items: center; gap: 6px; padding: 0 14px; color: var(--ivory-2); font-size: 12px; }
+.bf-chrome span { margin: 0 auto; padding: 4px 18px; border-radius: 6px; background: rgba(234,229,216,.08); }
+.bf-view { position: relative; aspect-ratio: 16 / 9; background: var(--wall-2); }
+.bf-view canvas, .bf-view img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.bf-view img { display: none; }
+.no-gl .bf-view img { display: block; }
+.bf-tabs { display: flex; gap: 4px; padding: 10px 12px 12px; }
+.bf-tabs span { flex: 1; text-align: center; font-size: 12px; color: var(--ivory-2); padding: 8px 0; border-top: 2px solid rgba(234,229,216,.14); transition: color .4s, border-color .4s; }
+.bf-tabs span.is-on { color: var(--ivory); border-color: var(--brass); }
+.by-frame figcaption { padding: 0 14px 12px; font-size: 12px; color: var(--ivory-2); }
+
+/* 5 community map */
+.cm { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(24px, 3.5vw, 64px); align-items: center; }
+.cm-text { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+.cm-price { font: 300 clamp(1.6rem, 2.2vw, 2.2rem)/1 var(--f-serif); }
+.cm-stage { position: relative; }
+.cm-map { position: relative; aspect-ratio: 1600 / 1067; max-height: calc(100dvh - var(--top) - var(--bot) - 40px); overflow: hidden; }
+.cm-map > img { width: 100%; height: 100%; object-fit: cover; }
+.cm-pin { position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%); width: 34px; height: 34px; border-radius: 50%; border: 0; background: var(--ivory); color: var(--wall); font: 600 13px/1 var(--f-sans); cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,.35); transition: background-color .3s, color .3s, transform .4s var(--ease-out); }
+.cm-pin[aria-pressed="true"] { background: var(--brass); color: var(--wall); transform: translate(-50%, -50%) scale(1.18); animation: ping 2.2s infinite; }
+.cm-card { position: absolute; right: 14px; bottom: 14px; width: min(40%, 420px); background: rgba(19,32,27,.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 10px; display: flex; flex-direction: column; gap: 10px; }
+.cm-house { position: relative; aspect-ratio: 3 / 2; overflow: hidden; }
+.cm-house img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; }
+.cm-house img.is-on { opacity: 1; }
+.cm-tod { position: absolute; left: 8px; bottom: 8px; font-size: 11px; color: var(--ivory); background: rgba(19,32,27,.7); padding: 4px 8px; }
+.cm-meta { display: flex; justify-content: space-between; gap: 10px; font-size: var(--fs-s); }
+.cm-meta b { font-weight: 600; }
+.cm-meta span { color: var(--ivory-2); }
+.cm-rooms { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.cm-rooms img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.cm-cap { font-size: var(--fs-xs); color: var(--ivory-2); margin-top: 8px; }
+
+/* 6 process */
+.pr { justify-content: safe center; gap: clamp(28px, 5vh, 64px); }
+.pr-wrap { position: relative; }
+.pr-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; position: relative; }
+.pr-line { position: absolute; left: 0; right: 0; top: 47px; height: 1px; background: var(--ink); transform-origin: 0 50%; }
+.pr-steps li { display: flex; flex-direction: column; gap: 10px; position: relative; }
+.pr-when { font-size: var(--fs-s); color: #7A6236; font-weight: 500; height: 28px; }
+.pr-dot { width: 15px; height: 15px; border-radius: 50%; background: var(--vellum); border: 1px solid var(--ink); margin: 2px 0 12px; position: relative; z-index: 1; }
+.pr-steps li.is-key .pr-dot { background: var(--brass); border-color: var(--brass); }
+.pr-steps p { font-size: var(--fs-s); line-height: 1.5; color: var(--ink-2); }
+.pr-pay { border-top: 1px solid var(--rule); padding-top: 20px; font-size: clamp(1rem, 1.2vw, 1.2rem); max-width: 70ch; color: var(--ink-2); }
+.pr-pay b { color: var(--ink); font-weight: 600; }
+
+/* 7 options */
+.op { justify-content: safe center; }
+.op-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 28px); }
+.op-card { border: 1px solid var(--hair); padding: clamp(22px, 2.4vw, 40px); display: flex; flex-direction: column; gap: 14px; position: relative; }
+.op-card.is-rec { background: var(--ivory); color: var(--wall); border-color: var(--ivory); --fg-2: var(--ink-2); }
+.op-k { font-size: var(--fs-s); color: var(--brass); font-weight: 600; display: flex; justify-content: space-between; }
+.op-card.is-rec .op-k { color: #7A6236; }
+.op-rec { font-size: var(--fs-xs); background: var(--wall); color: var(--ivory); padding: 4px 10px; border-radius: 999px; font-weight: 500; }
+.op-num { font: 300 clamp(2.6rem, 4.6vw, 4.8rem)/1 var(--f-serif); font-variant-numeric: tabular-nums; }
+.op-card .op-d { font-size: var(--fs-s); line-height: 1.5; color: var(--fg-2); }
+.op-when { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--hair); font-size: var(--fs-s); }
+.op-card.is-rec .op-when { border-color: var(--rule); }
+.op-extra { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: var(--fs-s); color: var(--ivory-2); }
+.op-extra b { color: var(--ivory); font-weight: 500; }
+
+/* 8 how the Cedar was made */
+.sl .cd-canvas, .sl .cd-fallback { inset: auto; right: var(--pad); top: 50%; transform: translateY(-50%); width: min(54vw, calc((100dvh - var(--top) - var(--bot) - 4vh) * 1.5)); height: auto; aspect-ratio: 3 / 2; box-shadow: 0 40px 90px -30px rgba(0,0,0,.7); }
+.cd-scrim { display: none; }
+.cd { justify-content: safe center; max-width: calc(46vw - var(--pad) - 24px); gap: 20px; }
+.cd-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; counter-reset: s; }
+.cd-steps li { counter-increment: s; display: flex; gap: 14px; align-items: baseline; padding: 8px 0; color: var(--ivory-2); transition: color .5s; font-size: clamp(1rem, 1.2vw, 1.2rem); }
+.cd-steps li::before { content: counter(s, decimal-leading-zero); font: 500 var(--fs-xs)/1 var(--f-sans); color: var(--ivory-2); min-width: 22px; transition: color .5s; }
+.cd-steps li.is-on { color: var(--ivory); }
+.cd-steps li.is-on::before { color: var(--brass); }
+.cd-note { font-size: var(--fs-s); color: var(--ivory-2); border-left: 2px solid var(--brass); padding-left: 16px; max-width: 46ch; }
+.cd-acts { display: flex; gap: 22px; align-items: center; font-size: var(--fs-s); }
+.cd-replay { appearance: none; background: none; border: 1px solid var(--ivory); color: var(--ivory); padding: 10px 18px; border-radius: 999px; font: 500 var(--fs-s)/1 var(--f-sans); cursor: pointer; }
+.cd-water { position: absolute; z-index: 4; right: calc(32vw + var(--pad)); bottom: calc(var(--bot) + 5vh); width: min(20vw, 300px); margin: 0; background: #f4efe3; padding: 10px 10px 8px; box-shadow: 0 24px 50px -16px rgba(0,0,0,.6); transform: rotate(-2deg); }
+.cd-water img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.cd-water figcaption { font-size: 12px; color: #5a5446; margin-top: 6px; }
+
+/* 9 next steps */
+.nx { justify-content: safe center; gap: clamp(24px, 4vh, 48px); }
+.nx h2 { font-size: clamp(2.6rem, 6vw, 6rem); }
+.nx-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.nx-list li { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 20px; padding: clamp(14px, 2.4vh, 26px) 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.nx-list span { font: 500 var(--fs-s)/1 var(--f-sans); }
+.nx-list p { font: 300 clamp(1.3rem, 2.2vw, 2.2rem)/1.25 var(--f-serif); max-width: 40ch; }
+.nx-contact { font-size: var(--fs-m); line-height: 1.6; }
+.nx-contact a { text-decoration: none; border-bottom: 1px solid currentColor; }
+
+/* small screens: one column, the room scrolls inside */
+@media (max-width: 1100px) {
+  .cap-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cap-media { aspect-ratio: 4 / 3; }
+  .pr-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 32px; }
+  .pr-line { display: none; }
+}
+@media (max-width: 860px) {
+  :root { --top: 68px; --bot: 76px; }
+  body { --tbg: 19,32,27; }
+  body[data-theme="vellum"] { --tbg: 230,231,222; }
+  body[data-theme="brass"] { --tbg: 184,154,99; }
+  .dk-top { background: linear-gradient(180deg, rgba(var(--tbg),.96) 55%, rgba(var(--tbg),0)); }
+  .dk-nav { background: linear-gradient(0deg, rgba(var(--tbg),.96) 60%, rgba(var(--tbg),0)); }
+  .op { justify-content: flex-start; }
+  .dk-title, .dk-hint { display: none; }
+  .cv-art { width: calc(100% - 2 * var(--pad)); bottom: calc(var(--bot) + 40px); opacity: .7; }
+  .cv { justify-content: flex-start; padding-top: calc(var(--top) + 6vh); }
+  .cap-grid { grid-template-columns: 1fr 1fr; }
+  .cap-grid li:last-child { grid-column: 1 / -1; }
+  .cap-media { aspect-ratio: 4 / 3; max-height: none; }
+  .md-scrim { background: linear-gradient(180deg, rgba(10,18,14,.86) 0%, rgba(10,18,14,.55) 30%, rgba(10,18,14,.1) 46%, rgba(10,18,14,.2) 55%, rgba(10,18,14,.9) 100%); }
+  .md-pick { gap: 14px; }
+  .md-chips button { padding: 9px 12px; font-size: var(--fs-xs); }
+  .md-now { display: none; }
+  .by, .cm { grid-template-columns: 1fr; align-content: start; }
+  .cm-card { position: relative; right: auto; bottom: auto; width: 100%; margin-top: 10px; }
+  .cm-map { max-height: none; }
+  .pr { justify-content: flex-start; }
+  .pr-steps { grid-template-columns: 1fr 1fr; }
+  .op-cards { grid-template-columns: 1fr; }
+  .cd { max-width: none; justify-content: flex-end; }
+  .cd-water { right: var(--pad); bottom: auto; }
+  .sl .cd-canvas, .sl .cd-fallback { right: 0; left: 0; top: var(--top); transform: none; width: 100%; height: auto; aspect-ratio: 3 / 2; box-shadow: none; }
+  .cd-scrim { display: none; }
+  .cd { padding-top: calc(var(--top) + 66vw + 16px); justify-content: flex-start; }
+  .cd-water { top: calc(var(--top) + 8px); bottom: auto; width: 42vw; }
+  .nx-list li { grid-template-columns: 44px minmax(0, 1fr); }
+}
+@media (max-width: 520px) {
+  .cap-grid p { font-size: var(--fs-xs); }
+  .pr-steps { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cap-still img, .cap-pres img, .cap-pano, .cap-map img, .pin, .cm-pin[aria-pressed="true"] { animation: none !important; }
+  .cap-still img:first-child { opacity: 1; }
+}
+</style>
+</head>
+<body data-theme="wall">
+<a class="skip" href="#s1">Skip to the presentation</a>
+
+<header class="dk-top">
+  <a class="dk-logo" href="/" aria-label="Tovizy home"><img class="l-light" src="../assets/brand/logo-sm-light.png" alt="Tovizy" width="60" height="38"><img class="l-dark" src="../assets/brand/logo-sm-dark.png" alt="" width="60" height="38"></a>
+  <p class="dk-title">Residential Lot 16</p>
+  <div class="dk-right">
+    <p class="dk-count" aria-live="polite"><b>01</b> / 09</p>
+    <button class="dk-btn dk-fs" type="button" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+  </div>
+</header>
+
+<main class="dk" id="deck">
+
+<!-- 1 -->
+<section class="sl on-wall" id="s1" data-id="cover" data-theme="wall" aria-label="Residential Lot 16">
+  <div class="cv-art" aria-hidden="true"><img class="cv-lines" src="../assets/grammatico-lot16/elevation-lines-2400.webp" alt="" width="2470" height="1270"><i class="cv-scan"></i></div>
+  <div class="sl-in cv">
+    <p class="eyebrow" data-r>For Dan Grammatico and Brad Moore</p>
+    <h1 data-r>Residential<br>Lot 16</h1>
+    <p class="lead" data-r>Grove Park Cove, North Carolina. What we can make from your drawings.</p>
+  </div>
+  <p class="cv-foot" data-r>North elevation from the drawing set, sheet A2.1</p>
+  <i class="sl-dim"></i>
+</section>
+
+<!-- 2 -->
+<section class="sl on-wall" id="s2" data-id="caps" data-theme="wall" aria-label="What we make">
+  <div class="sl-in">
+    <header class="sl-head">
+      <p class="eyebrow" data-r>What we make</p>
+      <h2 data-r>Five ways to show Lot&nbsp;16</h2>
+    </header>
+    <ul class="cap-grid">
+      <li data-r>
+        <div class="cap-media cap-still">
+          <img src="../assets/showcase/larkspur-ridge/hero-900.webp?v=6k" alt="Mountain home at golden hour" loading="lazy">
+          <img src="../assets/showcase/casa-ocotillo/hero_bluehour-900.webp?v=6k" alt="Desert courtyard home at blue hour" loading="lazy">
+          <img src="../assets/showcase/larkspur-ridge/int_great_room-900.webp?v=6k" alt="Great room with a wall of windows" loading="lazy">
+        </div>
+        <h3>Photoreal views</h3>
+        <p>Exteriors and interiors in 4K, for listings, signs and print.</p>
+      </li>
+      <li data-r>
+        <div class="cap-media cap-pres"><div class="mini-chrome"><i></i><i></i><i></i><span>tovizy.com/lot-16</span></div><img src="../assets/showcase/larkspur-ridge/hero_night-900.webp?v=6k" alt="Online presentation page showing a home at night" loading="lazy"></div>
+        <h3>Buyer presentation</h3>
+        <p>One link with every view, day to night, plans and options.</p>
+      </li>
+      <li data-r>
+        <div class="cap-media cap-pano" role="img" aria-label="360° view of a bedroom, panning"></div>
+        <h3>360° tours</h3>
+        <p>Walk through the rooms on a phone or a laptop.</p>
+      </li>
+      <li data-r>
+        <div class="cap-media"><video class="cap-video" muted loop playsinline preload="none" poster="../assets/grammatico-cedar/day-to-dusk-poster.webp" aria-label="The Cedar from day to dusk"><source src="../assets/grammatico-cedar/day-to-dusk.mp4" type="video/mp4"></video></div>
+        <h3>Films</h3>
+        <p>30 to 60 seconds in 4K, day to dusk or the four seasons.</p>
+      </li>
+      <li data-r>
+        <div class="cap-media cap-map"><img src="../assets/estate/estate-map-800.webp" alt="Aerial map of a community with homesites" loading="lazy"><i class="pin" style="--x:63%;--y:37%"></i><i class="pin" style="--x:35%;--y:35%;--d:.6s"></i><i class="pin" style="--x:74%;--y:18%;--d:1.2s"></i></div>
+        <h3>Community map</h3>
+        <p>All of Grove Park Cove: click a lot, see its house.</p>
+      </li>
+    </ul>
+  </div>
+  <i class="sl-dim"></i>
+</section>
+
+<!-- 3 -->
+<section class="sl on-wall" id="s3" data-id="mood" data-theme="wall" aria-label="Light, season and style">
+  <canvas class="md-canvas" aria-hidden="true"></canvas>
+  <img class="md-fallback" src="../assets/grammatico-cedar/goldenhour-1600.webp" alt="The Cedar at golden hour">
+  <i class="md-scrim"></i>
+  <p class="md-now" aria-live="polite">Golden hour<small>Shown on the Cedar</small></p>
+  <div class="sl-in md">
+    <div class="md-head">
+      <p class="eyebrow" data-r>Light, season and style</p>
+      <h2 data-r>Any hour.<br>Any season.</h2>
+      <p class="lead" data-r>Choose how Lot 16 should feel. Shown here on the Cedar.</p>
+    </div>
+    <div class="md-pick" data-r>
+      <div class="md-group"><p class="md-label">Time of day</p><div class="md-chips">
+        <button type="button" data-k="valleyfog">Sunrise fog</button>
+        <button type="button" data-k="editorial">Daylight</button>
+        <button type="button" data-k="goldenhour" aria-pressed="true">Golden hour</button>
+        <button type="button" data-k="signaturedusk">Dusk</button>
+        <button type="button" data-k="starrynight">Night</button>
+      </div></div>
+      <div class="md-group"><p class="md-label">Season</p><div class="md-chips">
+        <button type="button" data-k="springbloom">Spring</button>
+        <button type="button" data-k="nativegarden">Summer</button>
+        <button type="button" data-k="peakautumn">Autumn</button>
+        <button type="button" data-k="firstsnow">Winter</button>
+      </div></div>
+      <div class="md-group"><p class="md-label">Style</p><div class="md-chips">
+        <button type="button" data-k="cinematic">Cinematic</button>
+        <button type="button" data-k="aftertherain">After the rain</button>
+        <button type="button" data-k="welcomehome">With people</button>
+      </div></div>
+    </div>
+  </div>
+  <i class="sl-dim"></i>
+</section>
+
+<!-- 4 -->
+<section class="sl on-vellum" id="s4" data-id="buyers" data-theme="vellum" aria-label="A presentation for your buyers">
+  <div class="sl-in by">
+    <div class="by-text">
+      <p class="eyebrow" data-r>For your buyers</p>
+      <h2 data-r>A presentation that sells Lot&nbsp;16 before it is built</h2>
+      <ul class="by-list" data-r>
+        <li>Every option in one link: day and night, seasons, finishes, before and after.</li>
+        <li>It lives on tovizy.com and opens on any phone.</li>
+        <li>We also send it as a PDF and a video, for showing it anywhere offline.</li>
+      </ul>
+      <div class="by-price" data-r>
+        <p class="by-tag">Launch price for Lot 16</p>
+        <p class="by-num"><s>$350</s>$99</p>
+        <p class="by-note">With any set of views.</p>
+      </div>
+      <p class="by-links" data-r>Live examples: <a class="tlink" href="../showcase/larkspur-ridge" target="_blank" rel="noopener">Larkspur Ridge</a> and <a class="tlink" href="../showcase/casa-ocotillo" target="_blank" rel="noopener">Casa Ocotillo</a></p>
+    </div>
+    <figure class="by-frame" data-r>
+      <div class="bf-chrome" aria-hidden="true"><i></i><i></i><i></i><span>tovizy.com/lot-16</span></div>
+      <div class="bf-view">
+        <canvas aria-hidden="true"></canvas>
+        <img src="../assets/showcase/larkspur-ridge/hero_bluehour-1600.webp?v=6k" alt="Example presentation: a mountain home at blue hour">
+      </div>
+      <div class="bf-tabs" aria-hidden="true"><span data-t="lines">Drawing</span><span data-t="day">Day</span><span data-t="dusk">Dusk</span><span data-t="night">Night</span></div>
+      <figcaption>Example: Larkspur Ridge, from line drawing to night</figcaption>
+    </figure>
+  </div>
+  <i class="sl-dim"></i>
+</section>
+
+<!-- 5 -->
+<section class="sl on-wall" id="s5" data-id="map" data-theme="wall" aria-label="A community map">
+  <div class="sl-in cm">
+    <div class="cm-text">
+      <p class="eyebrow" data-r>For Grove Park Cove</p>
+      <h2 data-r>The whole community on one map</h2>
+      <p class="lead" data-r>Buyers pick a lot, see its house by day and night, then step inside.</p>
+      <p class="cm-price" data-r>From $7,500</p>
+      <a class="btn" href="../estate" target="_blank" rel="noopener" data-r>Open the full demo</a>
+    </div>
+    <div class="cm-stage" data-r>
+      <div class="cm-map">
+        <img src="../assets/estate/estate-map-1600.webp" alt="Aerial map of a demo community, homesites marked">
+      </div>
+      <div class="cm-card" aria-live="polite">
+        <div class="cm-house"><img alt=""><img alt=""><img alt=""><span class="cm-tod">Day</span></div>
+        <div class="cm-meta"><b class="cm-lot">Homesite 6</b><span class="cm-st">Model home, 0.97 acres</span></div>
+        <div class="cm-rooms"><img src="../assets/estate/living-1280.webp" alt="Living room" loading="lazy"><img src="../assets/estate/bedroom-1280.webp" alt="Bedroom" loading="lazy"></div>
+      </div>
+      <p class="cm-cap">Demo community: Blue Ridge Estate</p>
+    </div>
+  </div>
+  <i class="sl-dim"></i>
+</section>
+
+<!-- 6 -->
+<section class="sl on-vellum" id="s6" data-id="process" data-theme="vellum" aria-label="How it works">
+  <div class="sl-in pr">
+    <header class="sl-head">
+      <p class="eyebrow" data-r>How it works</p>
+      <h2 data-r>From your model to finished pictures in about two weeks</h2>
+    </header>
+    <div class="pr-wrap">
+    <i class="pr-line" aria-hidden="true"></i>
+    <ol class="pr-steps">
+      <li data-r><span class="pr-when">Day 0</span><i class="pr-dot"></i><h3>You send the model</h3><p>Plus finishes or photos of materials you like, and a few site photos.</p></li>
+      <li data-r class="is-key"><span class="pr-when">By day 5</span><i class="pr-dot"></i><h3>Free draft</h3><p>The main view, before you pay anything.</p></li>
+      <li data-r><span class="pr-when">Days 5 to 7</span><i class="pr-dot"></i><h3>50% to start</h3><p>Then drafts of the rest of the views.</p></li>
+      <li data-r><span class="pr-when">Week 2</span><i class="pr-dot"></i><h3>Two revision rounds</h3><p>Included. Bigger design changes are quoted before we start.</p></li>
+      <li data-r><span class="pr-when">About 2 weeks</span><i class="pr-dot"></i><h3>Finals</h3><p>4K files for web and print. The other 50% on approval.</p></li>
+    </ol>
+    </div>
+    <p class="pr-pay" data-r><b>Payment.</b> Invoices in US dollars from Mellow, our payment company in New York. ACH, wire or card.</p>
+  </div>
+  <i class="sl-dim"></i>
+</section>
+
+<!-- 7 -->
+<section class="sl on-wall" id="s7" data-id="options" data-theme="wall" aria-label="Options and prices">
+  <div class="sl-in op">
+    <header class="sl-head">
+      <p class="eyebrow" data-r>Options</p>
+      <h2 data-r>Three ways to start</h2>
+    </header>
+    <div class="op-cards">
+      <article class="op-card" data-r>
+        <p class="op-k">A</p>
+        <h3>One view</h3>
+        <p class="op-num" data-v="390">$390</p>
+        <p class="op-d">The main view of the house. First-project price, usually $590.</p>
+        <p class="op-when">5 to 7 business days</p>
+      </article>
+      <article class="op-card is-rec" data-r>
+        <p class="op-k">B <span class="op-rec">Recommended</span></p>
+        <h3>Three exterior views</h3>
+        <p class="op-num" data-v="1390">$1,390</p>
+        <p class="op-d">Chosen together from your model. $1,570 if ordered one by one.</p>
+        <p class="op-when">Drafts in 5 to 7 business days, finals in about 2 weeks</p>
+      </article>
+      <article class="op-card" data-r>
+        <p class="op-k">C</p>
+        <h3>Full set</h3>
+        <p class="op-num" data-v="2290">$2,290</p>
+        <p class="op-d">Three exteriors, the living room and the kitchen, plus the buyer presentation.</p>
+        <p class="op-when">About 3 weeks</p>
+      </article>
+    </div>
+    <p class="op-extra" data-r><span><b>$490</b> each extra view</span><span><b>$99</b> buyer presentation, launch price</span><span><b>from $1,900</b> 360° tour</span><span><b>from $3,500</b> film</span><span><b>+35%</b> rush in 48 hours</span></p>
+  </div>
+  <i class="sl-dim"></i>
+</section>
+
+<!-- 8 -->
+<section class="sl on-wall" id="s8" data-id="cedar" data-theme="wall" aria-label="How we built the Cedar">
+  <canvas class="cd-canvas" aria-hidden="true"></canvas>
+  <img class="cd-fallback" src="../assets/grammatico-cedar/photo-1600.webp" alt="The Cedar, finished render">
+  <i class="cd-scrim"></i>
+  <figure class="cd-water"><img src="../assets/grammatico-cedar/watercolor-800.webp" alt="Dan’s 2019 watercolor of the Cedar"><figcaption>Where it started: Dan’s watercolor, 2019</figcaption></figure>
+  <div class="sl-in cd">
+    <p class="eyebrow" data-r>The Cedar at Grove Park Cove</p>
+    <h2 data-r>How we built the Cedar from a watercolor</h2>
+    <ol class="cd-steps" data-r>
+      <li>The 2019 watercolor and the floor plan</li>
+      <li>A real 3D model, sized from the plan</li>
+      <li>Light, materials and landscape</li>
+      <li>A detail pass on top of the render</li>
+    </ol>
+    <p class="cd-note" data-r>The back of the Cedar was our interpretation. With your Revit model, nothing is guessed.</p>
+    <p class="cd-acts" data-r><button class="cd-replay" type="button">Replay</button><a class="tlink" href="grammatico-cedar" target="_blank" rel="noopener">See the Cedar page</a></p>
+  </div>
+  <i class="sl-dim"></i>
+</section>
+
+<!-- 9 -->
+<section class="sl on-brass" id="s9" data-id="next" data-theme="brass" aria-label="Next steps">
+  <div class="sl-in nx">
+    <h2 data-r>Next steps</h2>
+    <ol class="nx-list">
+      <li data-r><span>01</span><p>We walk through your Revit model in 3D and suggest the views that show Lot 16 best.</p></li>
+      <li data-r><span>02</span><p>You choose the light, the season and the style.</p></li>
+      <li data-r><span>03</span><p>A free draft of the main view within 5 business days.</p></li>
+    </ol>
+    <p class="nx-contact" data-r>Alex Lane, Tovizy<br><a href="mailto:alex@tovizystudio.com">alex@tovizystudio.com</a></p>
+  </div>
+  <i class="sl-dim"></i>
+</section>
+
+</main>
+
+<nav class="dk-nav" aria-label="Slides">
+  <button class="dk-btn dk-prev" type="button" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <div class="dk-segs"></div>
+  <button class="dk-btn dk-next" type="button" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  <p class="dk-hint">Arrow keys or swipe</p>
+</nav>
+<svg class="dk-iris" aria-hidden="true"><polygon points="0,0"/></svg>
+
+<script src="../assets/vendor/gsap-3.13.0.min.js"></script>
+<script src="../assets/showcase/gl.js?v=2"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var slides = $$('.sl'), N = slides.length, body = document.body;
+  var segBox = $('.dk-segs'), countEl = $('.dk-count b'), hint = $('.dk-hint');
+  var iris = $('.dk-iris'), irisPoly = $('.dk-iris polygon');
+  var cur = -1, busy = false, queued = null, moved = false;
+  var BIG = function () { return Math.max(innerWidth, innerHeight * 1.5) * Math.min(window.devicePixelRatio || 1, 2) > 2000; };
+  var hooks = {};
+
+  slides.forEach(function (s, i) {
+    var b = document.createElement('button');
+    b.className = 'dk-seg'; b.type = 'button'; b.setAttribute('aria-label', 'Slide ' + (i + 1) + ': ' + s.getAttribute('aria-label'));
+    b.appendChild(document.createElement('i'));
+    b.addEventListener('click', function () { go(i); });
+    segBox.appendChild(b);
+  });
+  var segs = $$('.dk-seg');
+
+  /* the house-shaped iris: a gable that grows until it holds the whole screen */
+  function gable(s, w, h) {
+    var k = s * 2.3 * Math.max(w, h), cx = w / 2, cy = h * 0.56;
+    var a = k * 0.5, b = k * 0.55, c = k * 0.36, by = cy + b / 2, ey = cy - b / 2, ry = ey - c;
+    return [[cx - a, by], [cx + a, by], [cx + a, ey], [cx, ry], [cx - a, ey]];
+  }
+  function clip(el, s) {
+    var w = innerWidth, h = innerHeight, p = gable(s, w, h);
+    el.style.clipPath = 'polygon(' + p.map(function (q) { return q[0].toFixed(1) + 'px ' + q[1].toFixed(1) + 'px'; }).join(',') + ')';
+    irisPoly.setAttribute('points', p.map(function (q) { return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' '));
+    iris.style.opacity = s < 0.01 ? s / 0.01 : (s > 0.4 ? Math.max(0, 1 - (s - 0.4) / 0.3) : 1);
+  }
+
+  function reveal(sl, delay) {
+    var els = $$('[data-r]', sl);
+    if (RM) { gsap.set(els, { opacity: 1, y: 0 }); return; }
+    gsap.fromTo(els, { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, ease: 'expo.out', stagger: 0.07, delay: delay, overwrite: true });
+  }
+  function ui() {
+    countEl.textContent = String(cur + 1).padStart(2, '0');
+    segs.forEach(function (s, i) { s.classList.toggle('is-done', i <= cur); s.setAttribute('aria-current', i === cur ? 'step' : 'false'); });
+    try { history.replaceState(null, '', '#' + (cur + 1)); } catch (e) {}
+  }
+  function enter(sl) { var h = hooks[sl.dataset.id]; if (h && h.enter) h.enter(); }
+  function leave(sl) { var h = hooks[sl.dataset.id]; if (h && h.leave) h.leave(); }
+
+  function go(i) {
+    i = Math.max(0, Math.min(N - 1, i));
+    if (i === cur) return;
+    if (busy) { queued = i; return; }
+    if (cur >= 0 && !moved) { moved = true; hint.classList.add('is-gone'); }
+    var A = cur >= 0 ? slides[cur] : null, B = slides[i], fwd = !A || i > cur;
+    busy = true; cur = i; ui();
+    var theme = function () { body.dataset.theme = B.dataset.theme; };
+    if (!A || RM) theme(); else gsap.delayedCall(fwd ? 0.9 : 0.55, theme);
+    var inB = $('.sl-in', B); if (inB) inB.scrollTop = 0;
+    B.classList.add('is-on'); enter(B);
+    var finish = function () {
+      if (A) { A.classList.remove('is-on'); A.style.zIndex = ''; A.style.clipPath = ''; gsap.set($('.sl-dim', A), { opacity: 0 }); gsap.set($('.sl-in', A), { clearProps: 'transform' }); leave(A); }
+      B.style.zIndex = ''; B.style.clipPath = ''; iris.style.opacity = 0;
+      busy = false;
+      if (queued !== null) { var q = queued; queued = null; go(q); }
+    };
+    if (!A) { reveal(B, 0.25); finish(); return; }
+    if (RM) {
+      B.style.zIndex = 3; gsap.fromTo(B, { opacity: 0 }, { opacity: 1, duration: 0.4, onComplete: function () { gsap.set(B, { clearProps: 'opacity' }); finish(); } });
+      reveal(B, 0); return;
+    }
+    var o;
+    if (fwd) {
+      A.style.zIndex = 2; B.style.zIndex = 3;
+      o = { s: 0.0001 }; clip(B, o.s);
+      reveal(B, 0.55);
+      gsap.to($('.sl-dim', A), { opacity: 0.65, duration: 1.1, ease: 'power2.in' });
+      gsap.to($('.sl-in', A), { scale: 0.96, duration: 1.2, ease: 'power2.inOut' });
+      gsap.timeline({ onComplete: finish })
+        .to(o, { s: 0.11, duration: 0.55, ease: 'expo.out', onUpdate: function () { clip(B, o.s); } })
+        .to(o, { s: 1, duration: 0.85, ease: 'expo.in', onUpdate: function () { clip(B, o.s); } }, '+=0.08');
+    } else {
+      A.style.zIndex = 3; B.style.zIndex = 2;
+      o = { s: 1 }; reveal(B, 0.35);
+      gsap.fromTo($('.sl-dim', B), { opacity: 0.65 }, { opacity: 0, duration: 1.2, ease: 'power2.out' });
+      gsap.timeline({ onComplete: finish })
+        .to(o, { s: 0.11, duration: 0.75, ease: 'expo.out', onUpdate: function () { clip(A, o.s); } })
+        .to(o, { s: 0.0001, duration: 0.45, ease: 'expo.in', onUpdate: function () { clip(A, o.s); } }, '+=0.06');
+    }
+  }
+  var next = function () { go(cur + 1); }, prev = function () { go(cur - 1); };
+  $('.dk-next').addEventListener('click', next);
+  $('.dk-prev').addEventListener('click', prev);
+  $('.dk-fs').addEventListener('click', function () {
+    var d = document;
+    if (d.fullscreenElement) { if (d.exitFullscreen) d.exitFullscreen(); }
+    else if (d.documentElement.requestFullscreen) d.documentElement.requestFullscreen().catch(function () {});
+  });
+  addEventListener('keydown', function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    var k = e.key;
+    if (k === 'ArrowRight' || k === 'PageDown' || k === 'ArrowDown' || (k === ' ' && !(e.target.closest && e.target.closest('button,a')))) { e.preventDefault(); next(); }
+    else if (k === 'ArrowLeft' || k === 'PageUp' || k === 'ArrowUp') { e.preventDefault(); prev(); }
+    else if (k === 'Home') { e.preventDefault(); go(0); }
+    else if (k === 'End') { e.preventDefault(); go(N - 1); }
+    else if (k === 'f' || k === 'F') { $('.dk-fs').click(); }
+    else if (/^[1-9]$/.test(k)) { go(+k - 1); }
+  });
+  /* wheel: one step per gesture, unless the room itself still has content to scroll */
+  var wheelLock = 0, wheelSum = 0;
+  addEventListener('wheel', function (e) {
+    var sc = $('.sl-in', slides[cur]);
+    if (sc && sc.scrollHeight > sc.clientHeight + 2) {
+      if ((e.deltaY > 0 && sc.scrollTop + sc.clientHeight < sc.scrollHeight - 2) || (e.deltaY < 0 && sc.scrollTop > 2)) return;
+    }
+    var now = Date.now();
+    if (now < wheelLock) return;
+    wheelSum += e.deltaY;
+    if (Math.abs(wheelSum) > 40) { wheelLock = now + 1100; (wheelSum > 0 ? next : prev)(); wheelSum = 0; }
+  }, { passive: true });
+  /* swipe sideways on phones */
+  var tx = 0, ty = 0;
+  addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+  addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) (dx < 0 ? next : prev)();
+  }, { passive: true });
+
+  /* ---------- WebGL stages: render only while their room is on screen ---------- */
+  var stages = [], raf = 0;
+  function loop(t) { raf = 0; var any = false; stages.forEach(function (st) { if (st.on) { st.stage.render(t / 1000); any = true; } }); if (any) raf = requestAnimationFrame(loop); }
+  function kick() { if (!raf) raf = requestAnimationFrame(loop); }
+  function makeStage(canvas, opts) {
+    if (!window.TovizyStage) return null;
+    try { var st = { stage: new window.TovizyStage(canvas, opts || {}), on: false }; stages.push(st); return st; } catch (e) { return null; }
+  }
+  addEventListener('resize', function () { stages.forEach(function (st) { st.stage.resize(); }); });
+  addEventListener('pointermove', function (e) {
+    var mx = (e.clientX / innerWidth - 0.5) * 2, my = (0.5 - e.clientY / innerHeight) * 2;
+    stages.forEach(function (st) { st.stage.mouse = [mx, my]; });
+  }, { passive: true });
+
+  /* 1 cover: the north elevation draws itself behind a brass line */
+  hooks.cover = {
+    enter: function () {
+      var img = $('.cv-lines'), scan = $('.cv-scan');
+      if (RM) return;
+      gsap.killTweensOf([img, scan]);
+      gsap.fromTo(img, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 2.8, ease: 'power2.inOut', delay: 0.5 });
+      gsap.fromTo(scan, { left: '0%', opacity: 1 }, { left: '100%', duration: 2.8, ease: 'power2.inOut', delay: 0.5 });
+      gsap.to(scan, { opacity: 0, duration: 0.6, delay: 3.2 });
+    }
+  };
+
+  /* 2 capabilities: the film plays only while it is in the room */
+  hooks.caps = {
+    enter: function () { var v = $('.cap-video'); if (v && !RM) { v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function () {}); } },
+    leave: function () { var v = $('.cap-video'); if (v) v.pause(); }
+  };
+
+  /* 3 any hour, any season: the light changes window first, sky last */
+  hooks.mood = (function () {
+    var sl = $('[data-id="mood"]'), cv = $('.md-canvas', sl), chips = $$('.md-chips button', sl), now = $('.md-now', sl);
+    var ORDER = ['goldenhour', 'signaturedusk', 'starrynight', 'valleyfog', 'springbloom', 'nativegarden', 'peakautumn', 'firstsnow', 'cinematic', 'aftertherain'];
+    var url = function (k) { return '../assets/grammatico-cedar/' + k + '-' + (BIG() ? 2400 : 1600) + '.webp'; };
+    var st = null, curK = 'goldenhour', tw = null, auto = 0, idle = 0, tried = false;
+    function name(k) { var b = chips.filter(function (c) { return c.dataset.k === k; })[0]; return b ? b.textContent : ''; }
+    function mark(k, isAuto) {
+      chips.forEach(function (b) {
+        var on = b.dataset.k === k;
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        b.classList.remove('is-auto');
+        if (on && isAuto) { void b.offsetWidth; b.classList.add('is-auto'); }
+      });
+      now.innerHTML = name(k) + '<small>Shown on the Cedar</small>';
+    }
+    function show(k, isAuto) {
+      if (k === curK) { mark(k, isAuto); return; }
+      mark(k, isAuto);
+      if (!st) { $('.md-fallback', sl).src = url(k); curK = k; return; }
+      var s = st.stage, from = curK; curK = k;
+      s.load(url(k)).then(function () {
+        if (tw) tw.progress(1);
+        s.use({ tA: url(from), tB: url(k) }); s.s.mode = 1; s.s.p = 0;
+        tw = gsap.to(s.s, { p: 1, duration: RM ? 0.01 : 1.9, ease: 'power2.inOut', onComplete: function () { s.use({ tA: url(k), tB: null }); s.s.mode = 0; s.s.p = 0; tw = null; } });
+      });
+    }
+    function step() { var i = ORDER.indexOf(curK); show(ORDER[(i + 1) % ORDER.length], true); }
+    function startAuto() { stopAuto(); if (RM) return; mark(curK, true); auto = setInterval(step, 4200); }
+    function stopAuto() { clearInterval(auto); auto = 0; chips.forEach(function (b) { b.classList.remove('is-auto'); }); }
+    chips.forEach(function (b) {
+      b.addEventListener('click', function () { stopAuto(); clearTimeout(idle); show(b.dataset.k, false); idle = setTimeout(startAuto, 15000); });
+    });
+    return {
+      enter: function () {
+        if (!tried) {
+          tried = true; st = makeStage(cv, { kPar: 0, grain: 0.016, vig: 0.45 });
+          if (!st) sl.classList.add('no-gl');
+          else st.stage.set({ tA: url(curK) }).then(function () { kick(); ORDER.concat(['editorial', 'welcomehome']).forEach(function (k) { st.stage.load(url(k)); }); });
+        }
+        if (st) { st.on = true; st.stage.resize(); kick(); }
+        startAuto();
+      },
+      leave: function () { if (st) st.on = false; stopAuto(); clearTimeout(idle); }
+    };
+  })();
+
+  /* 4 buyer presentation: a small screen that plays drawing, day, dusk, night */
+  hooks.buyers = (function () {
+    var sl = $('[data-id="buyers"]'), cv = $('.bf-view canvas', sl), tabs = $$('.bf-tabs span', sl);
+    var A = '../assets/showcase/larkspur-ridge/';
+    var U = { lines: A + 'hero-lines-1600.webp', day: A + 'hero-1600.webp?v=6k', dusk: A + 'hero_bluehour-1600.webp?v=6k', night: A + 'hero_night-1600.webp?v=6k', depth: A + 'hero-depth.webp' };
+    var st = null, tl = null, tried = false;
+    function tab(t) { tabs.forEach(function (s) { s.classList.toggle('is-on', s.dataset.t === t); }); }
+    function build() {
+      var s = st.stage, S = s.s;
+      tl = gsap.timeline({ repeat: -1, paused: true });
+      tl.call(function () { s.use({ tA: U.lines, tB: U.day, dA: U.depth, dB: U.depth }); S.mode = 3; S.p = 0; tab('lines'); })
+        .to({}, { duration: 1.2 })
+        .call(function () { tab('day'); })
+        .to(S, { p: 1, duration: 2.6, ease: 'power1.inOut' })
+        .call(function () { s.use({ tA: U.day, tB: U.dusk }); S.mode = 1; S.p = 0; })
+        .to({}, { duration: 1.3 })
+        .call(function () { tab('dusk'); })
+        .to(S, { p: 1, duration: 1.8, ease: 'power2.inOut' })
+        .call(function () { s.use({ tA: U.dusk, tB: U.night }); S.p = 0; })
+        .to({}, { duration: 1.2 })
+        .call(function () { tab('night'); })
+        .to(S, { p: 1, duration: 1.8, ease: 'power2.inOut' })
+        .call(function () { s.use({ tA: U.night, tB: U.lines }); S.p = 0; })
+        .to({}, { duration: 1.6 })
+        .to(S, { p: 1, duration: 1.0, ease: 'power1.inOut' });
+    }
+    return {
+      enter: function () {
+        if (!tried) {
+          tried = true; st = makeStage(cv, { kPar: 0.012, grain: 0.012, vig: 0.3 });
+          if (!st) { sl.classList.add('no-gl'); return; }
+          Promise.all([U.lines, U.day, U.dusk, U.night, U.depth].map(function (u) { return st.stage.load(u); })).then(function () {
+            build(); if (st.on) { st.stage.resize(); tl.play(0); kick(); }
+          });
+        }
+        if (st) { st.on = true; st.stage.resize(); kick(); if (tl) tl.play(); }
+      },
+      leave: function () { if (st) st.on = false; if (tl) tl.pause(); }
+    };
+  })();
+
+  /* 5 community map: pins, a house by day dusk and night, its rooms */
+  hooks.map = (function () {
+    var sl = $('[data-id="map"]'), mapEl = $('.cm-map', sl), houseImgs = $$('.cm-house img', sl), tod = $('.cm-tod', sl);
+    var lotEl = $('.cm-lot', sl), stEl = $('.cm-st', sl), card = $('.cm-card', sl);
+    var LOTS = [
+      { n: 6, x: 63.3, y: 37.5, st: 'Model home', ac: '0.97', h: 'charcoal' },
+      { n: 3, x: 74.2, y: 17.5, st: 'Available', ac: '1.05', h: 'limestone' },
+      { n: 5, x: 35.0, y: 35.0, st: 'Available', ac: '0.88', h: 'ivory' },
+      { n: 8, x: 14.6, y: 56.25, st: 'Available', ac: '1.02', h: 'fire' },
+      { n: 2, x: 50.0, y: 10.0, st: 'Reserved', ac: '1.36', h: 'pool' }
+    ];
+    var TOD = ['day', 'dusk', 'night'], NAMES = { day: 'Day', dusk: 'Dusk', night: 'Night' };
+    var pins = LOTS.map(function (L, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'cm-pin'; b.textContent = L.n;
+      b.style.setProperty('--x', L.x + '%'); b.style.setProperty('--y', L.y + '%');
+      b.setAttribute('aria-label', 'Homesite ' + L.n + ', ' + L.st.toLowerCase());
+      b.addEventListener('click', function () { stopAuto(); pick(i); clearTimeout(idle); idle = setTimeout(startAuto, 20000); });
+      mapEl.appendChild(b); return b;
+    });
+    var cur = -1, t = 0, todTimer = 0, auto = 0, idle = 0, first = true;
+    function src(h, d) { return '../assets/estate/house-' + h + '-' + d + '-1280.webp'; }
+    function showTod(j) { t = j; houseImgs.forEach(function (im, k) { gsap.to(im, { opacity: k === j ? 1 : 0, duration: RM ? 0 : 0.9, ease: 'power1.inOut' }); }); tod.textContent = NAMES[TOD[j]]; }
+    function pick(i) {
+      if (i === cur) return; cur = i; var L = LOTS[i];
+      pins.forEach(function (p, k) { p.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
+      gsap.to(card, { opacity: 0.25, duration: RM ? 0 : 0.25, onComplete: function () {
+        houseImgs.forEach(function (im, k) { im.src = src(L.h, TOD[k]); im.alt = 'House on homesite ' + L.n + ' at ' + TOD[k]; });
+        lotEl.textContent = 'Homesite ' + L.n; stEl.textContent = L.st + ', ' + L.ac + ' acres';
+        showTod(0);
+        gsap.to(card, { opacity: 1, duration: RM ? 0 : 0.5 });
+      } });
+    }
+    function startAuto() { stopAuto(); if (RM) return; auto = setInterval(function () { pick((cur + 1) % LOTS.length); }, 6000); }
+    function stopAuto() { clearInterval(auto); auto = 0; }
+    return {
+      enter: function () {
+        if (first) { first = false; pick(0); }
+        LOTS.forEach(function (L) { TOD.forEach(function (d) { var im = new Image(); im.src = src(L.h, d); }); });
+        clearInterval(todTimer); if (!RM) todTimer = setInterval(function () { showTod((t + 1) % 3); }, 1900);
+        startAuto();
+        if (!RM) gsap.fromTo(pins, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.7, ease: 'back.out(2)', stagger: 0.09, delay: 0.9, clearProps: 'transform,scale,opacity' });
+      },
+      leave: function () { clearInterval(todTimer); stopAuto(); clearTimeout(idle); }
+    };
+  })();
+
+  /* 6 process: the line draws, the steps land on it */
+  hooks.process = {
+    enter: function () {
+      if (RM) return;
+      var line = $('.pr-line'), dots = $$('.pr-dot');
+      gsap.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: 1.8, ease: 'power2.inOut', delay: 0.6 });
+      gsap.fromTo(dots, { scale: 0 }, { scale: 1, duration: 0.6, ease: 'back.out(2.4)', stagger: 0.3, delay: 0.8, clearProps: 'transform,scale' });
+    }
+  };
+
+  /* 7 options: the prices count up */
+  hooks.options = {
+    enter: function () {
+      $$('.op-num').forEach(function (el, i) {
+        var v = +el.dataset.v, o = { v: 0 };
+        if (RM) { el.textContent = '$' + v.toLocaleString('en-US'); return; }
+        gsap.to(o, { v: v, duration: 1.5, ease: 'power3.out', delay: 0.7 + i * 0.12, onUpdate: function () { el.textContent = '$' + Math.round(o.v).toLocaleString('en-US'); } });
+      });
+    }
+  };
+
+  /* 8 the Cedar: watercolor, then the line drawing develops into the finished light */
+  hooks.cedar = (function () {
+    var sl = $('[data-id="cedar"]'), cv = $('.cd-canvas', sl), steps = $$('.cd-steps li', sl), water = $('.cd-water', sl);
+    var U = { lines: '../assets/grammatico-cedar/drawing-2400.webp', photo: '../assets/grammatico-cedar/photo-2400.webp' };
+    var st = null, tl = null, tried = false;
+    function on(j) { steps.forEach(function (s, k) { s.classList.toggle('is-on', k === j); }); }
+    function play() {
+      if (tl) tl.kill();
+      tl = gsap.timeline();
+      tl.call(function () { on(0); if (st) { st.stage.use({ tA: U.lines, tB: U.photo }); st.stage.s.mode = 3; st.stage.s.p = 0; } })
+        .fromTo(water, { y: 40, opacity: 0, rotate: -6 }, { y: 0, opacity: 1, rotate: -2, duration: RM ? 0 : 1, ease: 'expo.out' }, 0.5)
+        .call(function () { on(1); }, null, 2.2);
+      if (st) {
+        tl.to(st.stage.s, { p: 1, duration: RM ? 0.01 : 4.4, ease: 'power1.inOut', onUpdate: function () { var p = st.stage.s.p; on(p < 0.12 ? 1 : p < 0.82 ? 2 : 3); } }, 3.2);
+      } else { tl.call(function () { on(3); }, null, 3.2); }
+    }
+    $('.cd-replay', sl).addEventListener('click', play);
+    return {
+      enter: function () {
+        if (!tried) {
+          tried = true; st = makeStage(cv, { kPar: 0, grain: 0.014, vig: 0.4 });
+          if (!st) sl.classList.add('no-gl');
+          else { st.stage.s.oA = [0.62, 0.5]; st.stage.s.oB = [0.62, 0.5]; }
+        }
+        if (st) {
+          st.on = true; st.stage.resize(); kick();
+          Promise.all([st.stage.load(U.lines), st.stage.load(U.photo)]).then(function () { play(); kick(); });
+        } else play();
+      },
+      leave: function () { if (st) st.on = false; if (tl) tl.kill(); }
+    };
+  })();
+
+  /* start where the link points: #5 opens the fifth room */
+  var m = /^#(\d+)$/.exec(location.hash), start = m ? Math.min(N, Math.max(1, +m[1])) - 1 : 0;
+  go(start);
+  addEventListener('hashchange', function () { var h = /^#(\d+)$/.exec(location.hash); if (h) go(+h[1] - 1); });
+  window.__deck = { go: go, get cur() { return cur; } };
+})();
+</script>
+</body>
+</html>
