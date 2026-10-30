@@ -227,6 +227,38 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
 .nx-contact { font-size: var(--fs-m); line-height: 1.6; }
 .nx-contact a { text-decoration: none; border-bottom: 1px solid currentColor; }
 
+
+/* recent work */
+.wk { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(24px, 3.5vw, 64px); align-items: center; }
+.wk-main { display: flex; flex-direction: column; gap: clamp(16px, 2.4vh, 28px); }
+.wk-cycle { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--rule); }
+.wk-cycle img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.1s var(--ease-out), transform 6s linear; transform: scale(1.04); }
+.wk-cycle img.is-on { opacity: 1; transform: scale(1); }
+.wk-pair { aspect-ratio: 16 / 9; }
+.wk-tag { position: absolute; left: 12px; top: 12px; display: flex; gap: 4px; margin: 0; }
+.wk-tag span { font-size: var(--fs-xs); padding: 5px 10px; background: rgba(19,32,27,.55); color: var(--ivory-2); transition: background-color .5s, color .5s; }
+.wk-tag span.is-on { background: var(--ivory); color: var(--wall); }
+.wk-posana { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.wk-posana figcaption, .wk-grid p { font-size: var(--fs-s); line-height: 1.45; color: var(--ink-2); }
+.wk-posana b, .wk-grid b { color: var(--ink); font-weight: 600; }
+.wk-quote { margin: 0; border-left: 2px solid #7A6236; padding-left: 18px; }
+.wk-quote p { font: 300 italic clamp(1.05rem, 1.35vw, 1.35rem)/1.4 var(--f-serif); color: var(--ink); }
+.wk-quote cite { display: block; font-style: normal; font-size: var(--fs-xs); color: var(--ink-2); margin-top: 8px; }
+.wk-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 1.4vw, 22px); }
+.wk-grid li { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+
+/* views from the model */
+.vw { justify-content: safe center; }
+.vw-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 28px); }
+.vw-grid li { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.vw-img { aspect-ratio: 3 / 2; overflow: hidden; background: #dfe2da; }
+.vw-img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); transition: transform 7s linear; }
+.sl.is-on .vw-img img { transform: scale(1); }
+.vw-grid h3 { display: flex; gap: 12px; align-items: baseline; }
+.vw-grid h3 span { font-size: var(--fs-xs); color: #7A6236; font-weight: 600; }
+.vw-grid p { font-size: var(--fs-s); line-height: 1.45; color: var(--ink-2); }
+.vw-note { font-size: var(--fs-s); color: var(--ink-2); border-top: 1px solid var(--rule); padding-top: 16px; max-width: 80ch; }
+
 /* small screens: one column, the room scrolls inside */
 @media (max-width: 1100px) {
   .cap-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -236,6 +268,9 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
 }
 @media (max-width: 860px) {
   :root { --top: 68px; --bot: 76px; }
+  .wk, .vw-grid { grid-template-columns: 1fr; }
+  .wk { align-content: start; }
+  .vw { justify-content: flex-start; }
   body { --tbg: 19,32,27; }
   body[data-theme="vellum"] { --tbg: 230,231,222; }
   body[data-theme="brass"] { --tbg: 184,154,99; }
@@ -283,7 +318,7 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
   <a class="dk-logo" href="/" aria-label="Tovizy home"><img class="l-light" src="../assets/brand/logo-sm-light.png" alt="Tovizy" width="60" height="38"><img class="l-dark" src="../assets/brand/logo-sm-dark.png" alt="" width="60" height="38"></a>
   <p class="dk-title">Residential Lot 16</p>
   <div class="dk-right">
-    <p class="dk-count" aria-live="polite"><b>01</b> / 09</p>
+    <p class="dk-count" aria-live="polite"><b>01</b> / 11</p>
     <button class="dk-btn dk-fs" type="button" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
   </div>
 </header>
@@ -299,6 +334,57 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
     <p class="lead" data-r>Grove Park Cove, North Carolina. What we can make from your drawings.</p>
   </div>
   <p class="cv-foot" data-r>North elevation from the drawing set, sheet A2.1</p>
+  <i class="sl-dim"></i>
+</section>
+
+<!-- 2 -->
+<section class="sl on-vellum" id="s10" data-id="work" data-theme="vellum" aria-label="Recent work">
+  <div class="sl-in wk">
+    <div class="wk-main">
+      <header class="sl-head">
+        <p class="eyebrow" data-r>Recent work</p>
+        <h2 data-r>Made with Stratton Design Group, Asheville</h2>
+      </header>
+      <figure class="wk-posana" data-r>
+        <div class="wk-cycle wk-pair" data-every="3200">
+          <img class="is-on" src="../assets/img/posana-02-1600.webp" alt="Posana bar and dining room, rendered before construction" loading="lazy">
+          <img src="../assets/img/posana-built-bar-1600.webp" alt="Posana bar today, photographed after opening" loading="lazy">
+          <p class="wk-tag"><span class="is-on">Rendered</span><span>Built</span></p>
+        </div>
+        <figcaption><b>Posana, Biltmore Park.</b> Rendered before construction, open today.</figcaption>
+      </figure>
+      <blockquote class="wk-quote" data-r>
+        <p>“His renderings have become an essential part of our design process and one of our most powerful tools for communicating our vision to clients.”</p>
+        <cite>Douglas Stratton, Stratton Design Group, Asheville</cite>
+      </blockquote>
+    </div>
+    <ul class="wk-grid">
+      <li data-r><div class="wk-cycle" data-every="2400">
+        <img class="is-on" src="../assets/img/gr-sketch-1600.webp" alt="Mountain great room, sketch" loading="lazy">
+        <img src="../assets/img/gr-day-1600.webp" alt="Mountain great room by day" loading="lazy">
+        <img src="../assets/img/gr-evening-1600.webp" alt="Mountain great room in the evening" loading="lazy">
+      </div><p><b>Mountain great room.</b> Sketch, day and evening.</p></li>
+      <li data-r><div class="wk-cycle" data-every="2200">
+        <img class="is-on" src="../assets/img/finishes-01-1600.webp" alt="Kitchen in navy and oak" loading="lazy">
+        <img src="../assets/img/finishes-02-1600.webp" alt="Kitchen in white and oak" loading="lazy">
+        <img src="../assets/img/finishes-03-1600.webp" alt="Kitchen in navy with an oak hood" loading="lazy">
+        <img src="../assets/img/finishes-04-1600.webp" alt="Kitchen in oak and white" loading="lazy">
+      </div><p><b>One kitchen, four finishes.</b> Chosen before anything was ordered.</p></li>
+      <li data-r><div class="wk-cycle" data-every="2000">
+        <img class="is-on" src="../assets/grammatico-lot16/lakehouse-1-900.webp" alt="Lake house in tan siding" loading="lazy">
+        <img src="../assets/grammatico-lot16/lakehouse-2-900.webp" alt="Lake house in pale blue siding" loading="lazy">
+        <img src="../assets/grammatico-lot16/lakehouse-3-900.webp" alt="Lake house in brown siding" loading="lazy">
+        <img src="../assets/grammatico-lot16/lakehouse-4-900.webp" alt="Lake house in natural wood" loading="lazy">
+        <img src="../assets/grammatico-lot16/lakehouse-5-900.webp" alt="Lake house in dark brown" loading="lazy">
+        <img src="../assets/grammatico-lot16/lakehouse-6-900.webp" alt="Lake house in navy" loading="lazy">
+      </div><p><b>Lake house.</b> Six exterior colors from one model.</p></li>
+      <li data-r><div class="wk-cycle" data-every="2600">
+        <img class="is-on" src="../assets/img/suite-01-1600.webp" alt="Primary suite with a stone fireplace" loading="lazy">
+        <img src="../assets/img/rooms-01-1600.webp" alt="Bedroom with a four-poster bed" loading="lazy">
+        <img src="../assets/img/kitchens-01-1600.webp" alt="Kitchen with a long lit island" loading="lazy">
+      </div><p><b>Bedrooms and kitchens.</b> For homes across western North Carolina.</p></li>
+    </ul>
+  </div>
   <i class="sl-dim"></i>
 </section>
 
@@ -340,6 +426,26 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
         <p>All of Grove Park Cove: click a lot, see its house.</p>
       </li>
     </ul>
+  </div>
+  <i class="sl-dim"></i>
+</section>
+
+<!-- 4 -->
+<section class="sl on-vellum" id="s11" data-id="views" data-theme="vellum" aria-label="Views from your model">
+  <div class="sl-in vw">
+    <header class="sl-head">
+      <p class="eyebrow" data-r>From your Revit model</p>
+      <h2 data-r>Three views we suggest</h2>
+    </header>
+    <ol class="vw-grid">
+      <li data-r><div class="vw-img"><img src="../assets/grammatico-lot16/lot16-view-drive-1600.webp" alt="Clay view of Lot 16 from the drive: decks, entry canopy, garage and the curved wall" loading="lazy"></div>
+        <h3><span>01</span>From the drive, golden hour</h3><p>The decks, the entry canopy, the garage and the curved wall.</p></li>
+      <li data-r><div class="vw-img"><img src="../assets/grammatico-lot16/lot16-view-decks-1600.webp" alt="Clay view of the deck side of Lot 16 from below" loading="lazy"></div>
+        <h3><span>02</span>The decks from below, at dusk</h3><p>All three levels lit, the slope falling away in front.</p></li>
+      <li data-r><div class="vw-img"><img src="../assets/grammatico-lot16/lot16-view-aerial-1600.webp" alt="Clay aerial view of Lot 16 on its slope" loading="lazy"></div>
+        <h3><span>03</span>Aerial over the slope</h3><p>The house on its hill, the drive and the forest around it.</p></li>
+    </ol>
+    <p class="vw-note" data-r>Views 01 and 02 use cameras already set up in your model. These are clay views straight from Revit; the light, materials and landscape come next.</p>
   </div>
   <i class="sl-dim"></i>
 </section>
@@ -692,6 +798,27 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
       gsap.to(scan, { opacity: 0, duration: 0.6, delay: 3.2 });
     }
   };
+
+
+  /* recent work: every tile changes its picture on its own beat */
+  hooks.work = (function () {
+    var sl = $('[data-id="work"]'), timers = [];
+    function step(box) {
+      var ims = $$('img', box), i = ims.findIndex(function (im) { return im.classList.contains('is-on'); }), n = (i + 1) % ims.length;
+      ims[i].classList.remove('is-on'); ims[n].classList.add('is-on');
+      var tags = $$('.wk-tag span', box); if (tags.length) tags.forEach(function (t, k) { t.classList.toggle('is-on', k === n); });
+    }
+    return {
+      enter: function () {
+        if (RM) return;
+        $$('.wk-cycle', sl).forEach(function (box, k) {
+          var every = +box.dataset.every || 2400;
+          timers.push(setTimeout(function () { step(box); timers.push(setInterval(function () { step(box); }, every)); }, 900 + k * 450));
+        });
+      },
+      leave: function () { timers.forEach(function (t) { clearTimeout(t); clearInterval(t); }); timers = []; }
+    };
+  })();
 
   /* 2 capabilities: the film plays only while it is in the room */
   hooks.caps = {
