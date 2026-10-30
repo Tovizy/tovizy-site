@@ -312,7 +312,7 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
     <ul class="cap-grid">
       <li data-r>
         <div class="cap-media cap-still">
-          <img src="../assets/showcase/larkspur-ridge/hero-900.webp?v=6k" alt="Mountain home at golden hour" loading="lazy">
+          <img src="../assets/showcase/larkspur-ridge/street-900.webp?v=6k" alt="Mountain home at golden hour" loading="lazy">
           <img src="../assets/showcase/casa-ocotillo/hero_bluehour-900.webp?v=6k" alt="Desert courtyard home at blue hour" loading="lazy">
           <img src="../assets/showcase/larkspur-ridge/int_great_room-900.webp?v=6k" alt="Great room with a wall of windows" loading="lazy">
         </div>
@@ -320,7 +320,7 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
         <p>Exteriors and interiors in 4K, for listings, signs and print.</p>
       </li>
       <li data-r>
-        <div class="cap-media cap-pres"><div class="mini-chrome"><i></i><i></i><i></i><span>tovizy.com/lot-16</span></div><img src="../assets/showcase/larkspur-ridge/hero_night-900.webp?v=6k" alt="Online presentation page showing a home at night" loading="lazy"></div>
+        <div class="cap-media cap-pres"><div class="mini-chrome"><i></i><i></i><i></i><span>tovizy.com/lot-16</span></div><img src="../assets/grammatico-lot16/larkspur-street-night-900.webp" alt="Online presentation page showing a home at night" loading="lazy"></div>
         <h3>Buyer presentation</h3>
         <p>One link with every view, day to night, plans and options.</p>
       </li>
@@ -402,10 +402,10 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
       <div class="bf-chrome" aria-hidden="true"><i></i><i></i><i></i><span>tovizy.com/lot-16</span></div>
       <div class="bf-view">
         <canvas aria-hidden="true"></canvas>
-        <img src="../assets/showcase/larkspur-ridge/hero_bluehour-1600.webp?v=6k" alt="Example presentation: a mountain home at blue hour">
+        <img src="../assets/grammatico-lot16/larkspur-street-bluehour-1600.webp" alt="Example presentation: a mountain home at blue hour">
       </div>
-      <div class="bf-tabs" aria-hidden="true"><span data-t="lines">Drawing</span><span data-t="day">Day</span><span data-t="dusk">Dusk</span><span data-t="night">Night</span></div>
-      <figcaption>Example: Larkspur Ridge, from line drawing to night</figcaption>
+      <div class="bf-tabs" aria-hidden="true"><span data-t="day">Summer</span><span data-t="autumn">Autumn</span><span data-t="winter">Winter</span><span data-t="dusk">Dusk</span><span data-t="night">Night</span></div>
+      <figcaption>Example: Larkspur Ridge through the seasons, to night</figcaption>
     </figure>
   </div>
   <i class="sl-dim"></i>
@@ -750,34 +750,29 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
   hooks.buyers = (function () {
     var sl = $('[data-id="buyers"]'), cv = $('.bf-view canvas', sl), tabs = $$('.bf-tabs span', sl);
     var A = '../assets/showcase/larkspur-ridge/';
-    var U = { lines: A + 'hero-lines-1600.webp', day: A + 'hero-1600.webp?v=6k', dusk: A + 'hero_bluehour-1600.webp?v=6k', night: A + 'hero_night-1600.webp?v=6k', depth: A + 'hero-depth.webp' };
+    var L = '../assets/grammatico-lot16/larkspur-street-';
+    var U = { day: A + 'street-1600.webp?v=6k', autumn: L + 'autumn-1600.webp', winter: L + 'winter-1600.webp', dusk: L + 'bluehour-1600.webp', night: L + 'night-1600.webp', depth: A + 'street-depth.webp' };
+    var SEQ = ['day', 'autumn', 'winter', 'dusk', 'night'];
     var st = null, tl = null, tried = false;
     function tab(t) { tabs.forEach(function (s) { s.classList.toggle('is-on', s.dataset.t === t); }); }
     function build() {
       var s = st.stage, S = s.s;
       tl = gsap.timeline({ repeat: -1, paused: true });
-      tl.call(function () { s.use({ tA: U.lines, tB: U.day, dA: U.depth, dB: U.depth }); S.mode = 3; S.p = 0; tab('lines'); })
-        .to({}, { duration: 1.2 })
-        .call(function () { tab('day'); })
-        .to(S, { p: 1, duration: 2.6, ease: 'power1.inOut' })
-        .call(function () { s.use({ tA: U.day, tB: U.dusk }); S.mode = 1; S.p = 0; })
-        .to({}, { duration: 1.3 })
-        .call(function () { tab('dusk'); })
-        .to(S, { p: 1, duration: 1.8, ease: 'power2.inOut' })
-        .call(function () { s.use({ tA: U.dusk, tB: U.night }); S.p = 0; })
-        .to({}, { duration: 1.2 })
-        .call(function () { tab('night'); })
-        .to(S, { p: 1, duration: 1.8, ease: 'power2.inOut' })
-        .call(function () { s.use({ tA: U.night, tB: U.lines }); S.p = 0; })
-        .to({}, { duration: 1.6 })
-        .to(S, { p: 1, duration: 1.0, ease: 'power1.inOut' });
+      tl.call(function () { s.use({ tA: U.day, tB: U.day, dA: U.depth, dB: U.depth }); S.mode = 0; S.p = 0; tab('day'); });
+      SEQ.forEach(function (k, n) {
+        var nx = SEQ[(n + 1) % SEQ.length];
+        tl.to({}, { duration: k === 'night' ? 1.8 : 1.3 })
+          .call(function () { s.use({ tA: U[k], tB: U[nx] }); S.mode = 1; S.p = 0; tab(nx); })
+          .to(S, { p: 1, duration: 1.8, ease: 'power2.inOut' })
+          .call(function () { s.use({ tA: U[nx], tB: U[nx] }); S.mode = 0; S.p = 0; });
+      });
     }
     return {
       enter: function () {
         if (!tried) {
           tried = true; st = makeStage(cv, { kPar: 0.012, grain: 0.012, vig: 0.3 });
           if (!st) { sl.classList.add('no-gl'); return; }
-          Promise.all([U.lines, U.day, U.dusk, U.night, U.depth].map(function (u) { return st.stage.load(u); })).then(function () {
+          Promise.all(SEQ.map(function (k) { return U[k]; }).concat([U.depth]).map(function (u) { return st.stage.load(u); })).then(function () {
             build(); if (st.on) { st.stage.resize(); tl.play(0); kick(); }
           });
         }
