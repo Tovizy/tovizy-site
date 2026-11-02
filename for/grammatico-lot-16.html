@@ -200,6 +200,36 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
 .op-card.is-rec .op-when { border-color: var(--rule); }
 .op-extra { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: var(--fs-s); color: var(--ivory-2); }
 .op-extra b { color: var(--ivory); font-weight: 500; }
+/* what each option includes, shown as the pictures themselves */
+.op-pics { display: grid; gap: 4px; aspect-ratio: 2 / 1; max-height: 24vh; width: 100%; }
+.op-pics.n1 { grid-template-columns: 1fr; }
+.op-pics.n3 { grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; }
+.op-pics.n3 > :first-child { grid-row: span 2; }
+.op-pics.n6 { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: 1fr 1fr; }
+.op-pics > span { position: relative; overflow: hidden; min-width: 0; background: var(--wall-2); }
+.op-pics img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.op-pics b { position: absolute; left: 5px; bottom: 5px; font: 500 11px/1 var(--f-sans); padding: 4px 6px; background: rgba(19,32,27,.74); color: var(--ivory); white-space: nowrap; }
+.op-pics .op-ph { background: transparent; border: 1px dashed rgba(234,229,216,.4); }
+.op-pics .op-ph b { background: none; color: var(--ivory-2); }
+.op-pics .op-pg { border-top: 9px solid #2a3a33; }
+
+/* ways to work */
+.wy { justify-content: safe center; }
+.wy-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 28px); }
+.wy-card { border-top: 2px solid var(--ink); padding-top: clamp(14px, 2vh, 22px); display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.wy-k { font-size: var(--fs-s); color: #7A6236; font-weight: 600; }
+.wy-num { font: 300 clamp(2.6rem, 4.6vw, 4.8rem)/1 var(--f-serif); font-variant-numeric: tabular-nums; display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; }
+.wy-num small { font: 400 var(--fs-s)/1.2 var(--f-sans); color: var(--ink-2); }
+.wy-d { font-size: var(--fs-s); line-height: 1.5; color: var(--ink-2); max-width: 38ch; }
+.wy-easy { display: flex; flex-direction: column; gap: 16px; border-top: 1px solid var(--rule); padding-top: clamp(16px, 2.4vh, 26px); }
+.wy-easy h3 { color: var(--ink); }
+.wy-flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 28px); position: relative; }
+.wy-track { position: relative; }
+.wy-line { position: absolute; left: 0; right: 0; top: 7px; height: 1px; background: var(--ink); transform-origin: 0 50%; }
+.wy-flow li { display: flex; flex-direction: column; gap: 12px; position: relative; min-width: 0; }
+.wy-flow p { font: 300 clamp(1.15rem, 1.7vw, 1.7rem)/1.25 var(--f-serif); color: var(--ink); max-width: 22ch; }
+.wy-dot { width: 15px; height: 15px; border-radius: 50%; background: var(--vellum); border: 1px solid var(--ink); position: relative; z-index: 1; }
+.wy-flow li:last-child .wy-dot { background: var(--brass); border-color: var(--brass); }
 
 /* 8 how the Cedar was made */
 .sl .cd-canvas, .sl .cd-fallback { inset: auto; right: var(--pad); top: 50%; transform: translateY(-50%); width: min(54vw, calc((100dvh - var(--top) - var(--bot) - 4vh) * 1.5)); height: auto; aspect-ratio: 3 / 2; box-shadow: 0 40px 90px -30px rgba(0,0,0,.7); }
@@ -293,6 +323,11 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
   .pr { justify-content: flex-start; }
   .pr-steps { grid-template-columns: 1fr 1fr; }
   .op-cards { grid-template-columns: 1fr; }
+  .op-pics { max-height: none; }
+  .wy { justify-content: flex-start; }
+  .wy-cards, .wy-flow { grid-template-columns: 1fr; }
+  .wy-line { display: none; }
+  .wy-flow li { flex-direction: row; align-items: baseline; }
   .cd { max-width: none; justify-content: flex-end; }
   .cd-water { right: var(--pad); bottom: auto; }
   .sl .cd-canvas, .sl .cd-fallback { right: 0; left: 0; top: var(--top); transform: none; width: 100%; height: auto; aspect-ratio: 3 / 2; box-shadow: none; }
@@ -318,7 +353,7 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
   <a class="dk-logo" href="/" aria-label="Tovizy home"><img class="l-light" src="../assets/brand/logo-sm-light.png" alt="Tovizy" width="60" height="38"><img class="l-dark" src="../assets/brand/logo-sm-dark.png" alt="" width="60" height="38"></a>
   <p class="dk-title">Residential Lot 16</p>
   <div class="dk-right">
-    <p class="dk-count" aria-live="polite"><b>01</b> / 11</p>
+    <p class="dk-count" aria-live="polite"><b>01</b> / 12</p>
     <button class="dk-btn dk-fs" type="button" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
   </div>
 </header>
@@ -574,6 +609,7 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
     <div class="op-cards">
       <article class="op-card" data-r>
         <p class="op-k">A</p>
+        <div class="op-pics n1" aria-hidden="true"><span><img src="../assets/grammatico-lot16/lot16-view-drive-900.webp" alt="" loading="lazy"><b>From the drive</b></span></div>
         <h3>One view</h3>
         <p class="op-num" data-v="390">$390</p>
         <p class="op-d">The main view of the house. First-project price, usually $590.</p>
@@ -581,6 +617,7 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
       </article>
       <article class="op-card is-rec" data-r>
         <p class="op-k">B <span class="op-rec">Recommended</span></p>
+        <div class="op-pics n3" aria-hidden="true"><span><img src="../assets/grammatico-lot16/lot16-view-drive-900.webp" alt="" loading="lazy"><b>From the drive</b></span><span><img src="../assets/grammatico-lot16/lot16-view-decks-900.webp" alt="" loading="lazy"><b>Decks at dusk</b></span><span><img src="../assets/grammatico-lot16/lot16-view-aerial-900.webp" alt="" loading="lazy"><b>Aerial</b></span></div>
         <h3>Three exterior views</h3>
         <p class="op-num" data-v="1390">$1,390</p>
         <p class="op-d">Chosen together from your model. $1,570 if ordered one by one.</p>
@@ -588,13 +625,52 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
       </article>
       <article class="op-card" data-r>
         <p class="op-k">C</p>
+        <div class="op-pics n6" aria-hidden="true"><span><img src="../assets/grammatico-lot16/lot16-view-drive-900.webp" alt="" loading="lazy"><b>Drive</b></span><span><img src="../assets/grammatico-lot16/lot16-view-decks-900.webp" alt="" loading="lazy"><b>Decks</b></span><span><img src="../assets/grammatico-lot16/lot16-view-aerial-900.webp" alt="" loading="lazy"><b>Aerial</b></span><span class="op-ph"><b>Living room</b></span><span class="op-ph"><b>Kitchen</b></span><span class="op-pg"><img src="../assets/grammatico-lot16/larkspur-street-night-900.webp" alt="" loading="lazy"><b>Buyer page</b></span></div>
         <h3>Full set</h3>
         <p class="op-num" data-v="2290">$2,290</p>
         <p class="op-d">Three exteriors, the living room and the kitchen, plus the buyer presentation.</p>
         <p class="op-when">About 3 weeks</p>
       </article>
     </div>
-    <p class="op-extra" data-r><span><b>$490</b> each extra view</span><span><b>$99</b> buyer presentation, launch price</span><span><b>from $1,900</b> 360° tour</span><span><b>from $3,500</b> film</span><span><b>+35%</b> rush in 48 hours</span></p>
+    <p class="op-extra" data-r><span><b>$490</b> each extra view</span><span><b>$99</b> buyer presentation, launch price</span><span><b>from $1,900</b> 360° tour</span><span><b>from $3,500</b> film</span><span><b>+35%</b> rush in 48 hours</span><span><b>+25%</b> the 3ds Max scene, yours to keep</span></p>
+  </div>
+  <i class="sl-dim"></i>
+</section>
+
+<!-- 7b -->
+<section class="sl on-vellum" id="s12" data-id="ways" data-theme="vellum" aria-label="Ways to work together">
+  <div class="sl-in wy">
+    <header class="sl-head">
+      <p class="eyebrow" data-r>Working together</p>
+      <h2 data-r>By the house, by the hour or by the series</h2>
+    </header>
+    <div class="wy-cards">
+      <article class="wy-card" data-r>
+        <p class="wy-k">By the house</p>
+        <p class="wy-num"><span data-v="1690" data-pre="$">$1,690</span><small>after Lot 16</small></p>
+        <p class="wy-d">Three exteriors and a buyer page, at a fixed price agreed before I start. Lot 16 is at first-project prices.</p>
+      </article>
+      <article class="wy-card" data-r>
+        <p class="wy-k">By the hour</p>
+        <p class="wy-num"><span data-v="65" data-pre="$">$65</span><small>an hour</small></p>
+        <p class="wy-d">For ongoing changes. I estimate each task before I start and send a short report every week.</p>
+      </article>
+      <article class="wy-card" data-r>
+        <p class="wy-k">A series of homes</p>
+        <p class="wy-num"><span data-v="10" data-pre="&minus;" data-suf="%">&minus;10%</span><small>from three homes</small></p>
+        <p class="wy-d">15% off from six. The same plan on another lot is $290 a view, because the model is already built.</p>
+      </article>
+    </div>
+    <div class="wy-easy" data-r>
+      <h3>Working with me</h3>
+      <div class="wy-track"><i class="wy-line" aria-hidden="true"></i>
+      <ol class="wy-flow">
+        <li><i class="wy-dot"></i><p>You send the task.</p></li>
+        <li><i class="wy-dot"></i><p>If something is unclear, I ask once, in one message.</p></li>
+        <li><i class="wy-dot"></i><p>You get exactly what you asked for.</p></li>
+      </ol>
+      </div>
+    </div>
   </div>
   <i class="sl-dim"></i>
 </section>
@@ -966,14 +1042,30 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
     }
   };
 
-  /* 7 options: the prices count up */
+  /* 7 options: the pictures each option includes arrive, then the prices count up */
   hooks.options = {
     enter: function () {
+      if (!RM) gsap.fromTo($$('.op-pics > span'), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.7, ease: 'expo.out', stagger: 0.05, delay: 0.75, clearProps: 'transform,scale' });
       $$('.op-num').forEach(function (el, i) {
         var v = +el.dataset.v, o = { v: 0 };
         if (RM) { el.textContent = '$' + v.toLocaleString('en-US'); return; }
         gsap.to(o, { v: v, duration: 1.5, ease: 'power3.out', delay: 0.7 + i * 0.12, onUpdate: function () { el.textContent = '$' + Math.round(o.v).toLocaleString('en-US'); } });
       });
+    }
+  };
+
+  /* 7b ways to work: the figures count up, then the three steps join up */
+  hooks.ways = {
+    enter: function () {
+      $$('[data-id="ways"] [data-v]').forEach(function (el, i) {
+        var v = +el.dataset.v, pre = el.dataset.pre || '', suf = el.dataset.suf || '', o = { v: 0 };
+        var put = function (x) { el.textContent = pre + Math.round(x).toLocaleString('en-US') + suf; };
+        if (RM) { put(v); return; }
+        gsap.to(o, { v: v, duration: 1.4, ease: 'power3.out', delay: 0.7 + i * 0.12, onUpdate: function () { put(o.v); } });
+      });
+      if (RM) return;
+      gsap.fromTo($('.wy-line'), { scaleX: 0 }, { scaleX: 1, duration: 1.6, ease: 'power2.inOut', delay: 1.1 });
+      gsap.fromTo($$('.wy-dot'), { scale: 0 }, { scale: 1, duration: 0.6, ease: 'back.out(2.4)', stagger: 0.45, delay: 1.2, clearProps: 'transform,scale' });
     }
   };
 
