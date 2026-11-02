@@ -34,6 +34,7 @@
 .sl { position: relative; min-height: 100dvh; background: var(--bg); color: var(--fg); }
 .js .sl { position: absolute; inset: 0; min-height: 0; visibility: hidden; overflow: hidden; }
 .js .sl.is-on { visibility: visible; z-index: 2; }
+.sl[data-skip] { display: none !important; }
 .sl-dim { position: absolute; inset: 0; background: #0b130f; opacity: 0; pointer-events: none; z-index: 8; }
 .sl-in { position: relative; z-index: 3; height: 100%; padding: var(--top) var(--pad) var(--bot); display: flex; flex-direction: column; gap: clamp(20px, 3vh, 40px); }
 .js .sl-in { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
@@ -424,7 +425,7 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
 </section>
 
 <!-- 2 -->
-<section class="sl on-wall" id="s2" data-id="caps" data-theme="wall" aria-label="What we make">
+<section class="sl on-wall" id="s2" data-skip data-id="caps" data-theme="wall" aria-label="What we make">
   <div class="sl-in">
     <header class="sl-head">
       <p class="eyebrow" data-r>What we make</p>
@@ -480,7 +481,7 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
       <li data-r><div class="vw-img"><img src="../assets/grammatico-lot16/lot16-view-aerial-1600.webp" alt="Clay aerial view of Lot 16 on its slope" loading="lazy"></div>
         <h3><span>03</span>Aerial over the slope</h3><p>The house on its hill, the drive and the forest around it.</p></li>
     </ol>
-    <p class="vw-note" data-r>Views 01 and 02 use cameras already set up in your model. These are clay views straight from Revit; the light, materials and landscape come next.</p>
+    <p class="vw-note" data-r>Clay views straight from your Revit model, the version with one garage. Views 01 and 02 use your own cameras. If you choose the version with a second garage on the high side, I’ll update them.</p>
   </div>
   <i class="sl-dim"></i>
 </section>
@@ -553,7 +554,7 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
 </section>
 
 <!-- 5 -->
-<section class="sl on-wall" id="s5" data-id="map" data-theme="wall" aria-label="A community map">
+<section class="sl on-wall" id="s5" data-skip data-id="map" data-theme="wall" aria-label="A community map">
   <div class="sl-in cm">
     <div class="cm-text">
       <p class="eyebrow" data-r>For Grove Park Cove</p>
@@ -578,7 +579,7 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
 </section>
 
 <!-- 6 -->
-<section class="sl on-vellum" id="s6" data-id="process" data-theme="vellum" aria-label="How it works">
+<section class="sl on-vellum" id="s6" data-skip data-id="process" data-theme="vellum" aria-label="How it works">
   <div class="sl-in pr">
     <header class="sl-head">
       <p class="eyebrow" data-r>How it works</p>
@@ -620,7 +621,7 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
         <div class="op-pics n3" aria-hidden="true"><span><img src="../assets/grammatico-lot16/lot16-view-drive-900.webp" alt="" loading="lazy"><b>From the drive</b></span><span><img src="../assets/grammatico-lot16/lot16-view-decks-900.webp" alt="" loading="lazy"><b>Decks at dusk</b></span><span><img src="../assets/grammatico-lot16/lot16-view-aerial-900.webp" alt="" loading="lazy"><b>Aerial</b></span></div>
         <h3>Three exterior views</h3>
         <p class="op-num" data-v="1390">$1,390</p>
-        <p class="op-d">Chosen together from your model. $1,570 if ordered one by one.</p>
+        <p class="op-d">Arrival at golden hour, decks at dusk, aerial. $1,570 one by one.</p>
         <p class="op-when">Drafts in 5 to 7 business days, finals in about 2 weeks</p>
       </article>
       <article class="op-card" data-r>
@@ -632,13 +633,13 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
         <p class="op-when">About 3 weeks</p>
       </article>
     </div>
-    <p class="op-extra" data-r><span><b>$490</b> each extra view</span><span><b>$99</b> buyer presentation, launch price</span><span><b>from $1,900</b> 360° tour</span><span><b>from $3,500</b> film</span><span><b>+35%</b> rush in 48 hours</span><span><b>+25%</b> the 3ds Max scene, yours to keep</span></p>
+    <p class="op-extra" data-r><span><b>Free</b> draft of the main view first</span><span><b>50%</b> to start, <b>50%</b> on finals</span><span><b>2</b> revision rounds included</span><span><b>+$99</b> buyer page</span><span>Invoices via <b>Mellow</b>, New York</span></p>
   </div>
   <i class="sl-dim"></i>
 </section>
 
 <!-- 7b -->
-<section class="sl on-vellum" id="s12" data-id="ways" data-theme="vellum" aria-label="Ways to work together">
+<section class="sl on-vellum" id="s12" data-skip data-id="ways" data-theme="vellum" aria-label="Ways to work together">
   <div class="sl-in wy">
     <header class="sl-head">
       <p class="eyebrow" data-r>Working together</p>
@@ -676,7 +677,7 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
 </section>
 
 <!-- 8 -->
-<section class="sl on-wall" id="s8" data-id="cedar" data-theme="wall" aria-label="How we built the Cedar">
+<section class="sl on-wall" id="s8" data-skip data-id="cedar" data-theme="wall" aria-label="How we built the Cedar">
   <canvas class="cd-canvas" aria-hidden="true"></canvas>
   <img class="cd-fallback" src="../assets/grammatico-cedar/photo-1600.webp" alt="The Cedar, finished render">
   <i class="cd-scrim"></i>
@@ -701,7 +702,7 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
   <div class="sl-in nx">
     <h2 data-r>Next steps</h2>
     <ol class="nx-list">
-      <li data-r><span>01</span><p>We walk through your Revit model in 3D and suggest the views that show Lot 16 best.</p></li>
+      <li data-r><span>01</span><p>Dan chooses which version to render, and Brad sends that model.</p></li>
       <li data-r><span>02</span><p>You choose the light, the season and the style.</p></li>
       <li data-r><span>03</span><p>A free draft of the main view within 5 business days.</p></li>
     </ol>
@@ -728,7 +729,8 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var slides = $$('.sl'), N = slides.length, body = document.body;
+  var slides = $$('.sl').filter(function (s) { return !s.hasAttribute('data-skip'); }), N = slides.length, body = document.body;
+  var totalEl = $('.dk-count'); if (totalEl) totalEl.innerHTML = '<b>01</b> / ' + String(N).padStart(2, '0');
   var segBox = $('.dk-segs'), countEl = $('.dk-count b'), hint = $('.dk-hint');
   var iris = $('.dk-iris'), irisPoly = $('.dk-iris polygon');
   var cur = -1, busy = false, queued = null, moved = false;
