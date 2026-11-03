@@ -214,6 +214,18 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
 .op-pics .op-ph b { background: none; color: var(--ivory-2); }
 .op-pics .op-pg { border-top: 9px solid #2a3a33; }
 
+/* price ladder after Lot 16 */
+.pl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid var(--rule); }
+.pl li { display: grid; grid-template-columns: minmax(0, 17rem) minmax(0, 1fr) 8rem; gap: 8px 28px; align-items: center; padding: clamp(10px, 1.7vh, 18px) 0; border-bottom: 1px solid var(--rule); }
+.pl-k { font: 500 clamp(1.05rem, 1.35vw, 1.3rem)/1.25 var(--f-sans); color: var(--ink); }
+.pl-k small { display: block; font-size: var(--fs-s); font-weight: 400; color: var(--ink-2); margin-top: 4px; }
+.pl-bar { display: block; height: 10px; background: #D8DACF; }
+.pl-bar i { display: block; height: 100%; width: calc(var(--w) * 100%); background: var(--ink); transform-origin: 0 50%; }
+.pl li.is-first .pl-bar i { background: var(--brass); }
+.pl li.is-first .pl-k small { color: #7A6236; font-weight: 500; }
+.pl-p { font: 300 clamp(1.7rem, 2.8vw, 2.8rem)/1 var(--f-serif); text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
+.pl-note { font-size: var(--fs-s); color: var(--ink-2); max-width: 80ch; }
+.pl-note b { color: var(--ink); font-weight: 600; }
 /* ways to work */
 .wy { justify-content: safe center; }
 .wy-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 28px); }
@@ -327,6 +339,8 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
   .op-pics { max-height: none; }
   .wy { justify-content: flex-start; }
   .wy-cards, .wy-flow { grid-template-columns: 1fr; }
+  .pl li { grid-template-columns: minmax(0, 1fr) auto; }
+  .pl-bar { grid-column: 1 / -1; grid-row: 2; }
   .wy-line { display: none; }
   .wy-flow li { flex-direction: row; align-items: baseline; }
   .cd { max-width: none; justify-content: flex-end; }
@@ -639,39 +653,20 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
 </section>
 
 <!-- 7b -->
-<section class="sl on-vellum" id="s12" data-skip data-id="ways" data-theme="vellum" aria-label="Ways to work together">
+<section class="sl on-vellum" id="s12" data-id="ways" data-theme="vellum" aria-label="Prices after Lot 16">
   <div class="sl-in wy">
     <header class="sl-head">
-      <p class="eyebrow" data-r>Working together</p>
-      <h2 data-r>By the house, by the hour or by the series</h2>
+      <p class="eyebrow" data-r>After Lot 16</p>
+      <h2 data-r>The more homes, the lower the price</h2>
     </header>
-    <div class="wy-cards">
-      <article class="wy-card" data-r>
-        <p class="wy-k">By the house</p>
-        <p class="wy-num"><span data-v="1690" data-pre="$">$1,690</span><small>after Lot 16</small></p>
-        <p class="wy-d">Three exteriors and a buyer page, at a fixed price agreed before I start. Lot 16 is at first-project prices.</p>
-      </article>
-      <article class="wy-card" data-r>
-        <p class="wy-k">By the hour</p>
-        <p class="wy-num"><span data-v="65" data-pre="$">$65</span><small>an hour</small></p>
-        <p class="wy-d">For ongoing changes. I estimate each task before I start and send a short report every week.</p>
-      </article>
-      <article class="wy-card" data-r>
-        <p class="wy-k">A series of homes</p>
-        <p class="wy-num"><span data-v="10" data-pre="&minus;" data-suf="%">&minus;10%</span><small>from three homes</small></p>
-        <p class="wy-d">15% off from six. The same plan on another lot is $290 a view, because the model is already built.</p>
-      </article>
-    </div>
-    <div class="wy-easy" data-r>
-      <h3>Working with me</h3>
-      <div class="wy-track"><i class="wy-line" aria-hidden="true"></i>
-      <ol class="wy-flow">
-        <li><i class="wy-dot"></i><p>You send the task.</p></li>
-        <li><i class="wy-dot"></i><p>If something is unclear, I ask once, in one message.</p></li>
-        <li><i class="wy-dot"></i><p>You get exactly what you asked for.</p></li>
-      </ol>
-      </div>
-    </div>
+    <ol class="pl">
+      <li class="is-first" data-r><p class="pl-k">Lot 16<small>First project, first-project price</small></p><span class="pl-bar"><i style="--w:.881"></i></span><p class="pl-p" data-v="1489" data-pre="$">$1,489</p></li>
+      <li data-r><p class="pl-k">One house at a time<small>Standard price</small></p><span class="pl-bar"><i style="--w:1"></i></span><p class="pl-p" data-v="1690" data-pre="$">$1,690</p></li>
+      <li data-r><p class="pl-k">From three houses<small>10% off each</small></p><span class="pl-bar"><i style="--w:.899"></i></span><p class="pl-p" data-v="1520" data-pre="$">$1,520</p></li>
+      <li data-r><p class="pl-k">From six houses<small>15% off each</small></p><span class="pl-bar"><i style="--w:.849"></i></span><p class="pl-p" data-v="1435" data-pre="$">$1,435</p></li>
+      <li data-r><p class="pl-k">The same plan on another lot<small>$290 a view, the model is already built</small></p><span class="pl-bar"><i style="--w:.515"></i></span><p class="pl-p" data-v="870" data-pre="$">$870</p></li>
+    </ol>
+    <p class="pl-note" data-r>Each price is for one house: three exterior views and a buyer page. Or work by the hour, <b>$65</b>, with every task estimated first.</p>
   </div>
   <i class="sl-dim"></i>
 </section>
@@ -1059,15 +1054,19 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
   /* 7b ways to work: the figures count up, then the three steps join up */
   hooks.ways = {
     enter: function () {
-      $$('[data-id="ways"] [data-v]').forEach(function (el, i) {
+      var sl = $('[data-id="ways"]');
+      $$('[data-v]', sl).forEach(function (el, i) {
         var v = +el.dataset.v, pre = el.dataset.pre || '', suf = el.dataset.suf || '', o = { v: 0 };
         var put = function (x) { el.textContent = pre + Math.round(x).toLocaleString('en-US') + suf; };
         if (RM) { put(v); return; }
         gsap.to(o, { v: v, duration: 1.4, ease: 'power3.out', delay: 0.7 + i * 0.12, onUpdate: function () { put(o.v); } });
       });
       if (RM) return;
-      gsap.fromTo($('.wy-line'), { scaleX: 0 }, { scaleX: 1, duration: 1.6, ease: 'power2.inOut', delay: 1.1 });
-      gsap.fromTo($$('.wy-dot'), { scale: 0 }, { scale: 1, duration: 0.6, ease: 'back.out(2.4)', stagger: 0.45, delay: 1.2, clearProps: 'transform,scale' });
+      var bars = $$('.pl-bar i', sl);
+      if (bars.length) gsap.fromTo(bars, { scaleX: 0 }, { scaleX: 1, duration: 1.3, ease: 'power3.out', stagger: 0.12, delay: 0.7 });
+      var line = $('.wy-line', sl), dots = $$('.wy-dot', sl);
+      if (line) gsap.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: 1.6, ease: 'power2.inOut', delay: 1.1 });
+      if (dots.length) gsap.fromTo(dots, { scale: 0 }, { scale: 1, duration: 0.6, ease: 'back.out(2.4)', stagger: 0.45, delay: 1.2 });
     }
   };
 
