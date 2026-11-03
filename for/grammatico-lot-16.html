@@ -80,7 +80,12 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
 .dk-iris polygon { fill: none; stroke: var(--brass); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
 
 /* 1 cover */
-.cv-art { position: absolute; z-index: 1; right: var(--pad); bottom: calc(var(--bot) + 2vh); width: min(52vw, 104vh); aspect-ratio: 2470 / 1270; }
+.cv-art { position: absolute; z-index: 1; right: var(--pad); bottom: calc(var(--bot) + 2vh); height: min(calc(100vh - var(--top) - var(--bot) - 6vh), 42vw); aspect-ratio: 1990 / 1878; }
+.cv-tag { position: absolute; right: 89.5%; top: 45.5%; font: 500 var(--fs-xs)/1 var(--f-sans); color: var(--brass); white-space: nowrap; }
+.cv-gar { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 18px; margin: 10px 0 0; max-width: 34rem; padding-top: 18px; border-top: 1px solid rgba(236,230,216,.18); font-size: var(--fs-s); line-height: 1.4; }
+.cv-gar dt { color: var(--brass); font-weight: 500; }
+.cv-gar dd { margin: 0; color: var(--ivory-2); }
+@media (max-height: 760px) { .cv-foot { display: none; } }
 .cv-art img { width: 100%; height: 100%; object-fit: contain; }
 .cv-scan { position: absolute; top: -4%; bottom: -4%; width: 1px; left: 0; background: var(--brass); box-shadow: 0 0 18px 2px rgba(184,154,99,.55); opacity: 0; }
 .cv { justify-content: flex-start; padding-top: calc(var(--top) + 8vh); gap: 22px; }
@@ -321,7 +326,8 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
   .dk-nav { background: linear-gradient(0deg, rgba(var(--tbg),.96) 60%, rgba(var(--tbg),0)); }
   .op { justify-content: flex-start; }
   .dk-title, .dk-hint { display: none; }
-  .cv-art { width: calc(100% - 2 * var(--pad)); bottom: calc(var(--bot) + 40px); opacity: .7; }
+  .cv-art { height: auto; width: min(calc(100% - 2 * var(--pad)), 52vh); bottom: calc(var(--bot) + 40px); opacity: .45; }
+  .cv-tag { display: none; }
   .cv { justify-content: flex-start; padding-top: calc(var(--top) + 6vh); }
   .cap-grid { grid-template-columns: 1fr 1fr; }
   .cap-grid li:last-child { grid-column: 1 / -1; }
@@ -377,13 +383,17 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
 
 <!-- 1 -->
 <section class="sl on-wall" id="s1" data-id="cover" data-theme="wall" aria-label="Residential Lot 16">
-  <div class="cv-art" aria-hidden="true"><img class="cv-lines" src="../assets/grammatico-lot16/elevation-lines-2400.webp" alt="" width="2470" height="1270"><i class="cv-scan"></i></div>
+  <div class="cv-art" aria-hidden="true"><img class="cv-lines" src="../assets/grammatico-lot16/plan3-garage-lines.webp" alt="" width="1990" height="1878"><span class="cv-tag">Second garage</span><i class="cv-scan"></i></div>
   <div class="sl-in cv">
     <p class="eyebrow" data-r>For Dan Grammatico and Brad Moore</p>
     <h1 data-r>Residential<br>Lot 16</h1>
     <p class="lead" data-r>Grove Park Cove, North Carolina. What we can make from your drawings.</p>
+    <dl class="cv-gar" data-r>
+      <dt>We have</dt><dd>The third floor plan with the second garage</dd>
+      <dt>Still needed</dt><dd>Elevations and roof of that version, or its Revit model</dd>
+    </dl>
   </div>
-  <p class="cv-foot" data-r>North elevation from the drawing set, sheet A2.1</p>
+  <p class="cv-foot" data-r>Third floor plan, CAD file from Kris, November 2</p>
   <i class="sl-dim"></i>
 </section>
 
@@ -495,7 +505,7 @@ body[data-theme="brass"] .dk-seg i { background: var(--wall); }
       <li data-r><div class="vw-img"><img src="../assets/grammatico-lot16/lot16-view-aerial-1600.webp" alt="Clay aerial view of Lot 16 on its slope" loading="lazy"></div>
         <h3><span>03</span>Aerial over the slope</h3><p>The house on its hill, the drive and the forest around it.</p></li>
     </ol>
-    <p class="vw-note" data-r>Clay views straight from your Revit model, the version with one garage. Views 01 and 02 use your own cameras. If you choose the version with a second garage on the high side, I’ll update them.</p>
+    <p class="vw-note" data-r>Clay views from your Revit model, the version with one garage, with your cameras for 01 and 02. The second garage would sit behind the house here; with it, I’d add a view from the upper drive.</p>
   </div>
   <i class="sl-dim"></i>
 </section>
